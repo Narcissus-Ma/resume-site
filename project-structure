@@ -1,0 +1,15 @@
+my-resume/
+├── public/
+│   └── fonts/
+│       ├── NotoSansSC-Regular.ttf
+│       └── NotoSansSC-Bold.ttf
+├── src/
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── About.jsx
+│   │   ├── Skills.jsx
+│   │   ├── Experience.jsx
+│   │   ├── PDFModal.jsx
+│   │   └── ResumePDF.jsx
+│   ├── App.jsx
+│   └── main.jsx 
