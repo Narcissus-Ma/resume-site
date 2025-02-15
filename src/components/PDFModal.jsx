@@ -79,6 +79,22 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
             <span>邮箱: ${formData.email}</span>
           </div>
         </div>
+        
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 border-b pb-2">技能描述</h2>
+          <div class="space-y-2">
+            ${resumeData.basicInfo.skillDescriptions
+              .map(
+                (description, index) => `
+              <p class="flex items-start">
+                <span class="mr-2">${index + 1}.</span>
+                <span>${description}</span>
+              </p>
+            `
+              )
+              .join("")}
+          </div>
+        </section>
 
         <section class="mb-8">
           <h2 class="text-2xl font-bold mb-4 border-b pb-2">技能专长</h2>
@@ -157,14 +173,14 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold mb-4 border-b pb-2">证书</h2>
+          <h2 class="text-2xl font-bold mb-4 border-b pb-2">个人网站和代码仓库</h2>
           <div class="space-y-2">
-            ${resumeData.certificates
+            ${resumeData.website
               .map(
-                (cert) => `
+                (web) => `
               <div>
-                <h3 class="text-lg font-semibold">${cert.name}</h3>
-                <p class="text-gray-600">${cert.date}</p>
+                <h3 class="text-lg font-semibold">${web.name}</h3>
+                <p class="text-gray-600">${web.url}</p>
               </div>
             `
               )

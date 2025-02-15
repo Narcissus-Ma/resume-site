@@ -5,6 +5,7 @@ import Skills from './components/Skills'
 import Experience from './components/Experience'
 import PDFModal from './components/PDFModal'
 import { resumeData } from './data/resumeData'
+import SkillDescription from './components/SkillDescription'
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -19,12 +20,13 @@ function App() {
       <Header onExportClick={() => setIsModalOpen(true)} />
       <main className="container mx-auto px-4 py-8">
         <About userInfo={userInfo} />
+        <SkillDescription skillDescriptions={resumeData.basicInfo.skillDescriptions} />
         <Skills skills={resumeData.basicInfo.skills} />
         <Experience 
           experience={resumeData.experience}
           projects={resumeData.projects}
           education={resumeData.education}
-          certificates={resumeData.certificates}
+          website={resumeData.website}
         />
       </main>
       <PDFModal 

@@ -1,4 +1,4 @@
-const Experience = ({ experience, projects, education, certificates }) => {
+const Experience = ({ experience, projects, education, website }) => {
   return (
     <>
 
@@ -30,7 +30,7 @@ const Experience = ({ experience, projects, education, certificates }) => {
                 {exp.position} | {exp.period}
               </p>
               <ul className="mt-2 list-disc list-inside space-y-1">
-                {exp.achievements.map((item, index) => (
+                {exp.achievements?.map((item, index) => (
                   <li key={index} className="text-gray-700">{item}</li>
                 ))}
               </ul>
@@ -46,7 +46,7 @@ const Experience = ({ experience, projects, education, certificates }) => {
             <h3 className="text-xl font-semibold">{edu.school}</h3>
             <p className="text-gray-600">{edu.degree} | {edu.period}</p>
             <ul className="mt-2 list-disc list-inside space-y-1">
-              {edu.achievements.map((item, index) => (
+              {edu.achievements?.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
@@ -55,12 +55,12 @@ const Experience = ({ experience, projects, education, certificates }) => {
       </section>
 
       <section className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold mb-4">证书</h2>
+        <h2 className="text-2xl font-bold mb-4">个人网站和仓库</h2>
         <div className="space-y-4">
-          {certificates.map((cert) => (
-            <div key={cert.name}>
-              <h3 className="text-lg font-semibold">{cert.name}</h3>
-              <p className="text-gray-600">{cert.date}</p>
+          {website.map((web) => (
+            <div key={web.name}>
+              <h3 className="text-lg font-semibold">{web.name}</h3>
+              <p className="text-gray-600">{web.url}</p>
             </div>
           ))}
         </div>
