@@ -1,1 +1,2 @@
-/resume-site/* /* 200 
+/resume-site/* /resume-site/:splat 200  
+/* /index.html 200 
