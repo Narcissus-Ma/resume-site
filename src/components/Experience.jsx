@@ -1,24 +1,6 @@
 const Experience = ({ experience, projects, education, certificates }) => {
   return (
     <>
-      <section className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">工作经历</h2>
-        <div className="space-y-6">
-          {experience.map((exp) => (
-            <div key={exp.company} className="border-l-4 border-primary pl-4">
-              <h3 className="text-xl font-semibold">{exp.company}</h3>
-              <p className="text-gray-600">
-                {exp.position} | {exp.period}
-              </p>
-              <ul className="mt-2 list-disc list-inside space-y-1">
-                {exp.achievements.map((item, index) => (
-                  <li key={index} className="text-gray-700">{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
 
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
         <h2 className="text-2xl font-bold mb-4">项目经验</h2>
@@ -31,6 +13,25 @@ const Experience = ({ experience, projects, education, certificates }) => {
               <ul className="mt-2 list-disc list-inside space-y-1">
                 {project.responsibilities.map((item, index) => (
                   <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h2 className="text-2xl font-bold mb-4">工作经历</h2>
+        <div className="space-y-6">
+          {experience.map((exp) => (
+            <div key={exp.company} className="border-l-4 border-primary pl-4">
+              <h3 className="text-xl font-semibold">{exp.company}</h3>
+              <p className="text-gray-600">
+                {exp.position} | {exp.period}
+              </p>
+              <ul className="mt-2 list-disc list-inside space-y-1">
+                {exp.achievements.map((item, index) => (
+                  <li key={index} className="text-gray-700">{item}</li>
                 ))}
               </ul>
             </div>

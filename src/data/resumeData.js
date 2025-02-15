@@ -93,5 +93,6 @@ export const resumeData = {
       name: '前端开发工程师（高级）',
       date: '2022.03'
     }
-  ]
+  ],
+  correctToken: 'WyLpqazpuY/po54iLCIxNzY3MTYzNDE2NyIsIjU3NzAwODYzN0BxcS5jb20iXQ==' 
 } 
