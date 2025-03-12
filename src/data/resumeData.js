@@ -144,7 +144,7 @@ export const resumeData = {
     },
     {
       name: "导航网站",
-      url: "https://narcissus-ma.github.io/Personal-Website-Navigation/#/",
+      url: "https://navigation.tramppoet.us.kg/",
     },
     {
       name: "低代码平台",
