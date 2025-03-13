@@ -84,15 +84,15 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
           <h2 class="text-2xl font-bold mb-4 border-b pb-2">技能描述</h2>
           <div class="space-y-2">
             ${resumeData.basicInfo.skillDescriptions
-              .map(
-                (description, index) => `
+          .map(
+            (description, index) => `
               <p class="flex items-start">
                 <span class="mr-2">${index + 1}.</span>
                 <span>${description}</span>
               </p>
             `
-              )
-              .join("")}
+          )
+          .join("")}
           </div>
         </section>
 
@@ -100,8 +100,8 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
           <h2 class="text-2xl font-bold mb-4 border-b pb-2">技能专长</h2>
           <div class="grid grid-cols-2 gap-4">
             ${resumeData.basicInfo.skills
-              .map(
-                (skill) => `
+          .map(
+            (skill) => `
               <div>
                 <h3 class="font-semibold">${skill.category}</h3>
                 <ul class="list-disc list-inside">
@@ -109,17 +109,18 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
                 </ul>
               </div>
             `
-              )
-              .join("")}
+          )
+          .join("")}
           </div>
+          <div style="height: 200px"></div>
         </section>
 
         <section class="mb-8">
           <h2 class="text-2xl font-bold mb-4 border-b pb-2">工作经历</h2>
           <div class="space-y-6">
             ${resumeData.experience
-              .map(
-                (exp) => `
+          .map(
+            (exp) => `
               <div>
                 <h3 class="text-xl font-semibold">${exp.company}</h3>
                 <p class="text-gray-600">${exp.position} | ${exp.period}</p>
@@ -128,8 +129,8 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
                 </ul>
               </div>
             `
-              )
-              .join("")}
+          )
+          .join("")}
           </div>
         </section>
 
@@ -137,29 +138,30 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
           <h2 class="text-2xl font-bold mb-4 border-b pb-2">项目经验</h2>
           <div class="space-y-6">
             ${resumeData.projects
-              .map(
-                (project) => `
+          .map(
+            (project) => `
               <div>
                 <h3 class="text-xl font-semibold">${project.name}</h3>
                 <p class="text-gray-600">${project.period}</p>
                 <p class="mt-2">${project.description}</p>
                 <ul class="list-disc list-inside mt-2">
                   ${project.responsibilities
-                    .map((item) => `<li>${item}</li>`)
-                    .join("")}
+                .map((item) => `<li>${item}</li>`)
+                .join("")}
                 </ul>
               </div>
             `
-              )
-              .join("")}
+          )
+          .join("")}
           </div>
+          <div style="height: 200px"></div>
         </section>
 
         <section class="mb-8">
           <h2 class="text-2xl font-bold mb-4 border-b pb-2">教育背景</h2>
           ${resumeData.education
-            .map(
-              (edu) => `
+          .map(
+            (edu) => `
             <div>
               <h3 class="text-xl font-semibold">${edu.school}</h3>
               <p class="text-gray-600">${edu.degree} | ${edu.period}</p>
@@ -168,23 +170,23 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
               </ul>
             </div>
           `
-            )
-            .join("")}
+          )
+          .join("")}
         </section>
 
         <section>
           <h2 class="text-2xl font-bold mb-4 border-b pb-2">个人网站和代码仓库</h2>
           <div class="space-y-2">
             ${resumeData.website
-              .map(
-                (web) => `
+          .map(
+            (web) => `
               <div>
                 <h3 class="text-lg font-semibold">${web.name}</h3>
                 <p class="text-gray-600">${web.url}</p>
               </div>
             `
-              )
-              .join("")}
+          )
+          .join("")}
           </div>
         </section>
       `;

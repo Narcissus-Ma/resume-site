@@ -6,11 +6,11 @@ export const resumeData = {
         category: "前端开发",
         items: [
           "HTML5/CSS3",
-          "JavaScript/TypeScript",
+          "JS/TS",
           "React/Next.js",
           "Vue/Nuxt.js",
           "Webpack/Vite",
-          "TailwindCSS/Sass/less/css-in-js",
+          "Sass/less/css-in-js",
         ],
       },
       {
