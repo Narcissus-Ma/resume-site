@@ -140,11 +140,11 @@ export const resumeData = {
   website: [
     {
       name: "博客",
-      url: "https://blog.narcissus2ma.us.kg/",
+      url: "https://blog.384385.xyz/",
     },
     {
       name: "导航网站",
-      url: "https://navigation.tramppoet.us.kg/",
+      url: "https://navigation.384385.xyz/",
     },
     {
       name: "低代码平台",
