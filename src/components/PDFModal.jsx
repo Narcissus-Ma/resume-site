@@ -112,7 +112,7 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
           )
           .join("")}
           </div>
-          <div style="height: 200px"></div>
+          <div style="height: 210px"></div>
         </section>
 
         <section class="mb-8">

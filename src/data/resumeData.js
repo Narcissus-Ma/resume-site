@@ -159,10 +159,6 @@ export const resumeData = {
       url: "https://narcissus-ma.github.io/nm-spec/",
     },
     {
-      name: "图床",
-      url: "https://img.tramppoet.us.kg/",
-    },
-    {
       name: "GitHub",
       url: "https://github.com/Narcissus-Ma",
     },
