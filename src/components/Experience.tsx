@@ -1,7 +1,16 @@
-const Experience = ({ experience, projects, education, website }) => {
+import React from 'react';
+import { Experience as ExperienceType, Project, Education, Website } from '../data/resumeData';
+
+interface ExperienceProps {
+  experience: ExperienceType[];
+  projects: Project[];
+  education: Education[];
+  website: Website[];
+}
+
+const Experience: React.FC<ExperienceProps> = ({ experience, projects, education, website }) => {
   return (
     <>
-
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
         <h2 className="text-2xl font-bold mb-4">项目经验</h2>
         <div className="space-y-6">
@@ -54,19 +63,24 @@ const Experience = ({ experience, projects, education, website }) => {
         ))}
       </section>
 
-      <section className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold mb-4">个人网站和仓库</h2>
-        <div className="space-y-4">
-          {website.map((web) => (
-            <div key={web.name}>
-              <h3 className="text-lg font-semibold">{web.name}</h3>
-              <p className="text-gray-600">{web.url}</p>
-            </div>
+      <section className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h2 className="text-2xl font-bold mb-4">个人网站</h2>
+        <div className="flex flex-wrap gap-4">
+          {website.map((site) => (
+            <a
+              key={site.name}
+              href={site.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition-colors"
+            >
+              {site.name}
+            </a>
           ))}
         </div>
       </section>
     </>
-  )
-}
+  );
+};
 
-export default Experience 
+export default Experience;

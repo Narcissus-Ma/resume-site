@@ -1,4 +1,10 @@
-const Header = ({ onExportClick }) => {
+import React from 'react';
+
+interface HeaderProps {
+  onExportClick: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onExportClick }) => {
   return (
     <header className="bg-primary text-white shadow-lg">
       <div className="container mx-auto px-4 py-6 flex justify-between items-center">
@@ -11,7 +17,7 @@ const Header = ({ onExportClick }) => {
         </button>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header 
+export default Header;

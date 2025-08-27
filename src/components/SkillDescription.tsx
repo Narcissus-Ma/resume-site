@@ -1,4 +1,10 @@
-const SkillDescription = ({ skillDescriptions }) => {
+import React from 'react';
+
+interface SkillDescriptionProps {
+  skillDescriptions: string[];
+}
+
+const SkillDescription: React.FC<SkillDescriptionProps> = ({ skillDescriptions }) => {
   return (
     <section className="bg-white rounded-lg shadow-md p-6 mb-6">
       <h2 className="text-2xl font-bold mb-4">技能描述</h2>
@@ -11,7 +17,7 @@ const SkillDescription = ({ skillDescriptions }) => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default SkillDescription
+export default SkillDescription;

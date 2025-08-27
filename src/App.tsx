@@ -1,24 +1,30 @@
-import { useState } from 'react'
-import Header from './components/Header'
-import About from './components/About'
-import Skills from './components/Skills'
-import Experience from './components/Experience'
-import PDFModal from './components/PDFModal'
-import { resumeData } from './data/resumeData'
-import SkillDescription from './components/SkillDescription'
+import { useState } from 'react';
+import Header from './components/Header';
+import About from './components/About';
+import Skills from './components/Skills';
+import Experience from './components/Experience';
+import PDFModal from './components/PDFModal';
+import { resumeData } from './data/resumeData';
+import SkillDescription from './components/SkillDescription';
+
+interface UserInfo {
+  name: string;
+  phone: string;
+  email: string;
+}
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [userInfo, setUserInfo] = useState({
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [userInfo, setUserInfo] = useState<UserInfo>({
     name: '',
     phone: '',
     email: ''
-  })
+  });
 
   return (
     <div className="min-h-screen bg-gray-100">
       <Header onExportClick={() => setIsModalOpen(true)} />
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8" id="resume-content">
         <About userInfo={userInfo} />
         <SkillDescription skillDescriptions={resumeData.basicInfo.skillDescriptions} />
         <Skills skills={resumeData.basicInfo.skills} />
@@ -35,7 +41,7 @@ function App() {
         onSubmit={(data) => setUserInfo(data)}
       />
     </div>
-  )
+  );
 }
 
-export default App 
+export default App;

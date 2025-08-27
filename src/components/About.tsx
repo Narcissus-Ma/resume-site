@@ -1,6 +1,17 @@
-import { resumeData } from '../data/resumeData'
+import React from 'react';
+import { resumeData } from '../data/resumeData';
 
-const About = ({ userInfo }) => {
+interface UserInfo {
+  name?: string;
+  phone?: string;
+  email?: string;
+}
+
+interface AboutProps {
+  userInfo: UserInfo;
+}
+
+const About: React.FC<AboutProps> = ({ userInfo }) => {
   return (
     <section className="bg-white rounded-lg shadow-md p-6 mb-6">
       <div className="text-center mb-8">
@@ -12,7 +23,7 @@ const About = ({ userInfo }) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default About 
+export default About;

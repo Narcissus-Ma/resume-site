@@ -1,4 +1,11 @@
-const Skills = ({ skills }) => {
+import React from 'react';
+import { Skill } from '../data/resumeData';
+
+interface SkillsProps {
+  skills: Skill[];
+}
+
+const Skills: React.FC<SkillsProps> = ({ skills }) => {
   return (
     <section className="bg-white rounded-lg shadow-md p-6 mb-6">
       <h2 className="text-2xl font-bold mb-4">技能标签</h2>
@@ -20,7 +27,7 @@ const Skills = ({ skills }) => {
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Skills 
+export default Skills;

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { resumeData } from "../data/resumeData";
 
 // Function to decode base64
-const decodeBase64 = (str) => {
+const decodeBase64 = (str: string): any => {
   try {
     // 1. 使用 atob 解码 Base64 编码后的字符串
     const decodedStr = atob(str);
@@ -27,38 +27,53 @@ const decodeBase64 = (str) => {
 
 Modal.setAppElement("#root");
 
-const PDFModal = ({ isOpen, onClose, onSubmit }) => {
-  const [formData, setFormData] = useState({
+interface FormData {
+  name: string;
+  phone: string;
+  email: string;
+}
+
+interface PDFModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: (data: FormData) => void;
+}
+
+const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit }) => {
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
     email: "",
   });
-  const [tokens, setTokens] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [isTokenForm, setIsTokenForm] = useState(true);
+  const [tokens, setTokens] = useState<string>("");
+  const [isGenerating, setIsGenerating] = useState<boolean>(false);
+  const [isTokenForm, setIsTokenForm] = useState<boolean>(true);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleTokenChange = (e) => {
+  const handleTokenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTokens(e.target.value);
   };
 
-  const handleTokenValidation = () => {
-    if (tokens === resumeData.correctToken) {
+  const handleTokenValidation = (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
       const decodedToken = decodeBase64(resumeData.correctToken);
+      const [name, phone, email] = decodedToken;
       setFormData({
-        name: decodedToken[0],
-        phone: decodedToken[1],
-        email: decodedToken[2],
+        name,
+        phone,
+        email,
       });
       setIsTokenForm(false);
-    } else {
-      alert("Invalid token");
+    } catch (error) {
+      console.error("Token validation failed:", error);
+      alert("Token验证失败，请检查输入是否正确");
     }
   };
 
@@ -243,8 +258,56 @@ const PDFModal = ({ isOpen, onClose, onSubmit }) => {
     }
   };
 
+  // const handleFormSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsGenerating(true);
+
+  //   // 提交表单数据
+  //   onSubmit(formData);
+
+  //   // 延迟生成PDF，确保DOM已更新
+  //   setTimeout(() => {
+  //     generatePDF();
+  //   }, 500);
+  // };
+
+  // const generatePDF = async () => {
+  //   try {
+  //     const resumeElement = document.getElementById("resume-content");
+  //     if (!resumeElement) {
+  //       throw new Error("Resume element not found");
+  //     }
+
+  //     const canvas = await html2canvas(resumeElement, {
+  //       scale: 2,
+  //       useCORS: true,
+  //       logging: false,
+  //     });
+
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF({
+  //       orientation: "portrait",
+  //       unit: "mm",
+  //       format: "a4",
+  //     });
+
+  //     const imgWidth = 210;
+  //     const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  //     pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+  //     pdf.save("我的简历.pdf");
+
+  //     setIsGenerating(false);
+  //     onClose();
+  //   } catch (error) {
+  //     console.error("PDF generation failed:", error);
+  //     setIsGenerating(false);
+  //     alert("PDF生成失败，请稍后再试");
+  //   }
+  // };
+
   return (
-    <Modal
+     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
       className="modal-content"
