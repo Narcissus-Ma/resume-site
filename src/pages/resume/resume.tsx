@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import About from "@/components/About";
 import Experience from "@/components/Experience";
@@ -24,18 +24,6 @@ const Resume = () => {
         phone: '',
         email: ''
     });
-
-    // 从localStorage获取用户信息
-    useEffect(() => {
-        const savedUserInfo = localStorage.getItem('userInfo');
-        if (savedUserInfo) {
-            try {
-                setUserInfo(JSON.parse(savedUserInfo));
-            } catch (error) {
-                console.error('Failed to parse saved user info:', error);
-            }
-        }
-    }, []);
     return (
         <div className="min-h-screen bg-gray-100">
             <Header onExportClick={() => setIsModalOpen(true)} />
