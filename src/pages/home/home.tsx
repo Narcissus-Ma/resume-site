@@ -141,10 +141,10 @@ const Home: React.FC = () => {
               type="primary" 
               size="large" 
               icon={<RocketOutlined />} 
-              href="#part-4"
+              href="/resume-site/resume"
               className="bg-blue-600 hover:bg-blue-700 text-white px-8"
             >
-              查看作品集
+              查看简历
             </Button>
             <Button 
               type="default" 
