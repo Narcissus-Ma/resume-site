@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-import About from "../../components/About";
-import Experience from "../../components/Experience";
-import Header from "../../components/Header";
-import PDFModal from "../../components/PDFModal";
-import SkillDescription from "../../components/SkillDescription";
-import Skills from "../../components/Skills";
-import { resumeData } from "../../data/resumeData";
+import About from "@/components/About";
+import Experience from "@/components/Experience";
+import Header from "@/components/Header";
+import PDFModal from "@/components/PDFModal";
+import SkillDescription from "@/components/SkillDescription";
+import Skills from "@/components/Skills";
+import { resumeData } from "@/data/resumeData";
 
 
 
