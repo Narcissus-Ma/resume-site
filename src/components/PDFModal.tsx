@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
+
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import Modal from "react-modal";
+
 import { resumeData } from "../data/resumeData";
 
 // Function to decode base64
-const decodeBase64 = (str: string): any => {
+const decodeBase64 = (str: string) => {
   try {
     // 1. 使用 atob 解码 Base64 编码后的字符串
     const decodedStr = atob(str);
