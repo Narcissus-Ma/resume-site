@@ -1,9 +1,10 @@
-import Resume from './pages/resume/resume';
+import { RouterProvider } from 'react-router-dom';
+import router from './router';
 
 function App() {
   return (
-    <div >
-      <Resume />
+    <div>
+      <RouterProvider router={router} />
     </div>
   );
 }
