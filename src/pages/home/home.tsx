@@ -1,6 +1,7 @@
 import React from 'react';
 import { Anchor, Progress, Timeline, Carousel, Button, Avatar, Card, Typography, Row, Col, Space } from 'antd';
 import { GithubOutlined, MailOutlined, PhoneOutlined, EnvironmentOutlined, LinkedinOutlined, CodeOutlined, DatabaseOutlined, RocketOutlined, BackwardOutlined, BookOutlined, GlobalOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 import catImage from '@/assets/img/cat.png';
 import aboutImage from '@/assets/img/about.png';
 import portfolio1 from '@/assets/img/portfolio1.jpg';
@@ -141,10 +142,9 @@ const Home: React.FC = () => {
               type="primary" 
               size="large" 
               icon={<RocketOutlined />} 
-              href="/resume-site/resume"
               className="bg-blue-600 hover:bg-blue-700 text-white px-8"
             >
-              查看简历
+              <Link to="/resume" className="text-white">查看简历</Link>
             </Button>
             <Button 
               type="default" 

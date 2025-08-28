@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "start": "vite --port 3000",
     "dev": "vite --port 3000",
     "build": "tsc && vite build",
     "postbuild": "echo /resume-site/assets/* /assets/:splat 200 > dist/_redirects",
