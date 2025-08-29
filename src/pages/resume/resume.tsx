@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import About from "@/components/About";
 import Experience from "@/components/Experience";
-import Header from "@/components/Header";
+import Header from "@/components/resume-header";
 import PDFModal from "@/components/PDFModal";
 import SkillDescription from "@/components/SkillDescription";
 import Skills from "@/components/Skills";

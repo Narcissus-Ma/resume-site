@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Anchor, Progress, Timeline, Carousel, Button, Avatar, Card, Typography, Row, Col, Space } from 'antd';
-import { GithubOutlined, MailOutlined, PhoneOutlined, EnvironmentOutlined, LinkedinOutlined, CodeOutlined, DatabaseOutlined, RocketOutlined, BackwardOutlined, BookOutlined, GlobalOutlined, MoonOutlined, SunOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import catImage from '@/assets/img/cat.png';
-import aboutImage from '@/assets/img/about.png';
+import { Skill, Experience, Project } from '../../types';
+import Header from '../../components/Header';
+import HomeSection from '../../components/HomeSection';
+import AboutSection from '../../components/AboutSection';
+import SkillsSection from '../../components/SkillsSection';
+import ProjectsSection from '../../components/ProjectsSection';
+import ContactSection from '../../components/ContactSection';
+import Footer from '../../components/Footer';
 import portfolio1 from '@/assets/img/portfolio1.jpg';
 import portfolio2 from '@/assets/img/portfolio2.jpg';
 import portfolio3 from '@/assets/img/portfolio3.jpg';
-import giteeImage from '@/assets/img/gitee.png';
-import bilibiliImage from '@/assets/img/bilibili.png';
-
-const { Title, Paragraph, Text } = Typography;
-const { Meta } = Card;
 
 const Home: React.FC = () => {
   // 主题状态管理
@@ -30,7 +28,7 @@ const Home: React.FC = () => {
   };
 
   // 技能数据
-  const skills = [
+  const skills: Skill[] = [
     { name: '前端开发', value: 90 },
     { name: 'React/Vue', value: 85 },
     { name: 'TypeScript', value: 80 },
@@ -40,7 +38,7 @@ const Home: React.FC = () => {
   ];
 
   // 工作经历数据
-  const experiences = [
+  const experiences: Experience[] = [
     {
       year: '2022 - 至今',
       title: '高级前端工程师',
@@ -62,7 +60,7 @@ const Home: React.FC = () => {
   ];
 
   // 项目数据
-  const projects = [
+  const projects: Project[] = [
     {
       title: '企业管理系统',
       description: '基于React和TypeScript开发的企业级管理系统，包含权限管理、数据统计等功能。',
@@ -85,456 +83,13 @@ const Home: React.FC = () => {
 
   return (
     <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-gradient-to-b from-gray-50 to-gray-100'} font-sans`}>
-      {/* 导航栏 */}
-      <div className={`sticky top-0 z-50 ${darkMode ? 'bg-gray-800/80 text-white' : 'bg-white/80 text-gray-800'} backdrop-blur-md shadow-sm`}>
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <Anchor
-            direction="horizontal"
-            affix={false}
-            items={[
-              {
-                key: 'part-1',
-                href: '#part-1',
-                title: '主页',
-              },
-              {
-                key: 'part-2',
-                href: '#part-2',
-                title: '关于',
-              },
-              {
-                key: 'part-3',
-                href: '#part-3',
-                title: '技能',
-              },
-              {
-                key: 'part-4',
-                href: '#part-4',
-                title: '项目集',
-              },
-              {
-                key: 'part-5',
-                href: '#part-5',
-                title: '联系方式',
-              },
-            ]}
-          />
-          <Button
-            type="text"
-            icon={darkMode ? <SunOutlined /> : <MoonOutlined />}
-            onClick={toggleTheme}
-            className={`rounded-full ${darkMode ? 'text-yellow-300' : 'text-gray-700'}`}
-          />
-        </div>
-      </div>
-
-      {/* 主页部分 */}
-      <section id="part-1" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 -z-10" />
-        <div className="absolute right-20 top-20 w-64 h-64 bg-yellow-200/30 rounded-full blur-3xl" />
-        <div className="absolute left-20 bottom-20 w-80 h-80 bg-blue-200/20 rounded-full blur-3xl" />
-        
-        <div className="container mx-auto px-4 py-20 text-center">
-          <div className="mb-8">
-            <Avatar 
-              size={{ xs: 80, sm: 100, md: 120, lg: 140, xl: 160, xxl: 200 }}
-              icon={<img src={catImage} alt="Logo" />} 
-              className="border-4 border-white shadow-lg mx-auto"
-            />
-          </div>
-          
-          <Title 
-            level={1} 
-            className={`text-5xl md:text-6xl font-bold mb-4 animate-fade-in ${darkMode ? 'text-white' : 'text-gray-800'}`}
-          >
-            张小明
-          </Title>
-          
-          <Typography className="mb-8">
-            <Text className={`text-xl md:text-2xl block mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              高级前端工程师 | UI/UX 设计师
-            </Text>
-            <Paragraph className={`text-lg max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-700'}`}>
-              致力于构建美观、高效且用户友好的Web应用，拥有5年前端开发经验，热衷于技术创新和用户体验优化。
-            </Paragraph>
-          </Typography>
-          
-          <Space size="middle" className="justify-center">
-            <Button 
-              type="primary" 
-              size="large" 
-              icon={<RocketOutlined />} 
-              className={`px-8 ${darkMode ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
-            >
-              <Link to="/resume" className="text-white">查看简历</Link>
-            </Button>
-            <Button 
-              type="default" 
-              size="large" 
-              icon={<BookOutlined />} 
-              href="#part-2"
-              className={`px-8 ${darkMode ? 'border-gray-600 bg-gray-800 text-white hover:bg-gray-700' : 'border-gray-300 text-gray-700'}`}
-            >
-              了解更多
-            </Button>
-          </Space>
-        </div>
-      </section>
-
-      {/* 关于部分 */}
-      <section id="part-2" className={`min-h-screen py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Title level={2} className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-              关于我
-            </Title>
-            <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
-          </div>
-          
-          <Row gutter={[32, 32]} className="items-center">
-            <Col xs={24} lg={10} className="order-2 lg:order-1">
-              <Card className="border-0 shadow-lg overflow-hidden">
-                <div className="p-6">
-                  <Title level={4} className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                    个人简介
-                  </Title>
-                  <Paragraph className={`mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                    我是一名充满激情的前端工程师，拥有5年专业经验，擅长使用现代前端技术构建高性能、响应式的Web应用。
-                    我注重用户体验，追求代码质量，并乐于不断学习新技术。
-                  </Paragraph>
-                  
-                  <Title level={4} className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                    工作经验
-                  </Title>
-                  <Timeline 
-                    items={experiences.map(exp => ({
-                      color: 'blue',
-                      children: (
-                        <div>
-                          <Text strong className={darkMode ? 'text-white' : 'text-gray-800'}>{exp.title} - {exp.company}</Text>
-                          <Paragraph className={`mt-1 mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{exp.description}</Paragraph>
-                          <Text type="secondary">{exp.year}</Text>
-                        </div>
-                      )
-                    }))}
-                  />
-                  
-                  <Title level={4} className={`text-xl font-semibold mt-8 mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                    教育经历
-                  </Title>
-                  <Timeline
-                    items={[
-                      {
-                        color: 'green',
-                        children: (
-                          <div>
-                            <Text strong className={darkMode ? 'text-white' : 'text-gray-800'}>计算机科学与技术硕士</Text>
-                            <Paragraph className={`mt-1 mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>北京大学 - 2016-2018</Paragraph>
-                          </div>
-                        )
-                      },
-                      {
-                        color: 'green',
-                        children: (
-                          <div>
-                            <Text strong className={darkMode ? 'text-white' : 'text-gray-800'}>软件工程学士</Text>
-                            <Paragraph className={`mt-1 mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>清华大学 - 2012-2016</Paragraph>
-                          </div>
-                        )
-                      }
-                    ]}
-                  />
-                </div>
-              </Card>
-            </Col>
-            
-            <Col xs={24} lg={14} className="order-1 lg:order-2">
-              <div className="relative">
-                <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-100 rounded-full -z-10" />
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-yellow-100 rounded-full -z-10" />
-                <img 
-                  src={aboutImage} 
-                  alt="About me" 
-                  className="w-full h-auto rounded-xl shadow-xl object-cover transform transition-all duration-500 hover:scale-105"
-                  style={{ maxHeight: '600px' }}
-                />
-              </div>
-            </Col>
-          </Row>
-        </div>
-      </section>
-
-      {/* 技能部分 */}
-      <section id="part-3" className={`min-h-screen py-20 ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-gray-50 to-white'}`}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Title level={2} className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-              专业技能
-            </Title>
-            <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
-            <Paragraph className={`mt-4 max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              我掌握了多种前端和后端技术，能够独立完成从设计到实现的全流程开发工作。
-            </Paragraph>
-          </div>
-          
-          <Row gutter={[24, 24]}>
-            {skills.map((skill, index) => (
-              <Col xs={24} md={12} key={index}>
-                <Card className="border-0 shadow-md hover:shadow-lg transition-shadow duration-300">
-                  <div className="p-6">
-                    <div className="flex justify-between items-center mb-2">
-                      <Text strong className={`text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}>{skill.name}</Text>
-                      <Text type="secondary">{skill.value}%</Text>
-                    </div>
-                    <Progress 
-                    percent={skill.value} 
-                    strokeColor={{
-                      '0%': '#108ee9',
-                      '100%': '#87d068',
-                    }} 
-                    strokeWidth={4}
-                    trailColor={darkMode ? '#1f2937' : '#e6f4ff'}
-                    className="h-2 rounded-full"
-                  />
-                  </div>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-          
-          <Row gutter={[24, 24]} className="mt-12">
-            <Col xs={24} md={8}>
-              <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <Card.Meta
-                  avatar={<CodeOutlined className="text-blue-500 text-3xl" />}
-                  title="前端开发"
-                  description={
-                    <Text className={darkMode ? 'text-gray-300' : ''}>
-                      精通HTML、CSS、JavaScript、React、Vue等前端技术栈，能够构建响应式、高性能的Web应用。
-                    </Text>
-                  }
-                />
-              </Card>
-            </Col>
-            
-            <Col xs={24} md={8}>
-              <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <Card.Meta
-                  avatar={<DatabaseOutlined className="text-green-500 text-3xl" />}
-                  title="后端开发"
-                  description={
-                    <Text className={darkMode ? 'text-gray-300' : ''}>
-                      熟悉Node.js、Express、MongoDB等后端技术，能够开发RESTful API和全栈应用。
-                    </Text>
-                  }
-                />
-              </Card>
-            </Col>
-            
-            <Col xs={24} md={8}>
-              <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                <Card.Meta
-                  avatar={<BackwardOutlined className="text-purple-500 text-3xl" />}
-                  title="UI/UX设计"
-                  description={
-                    <Text className={darkMode ? 'text-gray-300' : ''}>
-                      具备良好的设计感和用户体验意识，能够创建美观、易用的界面设计。
-                    </Text>
-                  }
-                />
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      </section>
-
-      {/* 项目集部分 */}
-      <section id="part-4" className={`min-h-screen py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Title level={2} className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-              个人作品集
-            </Title>
-            <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
-            <Paragraph className={`mt-4 max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              这里展示了我近期完成的一些代表性项目，涵盖了企业应用、电商平台和数据可视化等多个领域。
-            </Paragraph>
-          </div>
-          
-          <div className="max-w-4xl mx-auto">
-            <Carousel
-              autoplay
-              dots={true}
-              dotPosition="bottom"
-              className="h-[600px]"
-            >
-              {projects.map((project, index) => (
-                <div key={index} className="h-full">
-                  <Card 
-                    hoverable 
-                    className="h-full border-0 shadow-xl overflow-hidden"
-                    cover={
-                      <div className="h-[400px] overflow-hidden">
-                        <img 
-                          alt={project.title} 
-                          src={project.image} 
-                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-                        />
-                      </div>
-                    }
-                  >
-                    <Meta 
-                        title={<Title level={4} className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-800'}`}>{project.title}</Title>} 
-                        description={
-                          <div>
-                            <Paragraph className={`mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{project.description}</Paragraph>
-                            <Button 
-                               type="primary" 
-                               icon={<GlobalOutlined />}
-                               href={project.link}
-                               className="bg-blue-600 hover:bg-blue-700"
-                             >
-                               查看详情
-                             </Button>
-                          </div>
-                        }
-                      />
-                  </Card>
-                </div>
-              ))}
-            </Carousel>
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button 
-              type="primary" 
-              size="large" 
-              className={`px-8 ${darkMode ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
-            >
-              查看更多项目
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* 联系方式部分 */}
-      <section id="part-5" className={`min-h-screen py-20 ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-gray-50 to-gray-100'}`}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Title level={2} className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-              联系方式
-            </Title>
-            <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
-          </div>
-          
-          <Row justify="center">
-            <Col xs={24} md={12}>
-              <Card className="border-0 shadow-lg">
-                <div className="p-8">
-                  <Row gutter={[24, 24]}>
-                    <Col xs={24} md={12}>
-                      <div className="flex items-start space-x-4 mb-6">
-                        <PhoneOutlined className="text-blue-500 text-2xl mt-1" />
-                        <div>
-                          <Title level={5} className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>电话</Title>
-                          <Text className={darkMode ? 'text-gray-300' : 'text-gray-600'}>138-1234-5678</Text>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start space-x-4 mb-6">
-                        <MailOutlined className="text-blue-500 text-2xl mt-1" />
-                        <div>
-                          <Title level={5} className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>邮箱</Title>
-                          <Text className={darkMode ? 'text-gray-300' : 'text-gray-600'}>contact@example.com</Text>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start space-x-4">
-                        <EnvironmentOutlined className="text-blue-500 text-2xl mt-1" />
-                        <div>
-                          <Title level={5} className={`text-lg font-semibold ${darkMode ? 'text-white' : 'text-gray-800'}`}>地址</Title>
-                          <Text className={darkMode ? 'text-gray-300' : 'text-gray-600'}>北京市海淀区中关村科技园</Text>
-                        </div>
-                      </div>
-                    </Col>
-                    
-                    <Col xs={24} md={12}>
-                      <Title level={5} className={`text-lg font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>社交媒体</Title>
-                      <Space size="large" wrap>
-                        <a href="#" className="text-blue-600 hover:text-blue-800 transition-colors">
-                          <GithubOutlined className="text-3xl" />
-                        </a>
-                        <a href="#" className="text-gray-800 hover:text-gray-600 transition-colors">
-                          <img src={giteeImage} alt="Gitee" className="w-10 h-10" />
-                        </a>
-                        <a href="#" className="text-blue-700 hover:text-blue-900 transition-colors">
-                          <LinkedinOutlined className="text-3xl" />
-                        </a>
-                        <a href="#" className="text-red-600 hover:text-red-800 transition-colors">
-                          <img src={bilibiliImage} alt="Bilibili" className="w-10 h-10" />
-                        </a>
-                      </Space>
-                      
-                      <div className="mt-8">
-                        <Title level={5} className={`text-lg font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>给我留言</Title>
-                        <div className="space-y-4">
-                          <Button 
-                            type="primary" 
-                            block 
-                            size="large"
-                            className="bg-blue-600 hover:bg-blue-700"
-                          >
-                            发送邮件
-                          </Button>
-                          <Button 
-                            type="default" 
-                            block 
-                            size="large"
-                            className={darkMode ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'}
-                          >
-                            预约面谈
-                          </Button>
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                </div>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      </section>
-
-      {/* 页脚 */}
-      <footer className={`py-12 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-900 text-white'}`}>
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <Title level={4} className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-white'}`}>
-              张小明的个人主页
-            </Title>
-            <Paragraph className={`max-w-2xl mx-auto mb-8 ${darkMode ? 'text-gray-300' : 'text-gray-400'}`}>
-              感谢您访问我的个人主页，我期待与您合作，共同创造出色的Web应用！
-            </Paragraph>
-            <Space size="large" className="justify-center">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                <GithubOutlined className="text-xl" />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                <img src={giteeImage} alt="Gitee" className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                <LinkedinOutlined className="text-xl" />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                <MailOutlined className="text-xl" />
-              </a>
-            </Space>
-            <div className="mt-8 text-gray-500 text-sm">
-              © {new Date().getFullYear()} 张小明. All rights reserved.
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Header darkMode={darkMode} toggleTheme={toggleTheme} />
+      <HomeSection darkMode={darkMode} />
+      <AboutSection darkMode={darkMode} experiences={experiences} />
+      <SkillsSection darkMode={darkMode} skills={skills} />
+      <ProjectsSection darkMode={darkMode} projects={projects} />
+      <ContactSection darkMode={darkMode} />
+      <Footer darkMode={darkMode} />
     </div>
   );
 };

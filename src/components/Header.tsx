@@ -1,37 +1,51 @@
 import React from 'react';
+import { Anchor, Button } from 'antd';
+import { MoonOutlined, SunOutlined } from '@ant-design/icons';
+import { ThemeProps } from '../types';
 
-import { Link } from 'react-router-dom';
-
-interface HeaderProps {
-  onExportClick?: () => void;
-  showExportButton?: boolean;
-}
-
-const Header: React.FC<HeaderProps> = ({ onExportClick, showExportButton = true }) => {
+const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
   return (
-    <header className="bg-primary text-white shadow-lg">
-      <div className="container mx-auto px-4 py-6 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">
-          <Link to="/" className="hover:text-gray-200 transition-colors">
-            我的简历
-          </Link>
-        </h1>
-        <div className="flex items-center gap-4">
-          <nav className="hidden md:flex space-x-6">
-            <Link to="/" className="hover:text-gray-200 transition-colors">首页</Link>
-            <Link to="/resume" className="hover:text-gray-200 transition-colors">简历</Link>
-          </nav>
-          {showExportButton && onExportClick && (
-            <button
-              onClick={onExportClick}
-              className="px-4 py-2 bg-white text-primary rounded-md hover:bg-gray-100"
-            >
-              导出PDF
-            </button>
-          )}
-        </div>
+    <div className={`sticky top-0 z-50 ${darkMode ? 'bg-gray-800/80 text-white' : 'bg-white/80 text-gray-800'} backdrop-blur-md shadow-sm`}>
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <Anchor
+          direction="horizontal"
+          affix={false}
+          items={[
+            {
+              key: 'part-1',
+              href: '#part-1',
+              title: '主页',
+            },
+            {
+              key: 'part-2',
+              href: '#part-2',
+              title: '关于',
+            },
+            {
+              key: 'part-3',
+              href: '#part-3',
+              title: '技能',
+            },
+            {
+              key: 'part-4',
+              href: '#part-4',
+              title: '项目集',
+            },
+            {
+              key: 'part-5',
+              href: '#part-5',
+              title: '联系方式',
+            },
+          ]}
+        />
+        <Button
+          type="text"
+          icon={darkMode ? <SunOutlined /> : <MoonOutlined />}
+          onClick={toggleTheme}
+          className={`rounded-full ${darkMode ? 'text-yellow-300' : 'text-gray-700'}`}
+        />
       </div>
-    </header>
+    </div>
   );
 };
 
