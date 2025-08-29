@@ -85,8 +85,8 @@ const Home: React.FC = () => {
     <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-gradient-to-b from-gray-50 to-gray-100'} font-sans`}>
       <Header darkMode={darkMode} toggleTheme={toggleTheme} />
       <HomeSection darkMode={darkMode} />
-      <AboutSection darkMode={darkMode} experiences={experiences} />
       <SkillsSection darkMode={darkMode} skills={skills} />
+      <AboutSection darkMode={darkMode} experiences={experiences} />
       <ProjectsSection darkMode={darkMode} projects={projects} />
       <ContactSection darkMode={darkMode} />
       <Footer darkMode={darkMode} />

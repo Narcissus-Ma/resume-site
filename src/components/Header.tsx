@@ -19,12 +19,12 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
             {
               key: 'part-2',
               href: '#part-2',
-              title: '关于',
+              title: '技能',
             },
             {
               key: 'part-3',
               href: '#part-3',
-              title: '技能',
+              title: '关于',
             },
             {
               key: 'part-4',

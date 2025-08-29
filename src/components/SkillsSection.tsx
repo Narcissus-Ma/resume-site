@@ -12,7 +12,7 @@ interface SkillsSectionProps extends ThemeProps {
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
   return (
-    <section id="part-3" className={`min-h-screen py-20 ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-gray-50 to-white'}`}>
+    <section id="part-2" className={`min-h-screen py-20 ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-gray-50 to-white'}`}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <Title level={2} className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}>

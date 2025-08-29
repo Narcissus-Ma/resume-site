@@ -1,0 +1,43 @@
+/* Carousel navigation arrows */
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next {
+    color: #1677ff !important;
+    opacity: 0.8;
+}
+
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+    color: #1677ff !important;
+    opacity: 1;
+}
+
+.ant-carousel .slick-prev:before,
+.ant-carousel .slick-next:before {
+    color: #1677ff !important;
+    font-size: 20px;
+}
+
+/* Carousel dots */
+.ant-carousel .slick-dots {
+    bottom: 10px;
+}
+
+.ant-carousel .slick-dots li {
+    margin: 0 5px;
+}
+
+.ant-carousel .slick-dots li button {
+    background-color: #1677ff !important;
+    opacity: 0.5;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+    background-color: #1677ff !important;
+    opacity: 1;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
