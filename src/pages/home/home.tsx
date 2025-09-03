@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Skill, Experience, Project } from '../../types';
 import Header from '../../components/Header';
 import HomeSection from '../../components/HomeSection';
@@ -10,17 +10,11 @@ import Footer from '../../components/Footer';
 import portfolio1 from '@/assets/img/portfolio1.jpg';
 import portfolio2 from '@/assets/img/portfolio2.jpg';
 import portfolio3 from '@/assets/img/portfolio3.jpg';
+import useTheme from '@/hooks/use-theme';
 
 const Home: React.FC = () => {
   // 主题状态管理
-  const [darkMode, setDarkMode] = useState<boolean>(false);
-
-  // 检查用户偏好的主题
-  useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setDarkMode(true);
-    }
-  }, []);
+  const { darkMode, setDarkMode } = useTheme();
 
   // 切换主题
   const toggleTheme = () => {

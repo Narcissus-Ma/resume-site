@@ -48,7 +48,6 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
             <Button 
               type="primary" 
               size="large" 
-              icon={<ArrowRightOutlined />} 
               className={`px-8 ${darkMode ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
             >
               <Link to="/resume" className="text-white flex items-center">查看简历 <ArrowRightOutlined className="ml-2" /></Link>
