@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 
+import portfolio1 from "@/assets/img/portfolio1.jpg";
+import portfolio2 from "@/assets/img/portfolio2.jpg";
+import portfolio3 from "@/assets/img/portfolio3.jpg";
 import useTheme from "@/hooks/use-theme";
 
 import AboutSection from "../../components/AboutSection";
@@ -10,6 +13,8 @@ import HomeSection from "../../components/HomeSection";
 import ProjectsSection from "../../components/ProjectsSection";
 import SkillsSection from "../../components/SkillsSection";
 import { Skill, Experience, Project } from "../../types";
+
+// 导入项目图片
 
 const Home: React.FC = () => {
   // 主题状态管理
@@ -31,7 +36,29 @@ const Home: React.FC = () => {
       .then((importedData) => {
         setSkills(importedData.default.skills);
         setExperiences(importedData.default.experiences);
-        setProjects(importedData.default.projects);
+
+        // 为项目分配实际的图片资源
+        const projectsWithImages = importedData.default.projects.map(
+          (project: Project) => {
+            let imageSrc;
+            switch (project.image) {
+              case "portfolio1.jpg":
+                imageSrc = portfolio1;
+                break;
+              case "portfolio2.jpg":
+                imageSrc = portfolio2;
+                break;
+              case "portfolio3.jpg":
+                imageSrc = portfolio3;
+                break;
+              default:
+                imageSrc = project.image;
+            }
+            return { ...project, image: imageSrc };
+          }
+        );
+
+        setProjects(projectsWithImages);
       })
       .catch((error) => {
         console.error("获取数据失败:", error);
