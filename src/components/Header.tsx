@@ -46,15 +46,17 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
             },
           ]}
         />
-        <Link to="/home-manage">
-          <Button
-            type="text"
-            icon={<SettingOutlined />}
-            className={`rounded-full mr-2 ${
-              darkMode ? "text-blue-300" : "text-gray-700"
-            }`}
-          />
-        </Link>
+        {process.env.NODE_ENV === "development" && (
+          <Link to="/home-manage">
+            <Button
+              type="text"
+              icon={<SettingOutlined />}
+              className={`rounded-full mr-2 ${
+                darkMode ? "text-blue-300" : "text-gray-700"
+              }`}
+            />
+          </Link>
+        )}
         <Button
           type="text"
           icon={darkMode ? <SunOutlined /> : <MoonOutlined />}

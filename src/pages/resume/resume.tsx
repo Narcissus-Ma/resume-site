@@ -33,13 +33,15 @@ const Resume = () => {
     <div className="min-h-screen bg-gray-100">
       <Header onExportClick={() => setIsModalOpen(true)} />
       <main className="container mx-auto px-4 py-8" id="resume-content">
-        <div className="mb-6 flex justify-end">
-          <Link to="/resume-editor">
-            <Button type="primary" icon={<EditOutlined />}>
-              编辑简历
-            </Button>
-          </Link>
-        </div>
+        {process.env.NODE_ENV === 'development' && (
+          <div className="mb-6 flex justify-end">
+            <Link to="/resume-editor">
+              <Button type="primary" icon={<EditOutlined />}>
+                编辑简历
+              </Button>
+            </Link>
+          </div>
+        )}
         {resumeData && (
           <>
             <About userInfo={userInfo} resumeData={resumeData} />
