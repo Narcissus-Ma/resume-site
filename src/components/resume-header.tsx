@@ -1,13 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 interface HeaderProps {
   onExportClick?: () => void;
   showExportButton?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ onExportClick, showExportButton = true }) => {
+const Header: React.FC<HeaderProps> = ({
+  onExportClick,
+  showExportButton = true,
+}) => {
   return (
     <header className="bg-primary text-white shadow-lg">
       <div className="container mx-auto px-4 py-6 flex justify-between items-center">
@@ -18,8 +21,9 @@ const Header: React.FC<HeaderProps> = ({ onExportClick, showExportButton = true 
         </h1>
         <div className="flex items-center gap-4">
           <nav className="hidden md:flex space-x-6">
-            <Link to="/" className="hover:text-gray-200 transition-colors">首页</Link>
-            <Link to="/resume" className="hover:text-gray-200 transition-colors">简历</Link>
+            <Link to="/" className="hover:text-gray-200 transition-colors">
+              首页
+            </Link>
           </nav>
           {showExportButton && onExportClick && (
             <>

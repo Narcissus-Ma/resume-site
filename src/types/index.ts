@@ -25,3 +25,10 @@ export interface ThemeProps {
   darkMode: boolean;
   toggleTheme?: () => void;
 }
+
+// 主页数据类型
+export interface HomeData {
+  skills: Skill[];
+  experiences: Experience[];
+  projects: Project[];
+}

@@ -2,7 +2,8 @@ import React from "react";
 
 import { Anchor, Button } from "antd";
 
-import { MoonOutlined, SunOutlined } from "@ant-design/icons";
+import { MoonOutlined, SunOutlined, SettingOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 import { ThemeProps } from "../types";
 
@@ -45,6 +46,15 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
             },
           ]}
         />
+        <Link to="/home-manage">
+          <Button
+            type="text"
+            icon={<SettingOutlined />}
+            className={`rounded-full mr-2 ${
+              darkMode ? "text-blue-300" : "text-gray-700"
+            }`}
+          />
+        </Link>
         <Button
           type="text"
           icon={darkMode ? <SunOutlined /> : <MoonOutlined />}

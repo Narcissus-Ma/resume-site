@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import NotFound from "@/pages/error-page/not-found";
 import Home from "@/pages/home/home";
+import HomeManage from "@/pages/home/home-manage";
 import Resume from "@/pages/resume/resume";
 import ResumeEditor from "@/pages/resume/resume-editor";
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter(
     {
       path: "/resume-editor",
       element: <ResumeEditor />,
+    },
+    {
+      path: "/home-manage",
+      element: <HomeManage />,
     },
     {
       path: "*",
