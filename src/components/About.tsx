@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { resumeData } from '../data/resumeData';
+import { ResumeData } from '../types/resume';
 
 interface UserInfo {
   name?: string;
@@ -10,9 +10,10 @@ interface UserInfo {
 
 interface AboutProps {
   userInfo: UserInfo;
+  resumeData: ResumeData;
 }
 
-const About: React.FC<AboutProps> = ({ userInfo }) => {
+const About: React.FC<AboutProps> = ({ userInfo, resumeData }) => {
   return (
     <section className="bg-white rounded-lg shadow-md p-6 mb-6">
       <div className="text-center mb-8">

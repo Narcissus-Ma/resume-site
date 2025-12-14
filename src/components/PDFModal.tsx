@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import Modal from "react-modal";
 
-import { resumeData } from "../data/resumeData";
-
 Modal.setAppElement("#root");
 
 interface FormData {
@@ -16,9 +14,15 @@ interface PDFModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (data: FormData) => void;
+  correctToken?: string;
 }
 
-const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit }) => {
+const PDFModal: React.FC<PDFModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  correctToken,
+}) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
@@ -42,12 +46,12 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit }) => {
     e.preventDefault();
     try {
       // 简单验证token是否正确（这里移除了Base64解码逻辑）
-      if (tokens === resumeData.correctToken) {
+      if (tokens === correctToken) {
         // 直接使用预设的正确信息
         setFormData({
           name: "张工",
           phone: "13800138000",
-          email: "zhanggong@example.com"
+          email: "zhanggong@example.com",
         });
         setIsTokenForm(false);
       } else {
@@ -66,7 +70,7 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit }) => {
   };
 
   return (
-     <Modal
+    <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
       className="modal-content"
@@ -168,11 +172,7 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit }) => {
               </button>
               <button
                 type="submit"
-                disabled={
-                  !formData.name ||
-                  !formData.phone ||
-                  !formData.email
-                }
+                disabled={!formData.name || !formData.phone || !formData.email}
                 className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary-dark disabled:opacity-50"
               >
                 确认信息

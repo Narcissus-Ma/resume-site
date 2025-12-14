@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Skill } from '../data/resumeData';
+import { Skill } from '../types/resume';
 
 interface SkillsProps {
   skills: Skill[];
@@ -15,7 +15,7 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
           <div key={skill.category}>
             <h3 className="font-semibold mb-2">{skill.category}</h3>
             <div className="flex flex-wrap gap-2">
-              {skill.items.map((item) => (
+              {skill.items.map((item: string) => (
                 <span
                   key={item}
                   className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"

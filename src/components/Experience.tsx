@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Experience as ExperienceType, Project, Education, Website } from '../data/resumeData';
+import { Experience as ExperienceType, Project, Education, Website } from '../types/resume';
 
 interface ExperienceProps {
   experience: ExperienceType[];
@@ -21,7 +21,7 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
               <p className="text-gray-600">{project.period}</p>
               <p className="mt-2 text-gray-700">{project.description}</p>
               <ul className="mt-2 list-disc list-inside space-y-1">
-                {project.responsibilities.map((item, index) => (
+                {project.responsibilities?.map((item: string, index: number) => (
                   <li key={index}>{item}</li>
                 ))}
               </ul>
@@ -40,7 +40,7 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
                 {exp.position} | {exp.period}
               </p>
               <ul className="mt-2 list-disc list-inside space-y-1">
-                {exp.achievements?.map((item, index) => (
+                {exp.achievements?.map((item: string, index: number) => (
                   <li key={index} className="text-gray-700">{item}</li>
                 ))}
               </ul>
@@ -56,7 +56,7 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
             <h3 className="text-xl font-semibold">{edu.school}</h3>
             <p className="text-gray-600">{edu.degree} | {edu.period}</p>
             <ul className="mt-2 list-disc list-inside space-y-1">
-              {edu.achievements?.map((item, index) => (
+              {edu.achievements?.map((item: string, index: number) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>

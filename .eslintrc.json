@@ -93,6 +93,8 @@
     "*.config.js",
     "*.config.ts",
     "postcss.config.js",
-    "tailwind.config.js"
+    "tailwind.config.js",
+    "server.ts",
+    "vite.config.d.ts"
   ]
 }
