@@ -22,12 +22,20 @@ const Header: React.FC<HeaderProps> = ({ onExportClick, showExportButton = true 
             <Link to="/resume" className="hover:text-gray-200 transition-colors">简历</Link>
           </nav>
           {showExportButton && onExportClick && (
-            <button
-              onClick={onExportClick}
-              className="px-4 py-2 bg-white text-primary rounded-md hover:bg-gray-100"
-            >
-              导出PDF
-            </button>
+            <>
+              <button
+                onClick={onExportClick}
+                className="px-4 py-2 bg-white text-primary rounded-md hover:bg-gray-100 mr-2"
+              >
+                输入信息
+              </button>
+              <button
+                onClick={() => window.print()}
+                className="px-4 py-2 bg-white text-primary rounded-md hover:bg-gray-100"
+              >
+                打印PDF
+              </button>
+            </>
           )}
         </div>
       </div>
