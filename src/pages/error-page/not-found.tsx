@@ -1,11 +1,12 @@
-import { useNavigate } from 'react-router-dom';
-import Header from '@/components/resume-header';
+import { useNavigate } from "react-router-dom";
+
+import Header from "@/components/resume-header";
 
 const NotFound = () => {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
-    navigate('/');
+    navigate("/");
   };
 
   return (
