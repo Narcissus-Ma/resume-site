@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Button } from "antd";
 
 import { EditOutlined } from "@ant-design/icons";
@@ -11,24 +9,10 @@ import PDFModal from "@/components/pdf-modal";
 import Header from "@/components/resume-header";
 import SkillDescription from "@/components/skill-description";
 import Skills from "@/components/skills";
-import resumeDataJson from "@/data/resumeData.json";
-import { ResumeData } from "@/types/resume";
-
-interface UserInfo {
-  name: string;
-  phone: string;
-  email: string;
-}
+import useResume from "@/hooks/use-resume";
 
 const Resume = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [userInfo, setUserInfo] = useState<UserInfo>({
-    name: "",
-    phone: "",
-    email: "",
-  });
-  // 直接使用JSON数据，education和website属性已在JSON文件中补充
-  const resumeData: ResumeData = resumeDataJson;
+  const {isModalOpen, setIsModalOpen,userInfo,setUserInfo,resumeData} = useResume();  
   return (
     <div className="min-h-screen bg-gray-100">
       <Header onExportClick={() => setIsModalOpen(true)} />

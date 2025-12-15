@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
 
-import { Button, Form, Input, Card, Space, Typography, message } from "antd";
+import { Button, Form, Input, Card, Space, Typography } from "antd";
 
 import {
   PlusOutlined,
@@ -10,206 +9,32 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-import { ResumeData } from "@/types/resume";
+import useResumeEditor from "@/hooks/use-resume-editor";
 
 const { TextArea } = Input;
 const { Title, Text } = Typography;
 
 const ResumeEditor = () => {
-  const [form] = Form.useForm();
-  const [data, setData] = useState<ResumeData | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  // 从服务器获取最新的简历数据
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/api/resume");
-        if (response.ok) {
-          const resumeData = await response.json();
-          setData(resumeData);
-          form.setFieldsValue(resumeData);
-        }
-      } catch (error) {
-        console.error("获取简历数据失败:", error);
-      }
-    };
-
-    fetchData();
-  }, [form]);
-
-  // 保存数据
-  const handleSave = async () => {
-    try {
-      setLoading(true);
-      const values = await form.validateFields();
-
-      // 发送请求保存数据
-      const response = await fetch("http://localhost:3001/api/resume", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (response.ok) {
-        message.success("保存成功");
-      } else {
-        message.error("保存失败");
-      }
-    } catch {
-      message.error("保存失败");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // 添加技能类别
-  const handleAddSkillCategory = () => {
-    if (!data) return;
-    const newSkills = [
-      ...data.basicInfo.skills,
-      { category: "新技能类别", items: ["新技能"] },
-    ];
-    setData({ ...data, basicInfo: { ...data.basicInfo, skills: newSkills } });
-  };
-
-  // 删除技能类别
-  const handleDeleteSkillCategory = (index: number) => {
-    if (!data) return;
-    const newSkills = data.basicInfo.skills.filter((_, i) => i !== index);
-    setData({ ...data, basicInfo: { ...data.basicInfo, skills: newSkills } });
-  };
-
-  // 添加技能项
-  const handleAddSkillItem = (categoryIndex: number) => {
-    if (!data) return;
-    const newSkills = [...data.basicInfo.skills];
-    newSkills[categoryIndex].items.push("新技能");
-    setData({ ...data, basicInfo: { ...data.basicInfo, skills: newSkills } });
-  };
-
-  // 删除技能项
-  const handleDeleteSkillItem = (categoryIndex: number, itemIndex: number) => {
-    if (!data) return;
-    const newSkills = [...data.basicInfo.skills];
-    newSkills[categoryIndex].items = newSkills[categoryIndex].items.filter(
-      (_, i) => i !== itemIndex
-    );
-    setData({ ...data, basicInfo: { ...data.basicInfo, skills: newSkills } });
-  };
-
-  // 添加技能描述
-  const handleAddSkillDescription = () => {
-    if (!data) return;
-    const newDescriptions = [
-      ...data.basicInfo.skillDescriptions,
-      "新的技能描述",
-    ];
-    setData({
-      ...data,
-      basicInfo: { ...data.basicInfo, skillDescriptions: newDescriptions },
-    });
-  };
-
-  // 删除技能描述
-  const handleDeleteSkillDescription = (index: number) => {
-    if (!data) return;
-    const newDescriptions = data.basicInfo.skillDescriptions.filter(
-      (_, i) => i !== index
-    );
-    setData({
-      ...data,
-      basicInfo: { ...data.basicInfo, skillDescriptions: newDescriptions },
-    });
-  };
-
-  // 添加工作经历
-  const handleAddExperience = () => {
-    if (!data) return;
-    const newExperience = [
-      ...data.experience,
-      {
-        company: "新公司",
-        position: "新职位",
-        period: "2024.01 - 2024.12",
-        achievements: ["新成就"],
-      },
-    ];
-    setData({ ...data, experience: newExperience });
-  };
-
-  // 删除工作经历
-  const handleDeleteExperience = (index: number) => {
-    if (!data) return;
-    const newExperience = data.experience.filter((_, i) => i !== index);
-    setData({ ...data, experience: newExperience });
-  };
-
-  // 添加项目经历
-  const handleAddProject = () => {
-    if (!data) return;
-    const newProjects = [
-      ...data.projects,
-      {
-        name: "新项目",
-        period: "2024.01 - 2024.12",
-        description: "项目描述",
-        responsibilities: ["职责"],
-      },
-    ];
-    setData({ ...data, projects: newProjects });
-  };
-
-  // 删除项目经历
-  const handleDeleteProject = (index: number) => {
-    if (!data) return;
-    const newProjects = data.projects.filter((_, i) => i !== index);
-    setData({ ...data, projects: newProjects });
-  };
-
-  // 添加教育经历
-  const handleAddEducation = () => {
-    if (!data) return;
-    const newEducation = [
-      ...data.education,
-      {
-        school: "新学校",
-        degree: "学历",
-        period: "2024.01 - 2024.12",
-        achievements: ["成就"],
-      },
-    ];
-    setData({ ...data, education: newEducation });
-  };
-
-  // 删除教育经历
-  const handleDeleteEducation = (index: number) => {
-    if (!data) return;
-    const newEducation = data.education.filter((_, i) => i !== index);
-    setData({ ...data, education: newEducation });
-  };
-
-  // 添加网站链接
-  const handleAddWebsite = () => {
-    if (!data) return;
-    const newWebsite = [
-      ...data.website,
-      {
-        name: "新网站",
-        url: "https://example.com",
-      },
-    ];
-    setData({ ...data, website: newWebsite });
-  };
-
-  // 删除网站链接
-  const handleDeleteWebsite = (index: number) => {
-    if (!data) return;
-    const newWebsite = data.website.filter((_, i) => i !== index);
-    setData({ ...data, website: newWebsite });
-  };
+  const {
+    form,
+    data,
+    loading,
+    handleAddSkillCategory,
+    handleDeleteSkillCategory,
+    handleAddSkillItem,
+    handleDeleteSkillItem,
+    handleAddSkillDescription,
+    handleDeleteSkillDescription,
+    handleAddWebsite,
+    handleDeleteWebsite,
+    handleAddEducation,
+    handleDeleteEducation,
+    handleAddProject,
+    handleDeleteProject,
+    handleAddExperience,
+    handleDeleteExperience,
+    handleSave,
+  } = useResumeEditor();
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
