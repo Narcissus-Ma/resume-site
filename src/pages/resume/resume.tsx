@@ -5,12 +5,12 @@ import { Button } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-import About from "@/components/About";
-import Experience from "@/components/Experience";
-import PDFModal from "@/components/PDFModal";
+import About from "@/components/about";
+import Experience from "@/components/experience";
+import PDFModal from "@/components/pdf-modal";
 import Header from "@/components/resume-header";
-import SkillDescription from "@/components/SkillDescription";
-import Skills from "@/components/Skills";
+import SkillDescription from "@/components/skill-description";
+import Skills from "@/components/skills";
 import resumeDataJson from "@/data/resumeData.json";
 import { ResumeData } from "@/types/resume";
 
