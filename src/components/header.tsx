@@ -46,6 +46,7 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
             },
           ]}
         />
+        <div>
         {process.env.NODE_ENV === "development" && (
           <Link to="/home-manage">
             <Button
@@ -65,6 +66,7 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
             darkMode ? "text-yellow-300" : "text-gray-700"
           }`}
         />
+        </div>
       </div>
     </div>
   );
