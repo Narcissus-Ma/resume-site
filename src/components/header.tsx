@@ -1,18 +1,21 @@
 import React from "react";
+import { useEffect, useState } from "react";
 
 import { Anchor, Button } from "antd";
 
 import { MoonOutlined, SunOutlined, SettingOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
+import useBackendStatus from "@/hooks/use-backend-status";
+
 import { ThemeProps } from "../types";
 
 const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
+  const { isBackendAvailable } = useBackendStatus();
   return (
     <div
-      className={`sticky top-0 z-50 ${
-        darkMode ? "bg-gray-800/80 text-white" : "bg-white/80 text-gray-800"
-      } backdrop-blur-md shadow-sm`}
+      className={`sticky top-0 z-50 ${darkMode ? "bg-gray-800/80 text-white" : "bg-white/80 text-gray-800"
+        } backdrop-blur-md shadow-sm`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Anchor
@@ -47,25 +50,23 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
           ]}
         />
         <div>
-        {process.env.NODE_ENV === "development" && (
-          <Link to="/home-manage">
-            <Button
-              type="text"
-              icon={<SettingOutlined />}
-              className={`rounded-full mr-2 ${
-                darkMode ? "text-blue-300" : "text-gray-700"
+          {process.env.NODE_ENV === "development" && isBackendAvailable && (
+            <Link to="/home-manage">
+              <Button
+                type="text"
+                icon={<SettingOutlined />}
+                className={`rounded-full mr-2 ${darkMode ? "text-blue-300" : "text-gray-700"
+                  }`}
+              />
+            </Link>
+          )}
+          <Button
+            type="text"
+            icon={darkMode ? <SunOutlined /> : <MoonOutlined />}
+            onClick={toggleTheme}
+            className={`rounded-full ${darkMode ? "text-yellow-300" : "text-gray-700"
               }`}
-            />
-          </Link>
-        )}
-        <Button
-          type="text"
-          icon={darkMode ? <SunOutlined /> : <MoonOutlined />}
-          onClick={toggleTheme}
-          className={`rounded-full ${
-            darkMode ? "text-yellow-300" : "text-gray-700"
-          }`}
-        />
+          />
         </div>
       </div>
     </div>
