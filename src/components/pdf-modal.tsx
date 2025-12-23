@@ -29,7 +29,7 @@ const PDFModal: React.FC<PDFModalProps> = ({
     email: "",
   });
   const [tokens, setTokens] = useState<string>("");
-  const [isTokenForm, setIsTokenForm] = useState<boolean>(true);
+  const [isTokenForm, setIsTokenForm] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -77,10 +77,10 @@ const PDFModal: React.FC<PDFModalProps> = ({
       overlayClassName="modal-overlay"
     >
       <div className="bg-white p-6 rounded-lg max-w-md mx-auto">
-        <h2 className="text-2xl font-bold mb-4">导出简历</h2>
+        <h2 className="text-2xl font-bold mb-4">联系方式</h2>
         <div className="flex justify-end mb-4">
           <label className="flex items-center space-x-2">
-            <span className="whitespace-nowrap">输入口令或我的信息</span>
+            <span className="whitespace-nowrap">通过口令获联系方式</span>
             <input
               type="checkbox"
               checked={isTokenForm}
@@ -93,7 +93,7 @@ const PDFModal: React.FC<PDFModalProps> = ({
           <form onSubmit={handleTokenValidation} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                输入口令获取我的真实信息
+                输入口令获站长的联系方式
               </label>
               <input
                 type="text"

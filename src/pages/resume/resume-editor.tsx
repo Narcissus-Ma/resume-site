@@ -178,7 +178,7 @@ const ResumeEditor = () => {
                     label="公司"
                     noStyle
                   >
-                    <Input placeholder="公司名称" />
+                    <Input className="mb-2" placeholder="公司名称" />
                   </Form.Item>
 
                   <Form.Item
@@ -186,7 +186,7 @@ const ResumeEditor = () => {
                     label="职位"
                     noStyle
                   >
-                    <Input placeholder="职位" />
+                    <Input className="mb-2" placeholder="职位" />
                   </Form.Item>
 
                   <Form.Item
@@ -194,7 +194,7 @@ const ResumeEditor = () => {
                     label="时间段"
                     noStyle
                   >
-                    <Input placeholder="2024.01 - 2024.12" />
+                    <Input className="mb-2" placeholder="2024.01 - 2024.12" />
                   </Form.Item>
                 </div>
               ))}
@@ -227,7 +227,7 @@ const ResumeEditor = () => {
                     label="项目名称"
                     noStyle
                   >
-                    <Input placeholder="项目名称" />
+                    <Input className="mb-2" placeholder="项目名称" />
                   </Form.Item>
 
                   <Form.Item
@@ -235,7 +235,7 @@ const ResumeEditor = () => {
                     label="时间段"
                     noStyle
                   >
-                    <Input placeholder="2024.01 - 2024.12" />
+                    <Input className="mb-2" placeholder="2024.01 - 2024.12" />
                   </Form.Item>
 
                   <Form.Item
@@ -243,7 +243,7 @@ const ResumeEditor = () => {
                     label="项目描述"
                     noStyle
                   >
-                    <TextArea rows={3} placeholder="项目描述" />
+                    <TextArea className="mb-2" rows={3} placeholder="项目描述" />
                   </Form.Item>
                 </div>
               ))}
@@ -276,7 +276,7 @@ const ResumeEditor = () => {
                     label="学校"
                     noStyle
                   >
-                    <Input placeholder="学校名称" />
+                    <Input className="mb-2" placeholder="学校名称" />
                   </Form.Item>
 
                   <Form.Item
@@ -284,7 +284,7 @@ const ResumeEditor = () => {
                     label="学历"
                     noStyle
                   >
-                    <Input placeholder="学历" />
+                    <Input className="mb-2" placeholder="学历" />
                   </Form.Item>
 
                   <Form.Item
@@ -292,7 +292,7 @@ const ResumeEditor = () => {
                     label="时间段"
                     noStyle
                   >
-                    <Input placeholder="2024.01 - 2024.12" />
+                    <Input className="mb-2" placeholder="2024.01 - 2024.12" />
                   </Form.Item>
                 </div>
               ))}
@@ -325,7 +325,7 @@ const ResumeEditor = () => {
                     label="网站名称"
                     noStyle
                   >
-                    <Input placeholder="网站名称" />
+                    <Input className="mb-2" placeholder="网站名称" />
                   </Form.Item>
 
                   <Form.Item
@@ -333,7 +333,7 @@ const ResumeEditor = () => {
                     label="网站URL"
                     noStyle
                   >
-                    <Input placeholder="https://example.com" />
+                    <Input className="mb-2" placeholder="https://example.com" />
                   </Form.Item>
                 </div>
               ))}
