@@ -7,14 +7,17 @@ import {
   LinkedinOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import giteeImage from "@/assets/img/gitee.png";
 
 import { ThemeProps } from "../types";
 
+
 const { Title, Paragraph } = Typography;
 
 const Footer: React.FC<ThemeProps> = ({ darkMode }) => {
+  const { t } = useTranslation();
   return (
     <footer
       className={`py-12 ${
@@ -29,14 +32,14 @@ const Footer: React.FC<ThemeProps> = ({ darkMode }) => {
               darkMode ? "text-white" : "text-white"
             }`}
           >
-            张小明的个人主页
+            {t("footer.title")}
           </Title>
           <Paragraph
             className={`max-w-2xl mx-auto mb-8 ${
               darkMode ? "text-gray-300" : "text-gray-400"
             }`}
           >
-            感谢您访问我的个人主页，我期待与您合作，共同创造出色的Web应用！
+            {t("footer.description")}
           </Paragraph>
           <Space size="large" className="justify-center">
             <a
@@ -65,7 +68,7 @@ const Footer: React.FC<ThemeProps> = ({ darkMode }) => {
             </a>
           </Space>
           <div className="mt-8 text-gray-500 text-sm">
-            © {new Date().getFullYear()} 张小明. All rights reserved.
+            {t("footer.copyright", { year: new Date().getFullYear() })}
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { useTranslation } from "react-i18next";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
@@ -23,6 +24,7 @@ const PDFModal: React.FC<PDFModalProps> = ({
   onSubmit,
   correctToken,
 }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
@@ -77,10 +79,10 @@ const PDFModal: React.FC<PDFModalProps> = ({
       overlayClassName="modal-overlay"
     >
       <div className="bg-white p-6 rounded-lg max-w-md mx-auto">
-        <h2 className="text-2xl font-bold mb-4">联系方式</h2>
+        <h2 className="text-2xl font-bold mb-4">{t("pdfModal.title")}</h2>
         <div className="flex justify-end mb-4">
           <label className="flex items-center space-x-2">
-            <span className="whitespace-nowrap">通过口令获联系方式</span>
+            <span className="whitespace-nowrap">{t("pdfModal.useToken")}</span>
             <input
               type="checkbox"
               checked={isTokenForm}
@@ -93,7 +95,7 @@ const PDFModal: React.FC<PDFModalProps> = ({
           <form onSubmit={handleTokenValidation} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                输入口令获站长的联系方式
+                {t("pdfModal.tokenLabel")}
               </label>
               <input
                 type="text"
@@ -110,14 +112,14 @@ const PDFModal: React.FC<PDFModalProps> = ({
                 onClick={onClose}
                 className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
               >
-                取消
+                {t("common.cancel")}
               </button>
               <button
                 type="submit"
                 disabled={!tokens}
                 className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary-dark disabled:opacity-50"
               >
-                验证口令
+                {t("pdfModal.verifyToken")}
               </button>
             </div>
           </form>
@@ -125,7 +127,7 @@ const PDFModal: React.FC<PDFModalProps> = ({
           <form onSubmit={handleFormSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                姓名
+                {t("pdfModal.nameLabel")}
               </label>
               <input
                 type="text"
@@ -138,7 +140,7 @@ const PDFModal: React.FC<PDFModalProps> = ({
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                手机号
+                {t("pdfModal.phoneLabel")}
               </label>
               <input
                 type="tel"
@@ -151,7 +153,7 @@ const PDFModal: React.FC<PDFModalProps> = ({
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                邮箱
+                {t("pdfModal.emailLabel")}
               </label>
               <input
                 type="email"
@@ -168,14 +170,14 @@ const PDFModal: React.FC<PDFModalProps> = ({
                 onClick={onClose}
                 className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
               >
-                取消
+                {t("common.cancel")}
               </button>
               <button
                 type="submit"
                 disabled={!formData.name || !formData.phone || !formData.email}
                 className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary-dark disabled:opacity-50"
               >
-                确认信息
+                {t("pdfModal.confirmInfo")}
               </button>
             </div>
           </form>

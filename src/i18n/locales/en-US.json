@@ -1,0 +1,148 @@
+{
+  "common": {
+    "home": "Home",
+    "resume": "Resume",
+    "contact": "Contact",
+    "about": "About",
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "header": {
+    "title": "Personal Resume",
+    "settings": "Settings"
+  },
+  "footer": {
+    "title": "Zhang Xiaoming's Personal Homepage",
+    "description": "Thank you for visiting my personal homepage. I look forward to working with you to create excellent web applications!",
+    "copyright": "© {{year}} Zhang Xiaoming. All rights reserved."
+  },
+  "resume": {
+    "personalInfo": "Personal Information",
+    "education": "Education",
+    "experience": "Work Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "websites": "Websites",
+    "printPdf": "Print PDF",
+    "edit": "Edit Resume"
+  },
+  "home": {
+    "welcome": "Welcome to my personal website",
+    "intro": "I am a frontend developer, passionate about technology and pursuing excellence",
+    "hi": "Hi, I am",
+    "occupation": "Frontend Engineer",
+    "description": "Love learning, love life, create higher quality work results.",
+    "viewResume": "View Resume",
+    "scrollDown": "Scroll Down"
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "Personal Profile",
+    "description": "I am a passionate frontend engineer with 5 years of professional experience, specializing in building high-performance, responsive web applications using modern frontend technologies. I focus on user experience, pursue code quality, and enjoy continuously learning new technologies.",
+    "experience": "Work Experience",
+    "education": "Education Background"
+  },
+  "skills": {
+    "title": "Professional Skills",
+    "descriptionTitle": "Skill Description",
+    "description": "I have mastered various frontend and backend technologies, and can independently complete the full development process from design to implementation.",
+    "frontend": {
+      "title": "Frontend Development",
+      "description": "Proficient in HTML, CSS, JavaScript, React, Vue and other frontend technologies, able to build responsive and high-performance web applications."
+    },
+    "backend": {
+      "title": "Backend Development",
+      "description": "Familiar with Node.js, Express, MongoDB and other backend technologies, able to develop RESTful APIs and full-stack applications."
+    },
+    "uiux": {
+      "title": "UI/UX Design",
+      "description": "With good design sense and user experience awareness, able to create beautiful and easy-to-use interface designs."
+    }
+  },
+  "contact": {
+    "title": "Contact Me",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "socialMedia": "Social Media",
+    "sendMessage": "Send Me a Message",
+    "sendEmail": "Send Email",
+    "appointment": "Make an Appointment"
+  },
+  "projects": {
+    "title": "Projects",
+    "recent": "Recent Projects",
+    "demo": "Demo →"
+  },
+  "pdfModal": {
+    "title": "Contact Information",
+    "useToken": "Get contact information via token",
+    "tokenLabel": "Enter token to get contact information",
+    "verifyToken": "Verify Token",
+    "nameLabel": "Name",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "confirmInfo": "Confirm Information"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist or has been moved. Please check the URL.",
+    "backToHome": "Back to Home"
+  },
+  "homeManage": {
+    "title": "Home Data Manager",
+    "save": "Save",
+    "preview": "Preview",
+    "skills": "Skills",
+    "skill": "Skill",
+    "skillName": "Skill Name",
+    "proficiency": "Proficiency",
+    "addSkill": "Add Skill",
+    "experience": "Work Experience",
+    "year": "Time Period",
+    "company": "Company",
+    "position": "Position",
+    "description": "Description",
+    "addExperience": "Add Work Experience",
+    "projects": "Projects",
+    "projectName": "Project Name",
+    "projectDescription": "Project Description",
+    "imagePath": "Image Path",
+    "projectLink": "Project Link",
+    "addProject": "Add Project"
+  },
+  "resumeEditor": {
+    "title": "Resume Editor",
+    "save": "Save",
+    "preview": "Preview",
+    "basicInfo": "Basic Information",
+    "titleLabel": "Title",
+    "skillDescription": "Skill Description",
+    "addSkillDescription": "Add Skill Description",
+    "skills": "Skills",
+    "skillCategory": "Skill Category",
+    "skillItem": "Skill Item",
+    "addSkillCategory": "Add Skill Category",
+    "addSkillItem": "Add Skill Item",
+    "workExperience": "Work Experience",
+    "company": "Company",
+    "position": "Position",
+    "period": "Time Period",
+    "addWorkExperience": "Add Work Experience",
+    "projectExperience": "Project Experience",
+    "projectName": "Project Name",
+    "projectDescription": "Project Description",
+    "addProjectExperience": "Add Project Experience",
+    "education": "Education",
+    "school": "School",
+    "degree": "Degree",
+    "addEducation": "Add Education",
+    "websites": "Websites",
+    "websiteName": "Website Name",
+    "websiteUrl": "Website URL",
+    "addWebsite": "Add Website",
+    "timePeriod": "Time Period",
+    "skillDescriptionPlaceholder": "Skill Description"
+  }
+}

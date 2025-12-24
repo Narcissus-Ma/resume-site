@@ -7,6 +7,7 @@ import {
   SaveOutlined,
   EyeOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import useResumeEditor from "@/hooks/use-resume-editor";
@@ -35,12 +36,13 @@ const ResumeEditor = () => {
     handleDeleteExperience,
     handleSave,
   } = useResumeEditor();
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-6xl mx-auto">
         <Title level={2} className="mb-6">
-          简历编辑器
+          {t("resumeEditor.title")}
         </Title>
 
         <Card className="mb-4">
@@ -51,11 +53,11 @@ const ResumeEditor = () => {
               onClick={handleSave}
               loading={loading}
             >
-              保存
+              {t("resumeEditor.save")}
             </Button>
             <Link to="/resume">
               <Button type="default" icon={<EyeOutlined />}>
-                预览
+                {t("resumeEditor.preview")}
               </Button>
             </Link>
           </Space>
@@ -64,21 +66,21 @@ const ResumeEditor = () => {
         {data && (
           <Form form={form} layout="vertical" initialValues={data}>
             {/* 基本信息 */}
-            <Card title="基本信息" className="mb-4">
-              <Form.Item name={["basicInfo", "title"]} label="标题">
+            <Card title={t("resumeEditor.basicInfo")} className="mb-4">
+              <Form.Item name={["basicInfo", "title"]} label={t("resumeEditor.titleLabel")}>
                 <Input />
               </Form.Item>
             </Card>
 
             {/* 技能描述 */}
-            <Card title="技能描述" className="mb-4">
+            <Card title={t("skills.descriptionTitle")} className="mb-4">
               {data.basicInfo.skillDescriptions.map((_, index) => (
                 <Space key={index} className="mb-2" align="baseline">
                   <Form.Item
                     name={["basicInfo", "skillDescriptions", index]}
                     noStyle
                   >
-                    <TextArea rows={2} placeholder="技能描述" />
+                    <TextArea rows={2} placeholder={t("resumeEditor.skillDescriptionPlaceholder")} />
                   </Form.Item>
                   <Button
                     type="text"
@@ -94,18 +96,18 @@ const ResumeEditor = () => {
                 onClick={handleAddSkillDescription}
                 block
               >
-                添加技能描述
+                {t("resumeEditor.addSkillDescription")}
               </Button>
             </Card>
 
             {/* 技能 */}
-            <Card title="技能" className="mb-4">
+            <Card title={t("resumeEditor.skills")} className="mb-4">
               {data.basicInfo.skills.map((skill, categoryIndex) => (
                 <div key={categoryIndex} className="mb-4 p-4 border rounded">
                   <Space className="mb-2" align="baseline">
                     <Form.Item
                       name={["basicInfo", "skills", categoryIndex, "category"]}
-                      label="技能类别"
+                      label={t("resumeEditor.skillCategory")}
                       noStyle
                     >
                       <Input placeholder="技能类别" />
@@ -130,7 +132,7 @@ const ResumeEditor = () => {
                         ]}
                         noStyle
                       >
-                        <Input placeholder="技能项" style={{ width: 200 }} />
+                        <Input placeholder={t("resumeEditor.skillItem")} style={{ width: 200 }} />
                       </Form.Item>
                       <Button
                         type="text"
@@ -155,16 +157,16 @@ const ResumeEditor = () => {
                 onClick={handleAddSkillCategory}
                 block
               >
-                添加技能类别
+                {t("resumeEditor.addSkillCategory")}
               </Button>
             </Card>
 
             {/* 工作经历 */}
-            <Card title="工作经历" className="mb-4">
+            <Card title={t("resumeEditor.workExperience")} className="mb-4">
               {data.experience.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
                   <Space className="mb-2" align="baseline">
-                    <Text strong>工作经历 {index + 1}</Text>
+                    <Text strong>{t("resumeEditor.workExperience")} {index + 1}</Text>
                     <Button
                       type="text"
                       danger
@@ -174,26 +176,26 @@ const ResumeEditor = () => {
                   </Space>
 
                   <Form.Item
-                    name={["experience", index, "company"]}
-                    label="公司"
-                    noStyle
-                  >
+                      name={["experience", index, "company"]}
+                      label={t("resumeEditor.company")}
+                      noStyle
+                    >
                     <Input className="mb-2" placeholder="公司名称" />
                   </Form.Item>
 
                   <Form.Item
-                    name={["experience", index, "position"]}
-                    label="职位"
-                    noStyle
-                  >
+                      name={["experience", index, "position"]}
+                      label={t("resumeEditor.position")}
+                      noStyle
+                    >
                     <Input className="mb-2" placeholder="职位" />
                   </Form.Item>
 
                   <Form.Item
-                    name={["experience", index, "period"]}
-                    label="时间段"
-                    noStyle
-                  >
+                      name={["experience", index, "period"]}
+                      label={t("resumeEditor.period")}
+                      noStyle
+                    >
                     <Input className="mb-2" placeholder="2024.01 - 2024.12" />
                   </Form.Item>
                 </div>
@@ -204,16 +206,16 @@ const ResumeEditor = () => {
                 onClick={handleAddExperience}
                 block
               >
-                添加工作经历
+                {t("resumeEditor.addWorkExperience")}
               </Button>
             </Card>
 
             {/* 项目经历 */}
-            <Card title="项目经历" className="mb-4">
+            <Card title={t("resumeEditor.projectExperience")} className="mb-4">
               {data.projects.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
                   <Space className="mb-2" align="baseline">
-                    <Text strong>项目 {index + 1}</Text>
+                    <Text strong>{t("resumeEditor.projects")} {index + 1}</Text>
                     <Button
                       type="text"
                       danger
@@ -223,26 +225,26 @@ const ResumeEditor = () => {
                   </Space>
 
                   <Form.Item
-                    name={["projects", index, "name"]}
-                    label="项目名称"
-                    noStyle
-                  >
+                      name={["projects", index, "name"]}
+                      label={t("resumeEditor.projectName")}
+                      noStyle
+                    >
                     <Input className="mb-2" placeholder="项目名称" />
                   </Form.Item>
 
                   <Form.Item
                     name={["projects", index, "period"]}
-                    label="时间段"
+                    label={t("resumeEditor.timePeriod")}
                     noStyle
                   >
                     <Input className="mb-2" placeholder="2024.01 - 2024.12" />
                   </Form.Item>
 
                   <Form.Item
-                    name={["projects", index, "description"]}
-                    label="项目描述"
-                    noStyle
-                  >
+                      name={["projects", index, "description"]}
+                      label={t("resumeEditor.projectDescription")}
+                      noStyle
+                    >
                     <TextArea className="mb-2" rows={3} placeholder="项目描述" />
                   </Form.Item>
                 </div>
@@ -253,16 +255,16 @@ const ResumeEditor = () => {
                 onClick={handleAddProject}
                 block
               >
-                添加项目经历
+                {t("resumeEditor.addProjectExperience")}
               </Button>
             </Card>
 
             {/* 教育经历 */}
-            <Card title="教育经历" className="mb-4">
+            <Card title={t("resumeEditor.education")} className="mb-4">
               {data.education.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
                   <Space className="mb-2" align="baseline">
-                    <Text strong>教育经历 {index + 1}</Text>
+                    <Text strong>{t("resumeEditor.education")} {index + 1}</Text>
                     <Button
                       type="text"
                       danger
@@ -272,24 +274,24 @@ const ResumeEditor = () => {
                   </Space>
 
                   <Form.Item
-                    name={["education", index, "school"]}
-                    label="学校"
-                    noStyle
-                  >
+                      name={["education", index, "school"]}
+                      label={t("resumeEditor.school")}
+                      noStyle
+                    >
                     <Input className="mb-2" placeholder="学校名称" />
                   </Form.Item>
 
                   <Form.Item
-                    name={["education", index, "degree"]}
-                    label="学历"
-                    noStyle
-                  >
+                      name={["education", index, "degree"]}
+                      label={t("resumeEditor.degree")}
+                      noStyle
+                    >
                     <Input className="mb-2" placeholder="学历" />
                   </Form.Item>
 
                   <Form.Item
                     name={["education", index, "period"]}
-                    label="时间段"
+                    label={t("resumeEditor.timePeriod")}
                     noStyle
                   >
                     <Input className="mb-2" placeholder="2024.01 - 2024.12" />
@@ -302,16 +304,16 @@ const ResumeEditor = () => {
                 onClick={handleAddEducation}
                 block
               >
-                添加教育经历
+                {t("resumeEditor.addEducation")}
               </Button>
             </Card>
 
             {/* 网站链接 */}
-            <Card title="网站链接" className="mb-4">
+            <Card title={t("resumeEditor.websites")} className="mb-4">
               {data.website.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
                   <Space className="mb-2" align="baseline">
-                    <Text strong>网站 {index + 1}</Text>
+                    <Text strong>{t("resumeEditor.websites")} {index + 1}</Text>
                     <Button
                       type="text"
                       danger
@@ -321,18 +323,18 @@ const ResumeEditor = () => {
                   </Space>
 
                   <Form.Item
-                    name={["website", index, "name"]}
-                    label="网站名称"
-                    noStyle
-                  >
+                      name={["website", index, "name"]}
+                      label={t("resumeEditor.websiteName")}
+                      noStyle
+                    >
                     <Input className="mb-2" placeholder="网站名称" />
                   </Form.Item>
 
                   <Form.Item
-                    name={["website", index, "url"]}
-                    label="网站URL"
-                    noStyle
-                  >
+                      name={["website", index, "url"]}
+                      label={t("resumeEditor.websiteUrl")}
+                      noStyle
+                    >
                     <Input className="mb-2" placeholder="https://example.com" />
                   </Form.Item>
                 </div>
@@ -343,7 +345,7 @@ const ResumeEditor = () => {
                 onClick={handleAddWebsite}
                 block
               >
-                添加网站链接
+                {t("resumeEditor.addWebsite")}
               </Button>
             </Card>
           </Form>

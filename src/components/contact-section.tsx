@@ -2,13 +2,8 @@ import React from "react";
 
 import { Button, Card, Col, Row, Space, Typography } from "antd";
 
-import {
-  GithubOutlined,
-  LinkedinOutlined,
-  MailOutlined,
-  PhoneOutlined,
-  EnvironmentOutlined,
-} from "@ant-design/icons";
+import { EnvironmentOutlined, GithubOutlined, LinkedinOutlined, MailOutlined, PhoneOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import bilibiliImage from "@/assets/img/bilibili.png";
 import giteeImage from "@/assets/img/gitee.png";
@@ -18,6 +13,7 @@ import { ThemeProps } from "../types";
 const { Title, Text } = Typography;
 
 const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
+  const { t } = useTranslation();
   return (
     <section
       id="part-5"
@@ -33,7 +29,7 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
               darkMode ? "text-white" : "text-gray-800"
             }`}
           >
-            联系方式
+            {t("contact.title")}
           </Title>
           <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
         </div>
@@ -53,7 +49,7 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
                             darkMode ? "text-white" : "text-gray-800"
                           }`}
                         >
-                          电话
+                          {t("contact.phone")}
                         </Title>
                         <Text
                           className={
@@ -74,7 +70,7 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
                             darkMode ? "text-white" : "text-gray-800"
                           }`}
                         >
-                          邮箱
+                          {t("contact.email")}
                         </Title>
                         <Text
                           className={
@@ -95,7 +91,7 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
                             darkMode ? "text-white" : "text-gray-800"
                           }`}
                         >
-                          地址
+                          {t("contact.address")}
                         </Title>
                         <Text
                           className={
@@ -115,7 +111,7 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
                         darkMode ? "text-white" : "text-gray-800"
                       }`}
                     >
-                      社交媒体
+                      {t("contact.socialMedia")}
                     </Title>
                     <Space size="large" wrap>
                       <a
@@ -159,7 +155,7 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
                           darkMode ? "text-white" : "text-gray-800"
                         }`}
                       >
-                        给我留言
+                        {t("contact.sendMessage")}
                       </Title>
                       <div className="space-y-4">
                         <Button
@@ -168,7 +164,7 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
                           size="large"
                           className="bg-blue-600 hover:bg-blue-700"
                         >
-                          发送邮件
+                          {t("contact.sendEmail")}
                         </Button>
                         <Button
                           type="default"
@@ -180,7 +176,7 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
                               : "border-gray-300"
                           }
                         >
-                          预约面谈
+                          {t("contact.appointment")}
                         </Button>
                       </div>
                     </div>

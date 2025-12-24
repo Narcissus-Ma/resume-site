@@ -2,11 +2,8 @@ import React from "react";
 
 import { Card, Col, Progress, Row, Typography } from "antd";
 
-import {
-  BackwardOutlined,
-  CodeOutlined,
-  DatabaseOutlined,
-} from "@ant-design/icons";
+import { DatabaseOutlined, CodeOutlined, BackwardOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 import { ThemeProps, Skill } from "../types";
 
@@ -18,6 +15,7 @@ interface SkillsSectionProps extends ThemeProps {
 }
 
 const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
+  const { t } = useTranslation();
   return (
     <section
       id="part-2"
@@ -33,7 +31,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
               darkMode ? "text-white" : "text-gray-800"
             }`}
           >
-            专业技能
+            {t("skills.title")}
           </Title>
           <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
           <Paragraph
@@ -41,7 +39,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
               darkMode ? "text-gray-400" : "text-gray-600"
             }`}
           >
-            我掌握了多种前端和后端技术，能够独立完成从设计到实现的全流程开发工作。
+            {t("skills.description")}
           </Paragraph>
         </div>
 
@@ -82,10 +80,10 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
             <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <Meta
                 avatar={<CodeOutlined className="text-blue-500 text-3xl" />}
-                title="前端开发"
+                title={t("skills.frontend.title")}
                 description={
                   <Text className={darkMode ? "text-gray-300" : ""}>
-                    精通HTML、CSS、JavaScript、React、Vue等前端技术栈，能够构建响应式、高性能的Web应用。
+                    {t("skills.frontend.description")}
                   </Text>
                 }
               />
@@ -98,11 +96,10 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
                 avatar={
                   <DatabaseOutlined className="text-green-500 text-3xl" />
                 }
-                title="后端开发"
+                title={t("skills.backend.title")}
                 description={
                   <Text className={darkMode ? "text-gray-300" : ""}>
-                    熟悉Node.js、Express、MongoDB等后端技术，能够开发RESTful
-                    API和全栈应用。
+                    {t("skills.backend.description")}
                   </Text>
                 }
               />
@@ -115,10 +112,10 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
                 avatar={
                   <BackwardOutlined className="text-purple-500 text-3xl" />
                 }
-                title="UI/UX设计"
+                title={t("skills.uiux.title")}
                 description={
                   <Text className={darkMode ? "text-gray-300" : ""}>
-                    具备良好的设计感和用户体验意识，能够创建美观、易用的界面设计。
+                    {t("skills.uiux.description")}
                   </Text>
                 }
               />

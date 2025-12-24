@@ -1,0 +1,148 @@
+{
+  "common": {
+    "home": "首页",
+    "resume": "简历",
+    "contact": "联系我",
+    "about": "关于",
+    "edit": "编辑",
+    "save": "保存",
+    "cancel": "取消"
+  },
+  "header": {
+    "title": "个人简历",
+    "settings": "设置"
+  },
+  "footer": {
+    "title": "张小明的个人主页",
+    "description": "感谢您访问我的个人主页，我期待与您合作，共同创造出色的Web应用！",
+    "copyright": "© {{year}} 张小明. All rights reserved."
+  },
+  "resume": {
+    "personalInfo": "个人信息",
+    "education": "教育经历",
+    "experience": "工作经历",
+    "skills": "专业技能",
+    "projects": "项目经验",
+    "websites": "个人网站",
+    "printPdf": "打印PDF",
+    "edit": "编辑简历"
+  },
+  "home": {
+    "welcome": "欢迎访问我的个人网站",
+    "intro": "我是一名前端开发者，热爱技术，追求卓越",
+    "hi": "你好，我是",
+    "occupation": "前端工程师",
+    "description": "热爱学习，热爱生活，创造更高质量工作成果。",
+    "viewResume": "查看简历",
+    "scrollDown": "往下滑"
+  },
+  "about": {
+    "title": "关于我",
+    "intro": "个人简介",
+    "description": "我是一名充满激情的前端工程师，拥有5年专业经验，擅长使用现代前端技术构建高性能、响应式的Web应用。我注重用户体验，追求代码质量，并乐于不断学习新技术。",
+    "experience": "工作经验",
+    "education": "教育经历"
+  },
+  "skills": {
+    "title": "专业技能",
+    "descriptionTitle": "技能描述",
+    "description": "我掌握了多种前端和后端技术，能够独立完成从设计到实现的全流程开发工作。",
+    "frontend": {
+      "title": "前端开发",
+      "description": "精通HTML、CSS、JavaScript、React、Vue等前端技术栈，能够构建响应式、高性能的Web应用。"
+    },
+    "backend": {
+      "title": "后端开发",
+      "description": "熟悉Node.js、Express、MongoDB等后端技术，能够开发RESTful API和全栈应用。"
+    },
+    "uiux": {
+      "title": "UI/UX设计",
+      "description": "具备良好的设计感和用户体验意识，能够创建美观、易用的界面设计。"
+    }
+  },
+  "contact": {
+    "title": "联系方式",
+    "phone": "电话",
+    "email": "邮箱",
+    "address": "地址",
+    "socialMedia": "社交媒体",
+    "sendMessage": "给我留言",
+    "sendEmail": "发送邮件",
+    "appointment": "预约面谈"
+  },
+  "projects": {
+    "title": "项目集",
+    "recent": "近期项目",
+    "demo": "Demo →"
+  },
+  "pdfModal": {
+    "title": "联系方式",
+    "useToken": "通过口令获联系方式",
+    "tokenLabel": "输入口令获站长的联系方式",
+    "verifyToken": "验证口令",
+    "nameLabel": "姓名",
+    "phoneLabel": "手机号",
+    "emailLabel": "邮箱",
+    "confirmInfo": "确认信息"
+  },
+  "notFound": {
+    "title": "页面不存在",
+    "description": "您访问的页面不存在或已被移动，请检查URL是否正确。",
+    "backToHome": "返回首页"
+  },
+  "homeManage": {
+    "title": "主页数据管理器",
+    "save": "保存",
+    "preview": "预览",
+    "skills": "技能",
+    "skill": "技能",
+    "skillName": "技能名称",
+    "proficiency": "熟练度",
+    "addSkill": "添加技能",
+    "experience": "工作经历",
+    "year": "时间段",
+    "company": "公司",
+    "position": "职位",
+    "description": "描述",
+    "addExperience": "添加工作经历",
+    "projects": "项目",
+    "projectName": "项目名称",
+    "projectDescription": "项目描述",
+    "imagePath": "图片路径",
+    "projectLink": "项目链接",
+    "addProject": "添加项目"
+  },
+  "resumeEditor": {
+    "title": "简历编辑器",
+    "save": "保存",
+    "preview": "预览",
+    "basicInfo": "基本信息",
+    "titleLabel": "标题",
+    "skillDescription": "技能描述",
+    "addSkillDescription": "添加技能描述",
+    "skills": "技能",
+    "skillCategory": "技能类别",
+    "skillItem": "技能项",
+    "addSkillCategory": "添加技能类别",
+    "addSkillItem": "添加技能项",
+    "workExperience": "工作经历",
+    "company": "公司",
+    "position": "职位",
+    "period": "时间段",
+    "addWorkExperience": "添加工作经历",
+    "projectExperience": "项目经历",
+    "projectName": "项目名称",
+    "projectDescription": "项目描述",
+    "addProjectExperience": "添加项目经历",
+    "education": "教育经历",
+    "school": "学校",
+    "degree": "学历",
+    "addEducation": "添加教育经历",
+    "websites": "网站链接",
+    "websiteName": "网站名称",
+    "websiteUrl": "网站URL",
+    "addWebsite": "添加网站链接",
+    "timePeriod": "时间段",
+    "skillDescriptionPlaceholder": "技能描述"
+  }
+}

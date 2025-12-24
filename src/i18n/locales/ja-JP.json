@@ -1,0 +1,148 @@
+{
+  "common": {
+    "home": "ホーム",
+    "resume": "履歴書",
+    "contact": "お問い合わせ",
+    "about": "自己紹介",
+    "edit": "編集",
+    "save": "保存",
+    "cancel": "キャンセル"
+  },
+  "header": {
+    "title": "個人履歴書",
+    "settings": "設定"
+  },
+  "footer": {
+    "title": "張小明のパーソナルホームページ",
+    "description": "私のパーソナルホームページを訪れていただきありがとうございます。私はあなたと協力して優れたWebアプリケーションを作成することを楽しみにしています！",
+    "copyright": "© {{year}} 張小明. All rights reserved."
+  },
+  "resume": {
+    "personalInfo": "個人情報",
+    "education": "学歴",
+    "experience": "職務経歴",
+    "skills": "スキル",
+    "projects": "プロジェクト経験",
+    "websites": "ウェブサイト",
+    "printPdf": "PDFを印刷",
+    "edit": "履歴書を編集"
+  },
+  "home": {
+    "welcome": "私のパーソナルウェブサイトへようこそ",
+    "intro": "私はフロントエンド開発者で、技術に情熱を持ち、卓越性を追求しています",
+    "hi": "こんにちは、私は",
+    "occupation": "フロントエンドエンジニア",
+    "description": "学習を愛し、生活を愛し、より高品質な仕事成果を生み出します。",
+    "viewResume": "履歴書を見る",
+    "scrollDown": "下にスクロール"
+  },
+  "about": {
+    "title": "私について",
+    "intro": "自己紹介",
+    "description": "私は情熱的なフロントエンドエンジニアで、5年の専門経験があります。現代のフロントエンド技術を使用して高性能でレスポンシブなWebアプリケーションを構築することを得意としています。ユーザーエクスペリエンスに注力し、コード品質を追求し、新しい技術を継続的に学ぶことを楽しんでいます。",
+    "experience": "職務経歴",
+    "education": "学歴"
+  },
+  "skills": {
+    "title": "専門スキル",
+    "descriptionTitle": "スキルの説明",
+    "description": "私は多様なフロントエンドとバックエンドの技術を習得しており、設計から実装までのフル開発プロセスを独立して完了することができます。",
+    "frontend": {
+      "title": "フロントエンド開発",
+      "description": "HTML、CSS、JavaScript、React、Vueなどのフロントエンド技術に精通し、レスポンシブで高性能なWebアプリケーションを構築することができます。"
+    },
+    "backend": {
+      "title": "バックエンド開発",
+      "description": "Node.js、Express、MongoDBなどのバックエンド技術に精通し、RESTful APIとフルスタックアプリケーションを開発することができます。"
+    },
+    "uiux": {
+      "title": "UI/UXデザイン",
+      "description": "良好なデザインセンスとユーザーエクスペリエンスの意識を持ち、美しく使いやすいインターフェースデザインを作成することができます。"
+    }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "phone": "電話",
+    "email": "メール",
+    "address": "住所",
+    "socialMedia": "ソーシャルメディア",
+    "sendMessage": "メッセージを送る",
+    "sendEmail": "メールを送信",
+    "appointment": "面談を予約"
+  },
+  "projects": {
+    "title": "プロジェクト",
+    "recent": "最近のプロジェクト",
+    "demo": "Demo →"
+  },
+  "pdfModal": {
+    "title": "連絡先情報",
+    "useToken": "トークンを介して連絡先情報を取得",
+    "tokenLabel": "トークンを入力して連絡先情報を取得",
+    "verifyToken": "トークンを確認",
+    "nameLabel": "名前",
+    "phoneLabel": "電話",
+    "emailLabel": "メール",
+    "confirmInfo": "情報を確認"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "description": "アクセスしようとしたページは存在しないか、移動されました。URLを確認してください。",
+    "backToHome": "ホームに戻る"
+  },
+  "homeManage": {
+    "title": "ホームデータマネージャー",
+    "save": "保存",
+    "preview": "プレビュー",
+    "skills": "スキル",
+    "skill": "スキル",
+    "skillName": "スキル名",
+    "proficiency": "熟練度",
+    "addSkill": "スキルを追加",
+    "experience": "職務経歴",
+    "year": "期間",
+    "company": "会社",
+    "position": "職位",
+    "description": "説明",
+    "addExperience": "職務経歴を追加",
+    "projects": "プロジェクト",
+    "projectName": "プロジェクト名",
+    "projectDescription": "プロジェクトの説明",
+    "imagePath": "画像パス",
+    "projectLink": "プロジェクトリンク",
+    "addProject": "プロジェクトを追加"
+  },
+  "resumeEditor": {
+    "title": "履歴書エディター",
+    "save": "保存",
+    "preview": "プレビュー",
+    "basicInfo": "基本情報",
+    "titleLabel": "タイトル",
+    "skillDescription": "スキルの説明",
+    "addSkillDescription": "スキルの説明を追加",
+    "skills": "スキル",
+    "skillCategory": "スキルカテゴリー",
+    "skillItem": "スキル項目",
+    "addSkillCategory": "スキルカテゴリーを追加",
+    "addSkillItem": "スキル項目を追加",
+    "workExperience": "職務経歴",
+    "company": "会社",
+    "position": "職位",
+    "period": "期間",
+    "addWorkExperience": "職務経歴を追加",
+    "projectExperience": "プロジェクト経験",
+    "projectName": "プロジェクト名",
+    "projectDescription": "プロジェクトの説明",
+    "addProjectExperience": "プロジェクト経験を追加",
+    "education": "学歴",
+    "school": "学校",
+    "degree": "学位",
+    "addEducation": "学歴を追加",
+    "websites": "ウェブサイト",
+    "websiteName": "ウェブサイト名",
+    "websiteUrl": "ウェブサイトURL",
+    "addWebsite": "ウェブサイトを追加",
+    "timePeriod": "期間",
+    "skillDescriptionPlaceholder": "スキルの説明"
+  }
+}

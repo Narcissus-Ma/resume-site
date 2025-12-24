@@ -3,6 +3,8 @@ import React from "react";
 import { Button, Typography, Carousel } from "antd";
 
 import { RightOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
+
 
 import { ThemeProps, Project } from "../types";
 
@@ -16,6 +18,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   darkMode,
   projects: propProjects,
 }) => {
+  const { t } = useTranslation();
   // 使用传入的projects参数，如果没有则使用默认模拟数据
   const projects = propProjects || [
     {
@@ -55,14 +58,14 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               darkMode ? "text-white" : "text-gray-800"
             }`}
           >
-            项目集
+            {t("projects.title")}
           </Title>
           <Paragraph
             className={`text-gray-500 ${
               darkMode ? "text-gray-400" : "text-gray-500"
             }`}
           >
-            近期项目
+            {t("projects.recent")}
           </Paragraph>
         </div>
 
@@ -111,7 +114,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       icon={<RightOutlined />}
                       className="bg-purple-600 hover:bg-purple-700"
                     >
-                      Demo →
+                      {t("projects.demo")}
                     </Button>
                   </div>
                 </div>

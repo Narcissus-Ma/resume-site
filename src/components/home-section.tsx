@@ -9,6 +9,7 @@ import {
   MailOutlined,
   MenuFoldOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import catImage from "@/assets/img/cat.png";
@@ -18,6 +19,7 @@ import { ThemeProps } from "../types";
 const { Title, Paragraph } = Typography;
 
 const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
+  const { t } = useTranslation();
   return (
     <section
       id="part-1"
@@ -63,7 +65,7 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
                   darkMode ? "text-gray-300" : "text-gray-800"
                 }`}
               >
-                Hi,I am
+                {t("home.hi")}
               </Paragraph>
               <Title
                 level={1}
@@ -78,14 +80,14 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
                   darkMode ? "text-gray-300" : "text-gray-600"
                 }`}
               >
-                前端工程师
+                {t("home.occupation")}
               </Paragraph>
               <Paragraph
                 className={`text-lg max-w-xl ${
                   darkMode ? "text-gray-400" : "text-gray-700"
                 }`}
               >
-                热爱学习，热爱生活，创造更高质量工作成果。
+                {t("home.description")}
               </Paragraph>
             </div>
 
@@ -99,7 +101,7 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
               }`}
             >
               <Link to="/resume" className="text-white flex items-center">
-                查看简历 <ArrowRightOutlined className="ml-2" />
+                {t("home.viewResume")} <ArrowRightOutlined className="ml-2" />
               </Link>
             </Button>
           </div>
@@ -117,11 +119,11 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
 
         {/* 往下滑提示 */}
         <div className="mt-8 flex flex-col items-center animate-bounce">
-          <Paragraph
-            className={`mb-2 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
-          >
-            往下滑
-          </Paragraph>
+            <Paragraph
+              className={`mb-2 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+            >
+              {t("home.scrollDown")}
+            </Paragraph>
           <MenuFoldOutlined
             className={`rotate-90 ${
               darkMode ? "text-gray-400" : "text-gray-600"

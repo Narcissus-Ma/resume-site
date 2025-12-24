@@ -1,6 +1,7 @@
 import { Button } from "antd";
 
 import { EditOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import About from "@/components/about";
@@ -15,6 +16,7 @@ import useResume from "@/hooks/use-resume";
 const Resume = () => {
   const {isModalOpen, setIsModalOpen,userInfo,setUserInfo,resumeData} = useResume();  
   const { isBackendAvailable } = useBackendStatus();
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-gray-100">
       <Header onExportClick={() => setIsModalOpen(true)} />
@@ -23,7 +25,7 @@ const Resume = () => {
           <div className="mb-6 flex justify-end">
             <Link to="/resume-editor">
               <Button type="primary" icon={<EditOutlined />}>
-                编辑简历
+                {t("resume.edit")}
               </Button>
             </Link>
           </div>

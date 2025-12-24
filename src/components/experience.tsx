@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useTranslation } from 'react-i18next';
+
 import { Experience as ExperienceType, Project, Education, Website } from '../types/resume';
 
 interface ExperienceProps {
@@ -10,10 +12,11 @@ interface ExperienceProps {
 }
 
 const Experience: React.FC<ExperienceProps> = ({ experience, projects, education, website }) => {
+  const { t } = useTranslation();
   return (
     <>
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">项目经验</h2>
+        <h2 className="text-2xl font-bold mb-4">{t("resume.projects")}</h2>
         <div className="space-y-6">
           {projects.map((project) => (
             <div key={project.name} className="border-l-4 border-primary pl-4">
@@ -31,7 +34,7 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
       </section>
 
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">工作经历</h2>
+        <h2 className="text-2xl font-bold mb-4">{t("resume.experience")}</h2>
         <div className="space-y-6">
           {experience.map((exp) => (
             <div key={exp.company} className="border-l-4 border-primary pl-4">
@@ -50,7 +53,7 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
       </section>
 
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">教育背景</h2>
+        <h2 className="text-2xl font-bold mb-4">{t("resume.education")}</h2>
         {education.map((edu) => (
           <div key={edu.school}>
             <h3 className="text-xl font-semibold">{edu.school}</h3>
@@ -65,7 +68,7 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
       </section>
 
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">个人网站</h2>
+        <h2 className="text-2xl font-bold mb-4">{t("resume.websites")}</h2>
         <div className="flex flex-wrap gap-4">
           {website.map((site) => (
             <a

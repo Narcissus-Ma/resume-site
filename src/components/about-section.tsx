@@ -2,6 +2,8 @@ import React from "react";
 
 import { Card, Col, Row, Timeline, Typography } from "antd";
 
+import { useTranslation } from "react-i18next";
+
 import aboutImage from "@/assets/img/about.png";
 
 import { ThemeProps, Experience } from "../types";
@@ -16,6 +18,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
   darkMode,
   experiences,
 }) => {
+  const { t } = useTranslation();
   return (
     <section
       id="part-3"
@@ -29,7 +32,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
               darkMode ? "text-white" : "text-gray-800"
             }`}
           >
-            关于我
+            {t("about.title")}
           </Title>
           <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
         </div>
@@ -44,15 +47,14 @@ const AboutSection: React.FC<AboutSectionProps> = ({
                     darkMode ? "text-white" : "text-gray-800"
                   }`}
                 >
-                  个人简介
+                  {t("about.intro")}
                 </Title>
                 <Paragraph
                   className={`mb-6 ${
                     darkMode ? "text-gray-300" : "text-gray-700"
                   }`}
                 >
-                  我是一名充满激情的前端工程师，拥有5年专业经验，擅长使用现代前端技术构建高性能、响应式的Web应用。
-                  我注重用户体验，追求代码质量，并乐于不断学习新技术。
+                  {t("about.description")}
                 </Paragraph>
 
                 <Title
@@ -61,7 +63,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
                     darkMode ? "text-white" : "text-gray-800"
                   }`}
                 >
-                  工作经验
+                  {t("about.experience")}
                 </Title>
                 <Timeline
                   items={experiences.map((exp) => ({
@@ -93,7 +95,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
                     darkMode ? "text-white" : "text-gray-800"
                   }`}
                 >
-                  教育经历
+                  {t("about.education")}
                 </Title>
                 <Timeline
                   items={[
