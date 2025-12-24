@@ -1,25 +1,17 @@
-import { useTranslation } from 'react-i18next';
-import { Select } from 'antd';
+import { Select } from "antd";
 
-const { Option } = Select;
+import useLanguageSelector from "@/hooks/use-language-selector";
 
 const LanguageSelector = () => {
-  const { i18n } = useTranslation();
-
-  const handleChange = (value: string) => {
-    i18n.changeLanguage(value);
-  };
+  const { i18n, handleChange, optionsConfig } = useLanguageSelector();
 
   return (
-    <Select 
-      value={i18n.language} 
-      onChange={handleChange} 
-      style={{ width: 120 }}
-    >
-      <Option value="zh-CN">中文</Option>
-      <Option value="en-US">English</Option>
-      <Option value="ja-JP">日本語</Option>
-    </Select>
+    <Select
+      value={i18n.language}
+      onChange={handleChange}
+      options={optionsConfig}
+      style={{ width: 100, height: 20, fontSize: 12 }}
+    />
   );
 };
 
