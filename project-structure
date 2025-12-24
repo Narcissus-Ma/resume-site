@@ -1,15 +1,78 @@
-my-resume/
+resume-site/
 ├── public/
 │   └── fonts/
 │       ├── NotoSansSC-Regular.ttf
 │       └── NotoSansSC-Bold.ttf
 ├── src/
+│   ├── assets/
+│   │   └── types/
+│   │       └── image.d.ts
 │   ├── components/
-│   │   ├── Header.jsx
-│   │   ├── About.jsx
-│   │   ├── Skills.jsx
-│   │   ├── Experience.jsx
-│   │   ├── PDFModal.jsx
-│   │   └── ResumePDF.jsx
-│   ├── App.jsx
-│   └── main.jsx 
+│   │   ├── about-section.tsx
+│   │   ├── about.tsx
+│   │   ├── contact-section.tsx
+│   │   ├── experience.tsx
+│   │   ├── footer.tsx
+│   │   ├── header.tsx
+│   │   ├── home-section.tsx
+│   │   ├── pdf-modal.tsx
+│   │   ├── projects-section.tsx
+│   │   ├── resume-header.tsx
+│   │   ├── skill-description.tsx
+│   │   ├── skills-section.tsx
+│   │   └── skills.tsx
+│   ├── data/
+│   │   ├── homeData.json
+│   │   ├── resumeData.json
+│   │   ├── homeData_zh-CN.json
+│   │   ├── homeData_en-US.json
+│   │   ├── homeData_ja-JP.json
+│   │   ├── resumeData_zh-CN.json
+│   │   ├── resumeData_en-US.json
+│   │   └── resumeData_ja-JP.json
+│   ├── hooks/
+│   │   ├── use-backend-status.ts
+│   │   ├── use-home-manage.ts
+│   │   ├── use-home.ts
+│   │   ├── use-resume-editor.ts
+│   │   ├── use-resume.ts
+│   │   ├── use-theme.ts
+│   │   └── use-translated-data.ts
+│   ├── i18n/
+│   │   ├── config.ts
+│   │   └── locales/
+│   │       ├── zh-CN.json
+│   │       ├── en-US.json
+│   │       └── ja-JP.json
+│   ├── pages/
+│   │   ├── error-page/
+│   │   │   └── not-found.tsx
+│   │   ├── home/
+│   │   │   ├── home-manage.tsx
+│   │   │   └── home.tsx
+│   │   └── resume/
+│   │       ├── resume-editor.tsx
+│   │       └── resume.tsx
+│   ├── router/
+│   │   └── index.tsx
+│   ├── types/
+│   │   ├── index.ts
+│   │   └── resume.ts
+│   ├── app.tsx
+│   └── main.tsx
+├── scripts/
+│   └── translate-data.js
+├── docs/
+│   └── i18n.md
+├── .eslintrc.json
+├── package.json
+├── postcss.config.js
+├── prettier.config.js
+├── server.ts
+├── tailwind.config.js
+├── tsconfig.json
+├── tsconfig.node.json
+├── tsconfig.server.json
+├── vite.config.d.ts
+├── vite.config.js
+└── vite.config.ts
