@@ -5,6 +5,7 @@ import {
   message,
 } from "antd";
 
+import { useTranslation } from "react-i18next";
 
 import { HomeData, Skill, Experience, Project } from "@/types";
 
@@ -12,12 +13,13 @@ const useHomeManage = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState<HomeData | null>(null);
   const [loading, setLoading] = useState(false);
+  const { i18n } = useTranslation();
 
   // 从服务器获取最新的主页数据
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/home");
+        const response = await fetch(`http://localhost:3001/api/home?lang=${i18n.language}`);
         if (response.ok) {
           const homeData = await response.json();
           setData(homeData);
@@ -29,7 +31,7 @@ const useHomeManage = () => {
     };
 
     fetchData();
-  }, [form]);
+  }, [form, i18n.language]);
 
   // 保存数据
   const handleSave = useCallback(() => async () => {
@@ -38,7 +40,7 @@ const useHomeManage = () => {
       const values = await form.validateFields();
 
       // 发送请求保存数据
-      const response = await fetch("http://localhost:3001/api/home", {
+      const response = await fetch(`http://localhost:3001/api/home?lang=${i18n.language}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +58,7 @@ const useHomeManage = () => {
     } finally {
       setLoading(false);
     }
-  },[form]);
+  },[form, i18n.language]);
 
   // 添加技能
   const handleAddSkill = useCallback(() => {

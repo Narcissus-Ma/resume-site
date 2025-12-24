@@ -1,10 +1,11 @@
-1. 增加多语言,国际化方案，日语，英语
-2. 主题切换
+1. 增加多语言,国际化方案，日语，英语 done
+2. 主题切换 done
 3. pdf 导出优化 done
 4. 增加简约版/时尚版切换 done
 5. 添加管理页面 done
 6. 代码结构调整 数据 UI 分离 done
-7. css 方案改用 less elimination
+7. css 方案改用 less cancel
+8. 翻译脚本
 
 新增工作经验
 

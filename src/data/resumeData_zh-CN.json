@@ -1,0 +1,151 @@
+{
+  "basicInfo": {
+    "title": "前端开发工程师",
+    "skillDescriptions": [
+      "熟练掌握HTML、CSS、JavaScript、Typescript等技术。",
+      "熟练使用 react 技术，了解react相关生态及一些框架实现原理。",
+      "熟悉vue2.0技术的基本使用，了解vue3.0技术及vue相关的一些生态。",
+      "熟悉多端开发技术，了解小程序、uni-app、taro、react-native，electron等技术。",
+      "熟悉nodejs技术，了解express、koa、nestjs，mysql,java 等后端框架和生态。",
+      "熟练掌握AI辅助开发技巧，了解Cursor、cline、Ollama、copilot等AI工具的使用。",
+      "熟悉webpack 及编译工具Babel，了解其原理以及其它一些构建工具比如vite,esbuild等。",
+      "熟悉前端常用算法、浏览器网络安全知识、常用设计模式，追求开发高质量、可维护性代码。",
+      "熟悉敏捷开发流程、把控前端代码提交质量、提高团队合作效率。",
+      "熟悉低代码平台业务开发、平台搭建、对低代码无代码技术有足够的了解。"
+    ],
+    "skills": [
+      {
+        "category": "前端开发",
+        "items": [
+          "HTML5/CSS3",
+          "JS/TS",
+          "React/Next.js",
+          "Vue/Nuxt.js",
+          "Webpack/Vite",
+          "Sass/less/css-in-js"
+        ]
+      },
+      {
+        "category": "多端开发",
+        "items": [
+          "ReactNative",
+          "uni-app",
+          "taro",
+          "mini-program",
+          "electron"
+        ]
+      },
+      {
+        "category": "后端开发",
+        "items": [
+          "Node.js",
+          "Express",
+          "Koa",
+          "nest.js",
+          "MySQL",
+          "Java",
+          "RESTful API"
+        ]
+      },
+      {
+        "category": "开发工具",
+        "items": [
+          "Git",
+          "VS Code",
+          "Docker",
+          "Postman"
+        ]
+      },
+      {
+        "category": "AI辅助开发",
+        "items": [
+          "Cursor",
+          "cline",
+          "Ollama",
+          "copilot"
+        ]
+      }
+    ]
+  },
+  "experience": [
+    {
+      "company": "郑州菏怀软件科技有限公司",
+      "position": "高级前端工程师",
+      "period": "2022.09 - 2024-12"
+    },
+    {
+      "company": "深圳市法本信息网络科技有限公司",
+      "position": "中级前端工程师",
+      "period": "2021.09 - 2022.08"
+    },
+    {
+      "company": "成都风灵网络科技有限公司",
+      "position": "前端开发工程师",
+      "period": "2020.10 - 2021.09"
+    },
+    {
+      "company": "深圳市易佰网络科技有限公司",
+      "position": "网站运营",
+      "period": "2017.09 - 2019.08"
+    }
+  ],
+  "projects": [
+    {
+      "name": "物联应用开发平台",
+      "period": "2022.03 - 2024.12",
+      "description": "物联应用开发平台是一个以低代码为主、结合物联应用零代码的可视化前端应用开发平台，通过简单的拖拉拽可完成应用页面开发，并提供了数据源接口或数据库的绑定配置，项目基于开源项目appsmith搭建。"
+    },
+    {
+      "name": "Booklide低代码平台",
+      "period": "2021.06 - 2021.12",
+      "description": "低代码+可视化搭建平台，涵盖数据源管理与加工、页面组装、流程引擎、低代码编辑器"
+    },
+    {
+      "name": "前端业务组件hooks库",
+      "period": "2021.06 - 2021.12",
+      "description": "参与团队内前端自定义Hooks的封装与静态站点的构建，通过测试用例，保证交付Hooks的稳定性及健壮性，减少重复开发工作量，提供最佳实践。"
+    },
+    {
+      "name": "餐饮SaaS管理平台",
+      "period": "2021.06 - 2021.12",
+      "description": "餐饮SaaS是一个为商家提供店铺管理、人员管理、销售业务统计、广告投放、活动设置的管理平台。"
+    }
+  ],
+  "education": [
+    {
+      "school": "湖北第二师范学院",
+      "degree": "本科",
+      "period": "2013.09 - 2017.06"
+    }
+  ],
+  "website": [
+    {
+      "name": "博客",
+      "url": "https://blog.384385.xyz"
+    },
+    {
+      "name": "导航网站",
+      "url": "https://navigation.384385.xyz/"
+    },
+    {
+      "name": "低代码平台",
+      "url": "https://narcissus-ma.github.io/low-code-platform/#"
+    },
+    {
+      "name": "自定义hooks",
+      "url": "https://narcissus-ma.github.io/narcissus-hooks/"
+    },
+    {
+      "name": "前端编码规范工程化",
+      "url": "https://narcissus-ma.github.io/nm-spec"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/Narcissus-Ma"
+    },
+    {
+      "name": "Gitee",
+      "url": "https://gitee.com/Narcissus-ma"
+    }
+  ]
+}

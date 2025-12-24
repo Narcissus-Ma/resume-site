@@ -1,0 +1,68 @@
+{
+  "skills": [
+    {
+      "name": "Frontend Development",
+      "value": 95
+    },
+    {
+      "name": "React/Vue",
+      "value": 85
+    },
+    {
+      "name": "TypeScript",
+      "value": 80
+    },
+    {
+      "name": "Node.js",
+      "value": 75
+    },
+    {
+      "name": "UI/UX Design",
+      "value": 70
+    },
+    {
+      "name": "Backend Development",
+      "value": 65
+    }
+  ],
+  "experiences": [
+    {
+      "year": "2022 - Present",
+      "company": "Technology Innovation Co., Ltd.",
+      "title": "Senior Frontend Engineer",
+      "description": "Responsible for front-end architecture design and development of enterprise applications, optimizing performance and user experience."
+    },
+    {
+      "year": "2020 - 2022",
+      "company": "Internet Technology Co., Ltd.",
+      "title": "Frontend Developer",
+      "description": "Participated in front-end development of multiple large projects, building responsive interfaces using React and TypeScript."
+    },
+    {
+      "year": "2018 - 2020",
+      "company": "Software Development Co., Ltd.",
+      "title": "Web Developer",
+      "description": "Responsible for development and maintenance of websites and web applications, familiar with front-end and back-end technology stacks."
+    }
+  ],
+  "projects": [
+    {
+      "title": "Enterprise Management System",
+      "description": "Enterprise-level management system developed based on React and TypeScript, including functions such as permission management and data statistics.",
+      "image": "portfolio1.jpg",
+      "link": "#"
+    },
+    {
+      "title": "E-commerce Platform Frontend",
+      "description": "High-performance e-commerce website frontend implementation, including core functions such as product display, shopping cart, and payment.",
+      "image": "portfolio2.jpg",
+      "link": "#"
+    },
+    {
+      "title": "Data Visualization Platform",
+      "description": "Data visualization dashboard system using ECharts to implement various data charts and real-time monitoring.",
+      "image": "portfolio3.jpg",
+      "link": "#"
+    }
+  ]
+}

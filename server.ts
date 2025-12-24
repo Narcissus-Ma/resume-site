@@ -12,20 +12,25 @@ app.use(cors());
 // 解析JSON请求体
 app.use(express.json());
 
-// 简历数据文件路径
-const resumeDataPath = path.join(
-  process.cwd(),
-  "src",
-  "data",
-  "resumeData.json"
-);
+// 根据语言获取简历数据文件路径
+const getResumeDataPath = (lang: string = 'zh-CN') => {
+  // 默认为中文，其他语言使用对应的语言文件
+  const fileName = `resumeData_${lang}.json`;
+  return path.join(process.cwd(), "src", "data", fileName);
+};
 
-// 主页数据文件路径
-const homeDataPath = path.join(process.cwd(), "src", "data", "homeData.json");
+// 根据语言获取主页数据文件路径
+const getHomeDataPath = (lang: string = 'zh-CN') => {
+  // 默认为中文，其他语言使用对应的语言文件
+  const fileName = `homeData_${lang}.json`;
+  return path.join(process.cwd(), "src", "data", fileName);
+};
 
 // 获取简历数据
 app.get("/api/resume", (req, res) => {
   try {
+    const lang = req.query.lang as string || 'zh-CN';
+    const resumeDataPath = getResumeDataPath(lang);
     const data = fs.readFileSync(resumeDataPath, "utf8");
     const resumeData = JSON.parse(data);
     res.json(resumeData);
@@ -38,6 +43,8 @@ app.get("/api/resume", (req, res) => {
 // 保存简历数据
 app.post("/api/resume", (req, res) => {
   try {
+    const lang = req.query.lang as string || 'zh-CN';
+    const resumeDataPath = getResumeDataPath(lang);
     const resumeData = req.body;
     // 直接写入JSON文件
     fs.writeFileSync(
@@ -55,6 +62,8 @@ app.post("/api/resume", (req, res) => {
 // 获取主页数据
 app.get("/api/home", (req, res) => {
   try {
+    const lang = req.query.lang as string || 'zh-CN';
+    const homeDataPath = getHomeDataPath(lang);
     const data = fs.readFileSync(homeDataPath, "utf8");
     const homeData = JSON.parse(data);
     res.json(homeData);
@@ -67,6 +76,8 @@ app.get("/api/home", (req, res) => {
 // 保存主页数据
 app.post("/api/home", (req, res) => {
   try {
+    const lang = req.query.lang as string || 'zh-CN';
+    const homeDataPath = getHomeDataPath(lang);
     const homeData = req.body;
     // 直接写入JSON文件
     fs.writeFileSync(homeDataPath, JSON.stringify(homeData, null, 2), "utf8");

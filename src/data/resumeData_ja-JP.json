@@ -1,0 +1,151 @@
+{
+  "basicInfo": {
+    "title": "フロントエンドエンジニア",
+    "skillDescriptions": [
+      "HTML、CSS、JavaScript、TypeScriptなどの技術に精通しています。",
+      "React技術に精通し、React関連のエコシステムやいくつかのフレームワーク実装原理を理解しています。",
+      "Vue 2.0技術の基本的な使用に慣れ、Vue 3.0技術およびVue関連のエコシステムを理解しています。",
+      "マルチプラットフォーム開発技術に精通し、ミニプログラム、uni-app、taro、react-native、electronなどの技術を理解しています。",
+      "Node.js技術に精通し、express、koa、nestjs、mysql、javaなどのバックエンドフレームワークとエコシステムを理解しています。",
+      "AI支援開発技術に精通し、Cursor、cline、Ollama、copilotなどのAIツールの使用方法を理解しています。",
+      "webpackおよびコンパイルツールBabelに精通し、その原理およびvite、esbuildなどの他のビルドツールを理解しています。",
+      "フロントエンドの一般的なアルゴリズム、ブラウザネットワークセキュリティ知識、一般的なデザインパターンに精通し、高品質で保守可能なコードの開発を追求しています。",
+      "アジャイル開発プロセスに精通し、フロントエンドコードの提出品質を管理し、チームの協力効率を向上させています。",
+      "ローコードプラットフォームのビジネス開発、プラットフォーム構築に精通し、ローコード/ノーコード技術に十分な理解があります。"
+    ],
+    "skills": [
+      {
+        "category": "フロントエンド開発",
+        "items": [
+          "HTML5/CSS3",
+          "JS/TS",
+          "React/Next.js",
+          "Vue/Nuxt.js",
+          "Webpack/Vite",
+          "Sass/less/css-in-js"
+        ]
+      },
+      {
+        "category": "マルチプラットフォーム開発",
+        "items": [
+          "ReactNative",
+          "uni-app",
+          "taro",
+          "mini-program",
+          "electron"
+        ]
+      },
+      {
+        "category": "バックエンド開発",
+        "items": [
+          "Node.js",
+          "Express",
+          "Koa",
+          "nest.js",
+          "MySQL",
+          "Java",
+          "RESTful API"
+        ]
+      },
+      {
+        "category": "開発ツール",
+        "items": [
+          "Git",
+          "VS Code",
+          "Docker",
+          "Postman"
+        ]
+      },
+      {
+        "category": "AI支援開発",
+        "items": [
+          "Cursor",
+          "cline",
+          "Ollama",
+          "copilot"
+        ]
+      }
+    ]
+  },
+  "experience": [
+    {
+      "company": "鄭州荷懐ソフトウェア科技有限公司",
+      "position": "上級フロントエンドエンジニア",
+      "period": "2022.09 - 2024-12"
+    },
+    {
+      "company": "深圳市法本情報ネットワーク科技有限公司",
+      "position": "中級フロントエンドエンジニア",
+      "period": "2021.09 - 2022.08"
+    },
+    {
+      "company": "成都市風霊ネットワーク科技有限公司",
+      "position": "フロントエンド開発エンジニア",
+      "period": "2020.10 - 2021.09"
+    },
+    {
+      "company": "深圳市易佰ネットワーク科技有限公司",
+      "position": "ウェブサイト運営",
+      "period": "2017.09 - 2019.08"
+    }
+  ],
+  "projects": [
+    {
+      "name": "IoTアプリケーション開発プラットフォーム",
+      "period": "2022.03 - 2024.12",
+      "description": "IoTアプリケーション開発プラットフォームは、主にローコードを用い、IoTアプリケーションのノーコードと組み合わせた視覚的なフロントエンドアプリケーション開発プラットフォームです。簡単なドラッグアンドドロップ操作でアプリケーションページの開発を完了でき、データソースインターフェースやデータベースのバインディング構成も提供します。このプロジェクトはオープンソースプロジェクトappsmithを基に構築されています。"
+    },
+    {
+      "name": "Booklideローコードプラットフォーム",
+      "period": "2021.06 - 2021.12",
+      "description": "ローコード+ビジュアル構築プラットフォームで、データソース管理・加工、ページ組み立て、プロセスエンジン、ローコードエディタを含みます"
+    },
+    {
+      "name": "フロントエンドビジネスコンポーネントhooksライブラリ",
+      "period": "2021.06 - 2021.12",
+      "description": "チーム内でのフロントエンドカスタムHooksのカプセル化と静的サイト構築に参加し、テストケースを通じて提供されたHooksの安定性と堅牢性を保証し、繰り返し開発の作業量を削減し、ベストプラクティスを提供しました。"
+    },
+    {
+      "name": "飲食SaaS管理プラットフォーム",
+      "period": "2021.06 - 2021.12",
+      "description": "飲食SaaSは、店舗管理、人員管理、売上業務統計、広告配信、イベント設定を提供するマネジメントプラットフォームです。"
+    }
+  ],
+  "education": [
+    {
+      "school": "湖北第二師範学院",
+      "degree": "学士号",
+      "period": "2013.09 - 2017.06"
+    }
+  ],
+  "website": [
+    {
+      "name": "ブログ",
+      "url": "https://blog.384385.xyz"
+    },
+    {
+      "name": "ナビゲーションサイト",
+      "url": "https://navigation.384385.xyz/"
+    },
+    {
+      "name": "ローコードプラットフォーム",
+      "url": "https://narcissus-ma.github.io/low-code-platform/#"
+    },
+    {
+      "name": "カスタムhooks",
+      "url": "https://narcissus-ma.github.io/narcissus-hooks/"
+    },
+    {
+      "name": "フロントエンドコーディング規約エンジニアリング",
+      "url": "https://narcissus-ma.github.io/nm-spec"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/Narcissus-Ma"
+    },
+    {
+      "name": "Gitee",
+      "url": "https://gitee.com/Narcissus-ma"
+    }
+  ]
+}

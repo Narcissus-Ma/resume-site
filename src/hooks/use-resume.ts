@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-import resumeDataJson from "@/data/resumeData.json";
 import { ResumeData } from "@/types/resume";
+
+import { useResumeData } from "./use-translated-data";
 
 interface UserInfo {
   name: string;
@@ -16,7 +17,7 @@ const useResume = () => {
     phone: "",
     email: "",
   });
-  const resumeData: ResumeData = useMemo(() => resumeDataJson, []);
+  const resumeData: ResumeData = useResumeData();
 
   return {
     isModalOpen,

@@ -2,18 +2,20 @@ import { useState, useEffect, useCallback } from "react";
 
 import { Form, message } from "antd";
 
+import { useTranslation } from "react-i18next";
 
 import { ResumeData } from "@/types/resume";
 const useResumeEditor = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState<ResumeData | null>(null);
   const [loading, setLoading] = useState(false);
+  const { i18n } = useTranslation();
 
   // 从服务器获取最新的简历数据
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/resume");
+        const response = await fetch(`http://localhost:3001/api/resume?lang=${i18n.language}`);
         if (response.ok) {
           const resumeData = await response.json();
           setData(resumeData);
@@ -25,7 +27,7 @@ const useResumeEditor = () => {
     };
 
     fetchData();
-  }, [form]);
+  }, [form, i18n.language]);
 
   // 保存数据
   const handleSave = useCallback(async () => {
@@ -34,7 +36,7 @@ const useResumeEditor = () => {
       const values = await form.validateFields();
 
       // 发送请求保存数据
-      const response = await fetch("http://localhost:3001/api/resume", {
+      const response = await fetch(`http://localhost:3001/api/resume?lang=${i18n.language}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +54,7 @@ const useResumeEditor = () => {
     } finally {
       setLoading(false);
     }
-  }, [form]);
+  }, [form, i18n.language]);
 
   // 添加技能类别
   const handleAddSkillCategory = useCallback(() => {

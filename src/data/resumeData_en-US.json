@@ -1,0 +1,151 @@
+{
+  "basicInfo": {
+    "title": "Frontend Developer",
+    "skillDescriptions": [
+      "Proficient in HTML, CSS, JavaScript, TypeScript and other technologies.",
+      "Proficient in React technology, familiar with React-related ecosystem and some framework implementation principles.",
+      "Familiar with basic usage of Vue 2.0 technology, understands Vue 3.0 technology and Vue-related ecosystems.",
+      "Familiar with multi-platform development technologies, understands mini-programs, uni-app, taro, react-native, electron and other technologies.",
+      "Familiar with Node.js technology, understands backend frameworks and ecosystems such as express, koa, nestjs, mysql, java.",
+      "Proficient in AI-assisted development techniques, understands the use of AI tools such as Cursor, cline, Ollama, copilot.",
+      "Familiar with webpack and compilation tools like Babel, understands their principles and other build tools like vite, esbuild, etc.",
+      "Familiar with front-end common algorithms, browser network security knowledge, common design patterns, pursuing high-quality, maintainable code.",
+      "Familiar with agile development processes, controlling front-end code submission quality, improving team collaboration efficiency.",
+      "Familiar with low-code platform business development, platform construction, and sufficient understanding of low-code/no-code technologies."
+    ],
+    "skills": [
+      {
+        "category": "Frontend Development",
+        "items": [
+          "HTML5/CSS3",
+          "JS/TS",
+          "React/Next.js",
+          "Vue/Nuxt.js",
+          "Webpack/Vite",
+          "Sass/less/css-in-js"
+        ]
+      },
+      {
+        "category": "Multi-platform Development",
+        "items": [
+          "ReactNative",
+          "uni-app",
+          "taro",
+          "mini-program",
+          "electron"
+        ]
+      },
+      {
+        "category": "Backend Development",
+        "items": [
+          "Node.js",
+          "Express",
+          "Koa",
+          "nest.js",
+          "MySQL",
+          "Java",
+          "RESTful API"
+        ]
+      },
+      {
+        "category": "Development Tools",
+        "items": [
+          "Git",
+          "VS Code",
+          "Docker",
+          "Postman"
+        ]
+      },
+      {
+        "category": "AI-assisted Development",
+        "items": [
+          "Cursor",
+          "cline",
+          "Ollama",
+          "copilot"
+        ]
+      }
+    ]
+  },
+  "experience": [
+    {
+      "company": "Zhengzhou Hehuai Software Technology Co., Ltd.",
+      "position": "Senior Frontend Engineer",
+      "period": "2022.09 - 2024-12"
+    },
+    {
+      "company": "Shenzhen Faben Information Network Technology Co., Ltd.",
+      "position": "Intermediate Frontend Engineer",
+      "period": "2021.09 - 2022.08"
+    },
+    {
+      "company": "Chengdu Fengling Network Technology Co., Ltd.",
+      "position": "Frontend Developer",
+      "period": "2020.10 - 2021.09"
+    },
+    {
+      "company": "Shenzhen Yibai Network Technology Co., Ltd.",
+      "position": "Website Operations",
+      "period": "2017.09 - 2019.08"
+    }
+  ],
+  "projects": [
+    {
+      "name": "IoT Application Development Platform",
+      "period": "2022.03 - 2024.12",
+      "description": "The IoT application development platform is a visual front-end application development platform that mainly uses low-code combined with IoT application zero-code. It can complete application page development through simple drag-and-drop operations, and provides data source interface or database binding configuration. The project is built based on the open-source project appsmith."
+    },
+    {
+      "name": "Booklide Low-code Platform",
+      "period": "2021.06 - 2021.12",
+      "description": "Low-code + visual construction platform, covering data source management and processing, page assembly, process engine, low-code editor"
+    },
+    {
+      "name": "Frontend Business Component Hooks Library",
+      "period": "2021.06 - 2021.12",
+      "description": "Participated in the encapsulation of front-end custom Hooks within the team and the construction of static sites, ensuring the stability and robustness of delivered Hooks through test cases, reducing repetitive development workload and providing best practices."
+    },
+    {
+      "name": "Catering SaaS Management Platform",
+      "period": "2021.06 - 2021.12",
+      "description": "The catering SaaS is a management platform that provides merchants with store management, personnel management, sales business statistics, advertising placement, and activity settings."
+    }
+  ],
+  "education": [
+    {
+      "school": "Hubei University of Education",
+      "degree": "Bachelor's Degree",
+      "period": "2013.09 - 2017.06"
+    }
+  ],
+  "website": [
+    {
+      "name": "Blog",
+      "url": "https://blog.384385.xyz"
+    },
+    {
+      "name": "Navigation Website",
+      "url": "https://navigation.384385.xyz/"
+    },
+    {
+      "name": "Low-code Platform",
+      "url": "https://narcissus-ma.github.io/low-code-platform/#"
+    },
+    {
+      "name": "Custom Hooks",
+      "url": "https://narcissus-ma.github.io/narcissus-hooks/"
+    },
+    {
+      "name": "Frontend Coding Standards Engineering",
+      "url": "https://narcissus-ma.github.io/nm-spec"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/Narcissus-Ma"
+    },
+    {
+      "name": "Gitee",
+      "url": "https://gitee.com/Narcissus-ma"
+    }
+  ]
+}
