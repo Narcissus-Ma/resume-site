@@ -38,25 +38,48 @@ const AboutSection: React.FC<AboutSectionProps> = ({
         </div>
 
         <Row gutter={[32, 32]} className="items-center">
-          <Col xs={24} lg={10} className="order-2 lg:order-1">
+          <Col xs={24} lg={14} className="order-1 lg:order-1">
+            <div className="relative">
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-100 rounded-full -z-10" />
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-yellow-100 rounded-full -z-10" />
+              <div
+                className="relative w-full rounded-xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-105"
+                style={{ maxHeight: "600px" }}
+              >
+                {/* 图片作为背景 */}
+                <img
+                  src={aboutImage}
+                  alt="About me"
+                  className="w-full h-full object-cover"
+                  style={{ width: "100%", height: "100%" }}
+                />
+                {/* 半透明遮罩层，提高文字可读性 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                {/* 文字内容绝对定位在图片底部 */}
+                <div className="absolute top-0 left-0 right-0 p-8 text-white">
+                  <Title
+                    level={4}
+                    className={`text-xl font-semibold mb-4 ${
+                      darkMode ? "text-white" : "text-gray-800"
+                    }`}
+                  >
+                    {t("about.intro")}
+                  </Title>
+                  <Paragraph
+                    className={`mb-6 ${
+                      darkMode ? "text-gray-300" : "text-gray-700"
+                    }`}
+                  >
+                    {t("about.description")}
+                  </Paragraph>
+                </div>
+              </div>
+            </div>
+          </Col>
+
+          <Col xs={24} lg={10} className="order-2 lg:order-2">
             <Card className="border-0 shadow-lg overflow-hidden">
               <div className="p-6">
-                <Title
-                  level={4}
-                  className={`text-xl font-semibold mb-4 ${
-                    darkMode ? "text-white" : "text-gray-800"
-                  }`}
-                >
-                  {t("about.intro")}
-                </Title>
-                <Paragraph
-                  className={`mb-6 ${
-                    darkMode ? "text-gray-300" : "text-gray-700"
-                  }`}
-                >
-                  {t("about.description")}
-                </Paragraph>
-
                 <Title
                   level={4}
                   className={`text-xl font-semibold mb-4 ${
@@ -147,19 +170,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({
                 />
               </div>
             </Card>
-          </Col>
-
-          <Col xs={24} lg={14} className="order-1 lg:order-2">
-            <div className="relative">
-              <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-100 rounded-full -z-10" />
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-yellow-100 rounded-full -z-10" />
-              <img
-                src={aboutImage}
-                alt="About me"
-                className="w-full h-auto rounded-xl shadow-xl object-cover transform transition-all duration-500 hover:scale-105"
-                style={{ maxHeight: "600px" }}
-              />
-            </div>
           </Col>
         </Row>
       </div>
