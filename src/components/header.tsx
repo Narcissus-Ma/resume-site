@@ -53,6 +53,13 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
         />
         <div className="flex items-center">
           <LanguageSelector />
+          <Button
+            type="text"
+            icon={darkMode ? <SunOutlined /> : <MoonOutlined />}
+            onClick={toggleTheme}
+            className={`rounded-full ml-2 ${darkMode ? "text-yellow-300" : "text-gray-700"
+              }`}
+          />
           {process.env.NODE_ENV === "development" && isBackendAvailable && (
             <Link to="/home-manage">
               <Button
@@ -63,13 +70,6 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
               />
             </Link>
           )}
-          <Button
-            type="text"
-            icon={darkMode ? <SunOutlined /> : <MoonOutlined />}
-            onClick={toggleTheme}
-            className={`rounded-full ml-2 ${darkMode ? "text-yellow-300" : "text-gray-700"
-              }`}
-          />
         </div>
       </div>
     </div>
