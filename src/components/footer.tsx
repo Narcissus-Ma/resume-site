@@ -67,7 +67,7 @@ const Footer: React.FC<ThemeProps> = ({ darkMode }) => {
               <MailOutlined className="text-xl" />
             </a>
           </Space>
-          <div className="mt-8 text-gray-500 text-sm">
+          <div className={`mt-8 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
             {t("footer.copyright", { year: new Date().getFullYear() })}
           </div>
         </div>

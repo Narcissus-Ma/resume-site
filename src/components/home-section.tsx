@@ -25,8 +25,8 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
       id="part-1"
       className="min-h-[60vh] flex items-center justify-center relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 -z-10" />
-      <div className="absolute right-0 top-0 w-full h-full bg-gradient-to-br from-purple-500/10 to-indigo-500/10 -z-10" />
+      <div className={`absolute inset-0 ${darkMode ? 'bg-gradient-to-br from-gray-900 to-gray-800' : 'bg-gradient-to-br from-blue-50 to-indigo-50'} -z-10`} />
+      <div className={`absolute right-0 top-0 w-full h-full ${darkMode ? 'bg-gradient-to-br from-purple-900/20 to-indigo-900/20' : 'bg-gradient-to-br from-purple-500/10 to-indigo-500/10'} -z-10`} />
 
       <div className="container mx-auto px-4 py-12 flex flex-col items-center">
         <div className="flex items-center justify-center gap-16">

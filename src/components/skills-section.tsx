@@ -46,18 +46,16 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
         <Row gutter={[24, 24]}>
           {skills.map((skill, index) => (
             <Col xs={24} md={12} key={index}>
-              <Card className="border-0 shadow-md hover:shadow-lg transition-shadow duration-300">
+              <Card className={`border-0 shadow-md hover:shadow-lg transition-shadow duration-300 ${darkMode ? 'bg-gray-800' : ''}`}>
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-2">
                     <Text
                       strong
-                      className={`text-lg ${
-                        darkMode ? "text-white" : "text-gray-800"
-                      }`}
+                      className={`text-lg ${darkMode ? 'text-white' : 'text-gray-800'}`}
                     >
                       {skill.name}
                     </Text>
-                    <Text type="secondary">{skill.value}%</Text>
+                    <Text type="secondary" className={darkMode ? 'text-gray-300' : ''}>{skill.value}%</Text>
                   </div>
                   <Progress
                     percent={skill.value}
@@ -73,11 +71,12 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
               </Card>
             </Col>
           ))}
+
         </Row>
 
         <Row gutter={[24, 24]} className="mt-12">
           <Col xs={24} md={8}>
-            <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <Card className={`border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 ${darkMode ? 'bg-gray-800' : ''}`}>
               <Meta
                 avatar={<CodeOutlined className="text-blue-500 text-3xl" />}
                 title={t("skills.frontend.title")}
@@ -91,7 +90,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
           </Col>
 
           <Col xs={24} md={8}>
-            <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <Card className={`border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 ${darkMode ? 'bg-gray-800' : ''}`}>
               <Meta
                 avatar={
                   <DatabaseOutlined className="text-green-500 text-3xl" />
@@ -107,7 +106,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ darkMode, skills }) => {
           </Col>
 
           <Col xs={24} md={8}>
-            <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <Card className={`border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 ${darkMode ? 'bg-gray-800' : ''}`}>
               <Meta
                 avatar={
                   <BackwardOutlined className="text-purple-500 text-3xl" />

@@ -88,7 +88,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     <img
                       alt={project.title}
                       src={project.image}
-                      className="w-full h-full object-cover rounded-lg shadow-lg"
+                      className={`w-full h-full object-cover rounded-lg shadow-lg ${darkMode ? 'border border-gray-700 brightness-90' : ''}`}
                     />
                   </div>
 
@@ -104,7 +104,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     </Title>
                     <Paragraph
                       className={`mb-6 ${
-                        darkMode ? "text-gray-400" : "text-gray-600"
+                        darkMode ? "text-gray-300" : "text-gray-600"
                       }`}
                     >
                       {project.description}

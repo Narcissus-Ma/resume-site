@@ -43,32 +43,28 @@ const AboutSection: React.FC<AboutSectionProps> = ({
               <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-100 rounded-full -z-10" />
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-yellow-100 rounded-full -z-10" />
               <div
-                className="relative w-full rounded-xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-105"
+                className={`relative w-full rounded-xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-105 ${darkMode ? 'border border-gray-700' : ''}`}
                 style={{ maxHeight: "600px" }}
               >
                 {/* 图片作为背景 */}
                 <img
                   src={aboutImage}
                   alt="About me"
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover ${darkMode ? 'brightness-90' : ''}`}
                   style={{ width: "100%", height: "100%" }}
                 />
                 {/* 半透明遮罩层，提高文字可读性 */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 {/* 文字内容绝对定位在图片底部 */}
-                <div className="absolute top-0 left-0 right-0 p-8 text-white">
+                <div className="absolute top-0 left-0 right-0 p-8 bg-gradient-to-b from-black/50 to-transparent text-white">
                   <Title
                     level={4}
-                    className={`text-xl font-semibold mb-4 ${
-                      darkMode ? "text-white" : "text-gray-800"
-                    }`}
+                    className="text-xl font-semibold mb-4 text-white"
                   >
                     {t("about.intro")}
                   </Title>
                   <Paragraph
-                    className={`mb-6 ${
-                      darkMode ? "text-gray-300" : "text-gray-700"
-                    }`}
+                    className="mb-6 text-gray-200"
                   >
                     {t("about.description")}
                   </Paragraph>
