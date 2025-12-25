@@ -125,9 +125,10 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
               {t("home.scrollDown")}
             </Paragraph>
           <MenuFoldOutlined
-            className={`rotate-90 ${
+            className={`${
               darkMode ? "text-gray-400" : "text-gray-600"
             }`}
+            style={{rotate: '-90deg'}}
           />
         </div>
       </div>
