@@ -8,6 +8,8 @@
     "server": "tsx server.ts --port 3001",
     "dev": "vite --port 3000",
     "dev:scan": "cross-env VITE_SCAN_ENABLED=true vite --port 3000",
+    "dev:grab": "cross-env VITE_GRAB_ENABLED=true vite --port 3000",
+    "dev:both": "cross-env VITE_SCAN_ENABLED=true VITE_GRAB_ENABLED=true vite --port 3000",
     "build": "tsc && vite build",
     "postbuild": "echo /resume-site/assets/* /assets/:splat 200 > dist/_redirects",
     "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
