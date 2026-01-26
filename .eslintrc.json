@@ -27,7 +27,8 @@
     "react-hooks",
     "react-refresh",
     "@typescript-eslint",
-    "import"
+    "import",
+    "react-compiler"
   ],
   "rules": {
     "react-refresh/only-export-components": [
@@ -95,6 +96,7 @@
     "postcss.config.js",
     "tailwind.config.js",
     "server.ts",
-    "vite.config.d.ts"
+    "vite.config.d.ts",
+    "scripts/"
   ]
 }

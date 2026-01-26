@@ -2,7 +2,7 @@
 
 ## 可用的开发命令
 
-本项目提供了多个开发命令来启用不同的开发工具：
+本项目提供了多种方式来启用不同的开发工具：
 
 ### 基础开发模式
 ```bash
@@ -10,19 +10,42 @@ npm run dev
 ```
 启动基础开发服务器，不启用任何特殊开发工具。
 
-### React Scan
+### 使用命令行参数（推荐）
+
+现在可以通过命令行参数灵活控制开发工具：
+
+```bash
+npm run dev -- --scan      # 启用 React Scan 性能分析工具
+npm run dev -- --grab      # 启用 React Grab 元素抓取工具
+npm run dev -- --scan --grab  # 同时启用两个工具
+npm run dev -- --port=3001 # 指定端口启动
+npm run dev -- --help      # 查看帮助信息
+```
+
+简写形式：
+```bash
+npm run dev -- -s          # 启用 React Scan
+npm run dev -- -g          # 启用 React Grab
+npm run dev -- -s -g       # 同时启用两个工具
+```
+
+### 传统命令模式
+
+为了向后兼容，仍支持以下命令：
+
+#### React Scan
 ```bash
 npm run dev:scan
 ```
 启动带性能扫描功能的开发服务器，用于检测不必要的重渲染。
 
-### React Grab
+#### React Grab
 ```bash
 npm run dev:grab
 ```
 启动带元素抓取功能的开发服务器，用于定位和检查页面元素。
 
-### 同时启用两个工具
+#### 同时启用两个工具
 ```bash
 npm run dev:both
 ```
@@ -118,3 +141,64 @@ npm run dev:both
 - 仅当设置了 VITE_GRAB_ENABLED=true 环境变量时才会加载脚本
 - 不会影响生产环境的构建大小或性能
 - 通过全局脚本方式加载
+
+## React Compiler 配置说明
+
+### 什么是 React Compiler？
+
+React Compiler 是一个实验性的编译器，旨在自动优化 React 应用程序的性能。它通过静态分析 React 代码并自动生成优化版本来减少不必要的重新渲染。
+
+### 配置
+
+React Compiler 已经配置为在构建过程中启用，位于 `vite.config.ts` 文件中：
+
+```typescript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  // 在开发环境使用'/resume-site/'，在生产环境使用相对路径
+  base: process.env.NODE_ENV === 'production' ? './' : '/resume-site/',
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          // 启用 React Compiler
+          ['babel-plugin-react-compiler', {}]
+        ]
+      }
+    })
+  ],
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  }
+})
+```
+
+此外，ESLint 配置已更新以包含 React Compiler 规则：
+
+```json
+{
+  "plugins": [
+    // ...
+    "react-compiler"
+  ]
+}
+```
+
+### 使用方法
+
+1. React Compiler 在构建和开发过程中自动运行
+2. 无需额外配置或命令
+3. 编译器将自动优化符合条件的组件
+
+### 注意事项
+
+- React Compiler 目前仍处于实验阶段
+- 它通过静态分析自动优化代码
+- 遵循 React 的最佳实践规则
+- 在生产构建中会自动启用优化
+- 可能会导致某些复杂的 React 模式无法正常工作，需要重构代码以符合编译器的要求
