@@ -23,8 +23,12 @@ const About: React.FC<AboutProps> = ({ userInfo, resumeData }) => {
         <h1 className="text-4xl font-bold mb-2">{userInfo.name || '马先生'}</h1>
         <p className="text-gray-600">{resumeData.basicInfo.title}</p>
         <div className="mt-4 space-x-4">
-          <span>{t("contact.phone")}: {userInfo.phone || 'XXX-XXXX-XXXX'}</span>
-          <span>{t("contact.email")}: {userInfo.email || 'xxx@example.com'}</span>
+          <span>
+            {t('contact.phone')}: {userInfo.phone || 'XXX-XXXX-XXXX'}
+          </span>
+          <span>
+            {t('contact.email')}: {userInfo.email || 'xxx@example.com'}
+          </span>
         </div>
       </div>
     </section>

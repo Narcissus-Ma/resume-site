@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { useTranslation } from "react-i18next";
-import Modal from "react-modal";
+import { useTranslation } from 'react-i18next';
+import Modal from 'react-modal';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 interface FormData {
   name: string;
@@ -18,19 +18,14 @@ interface PDFModalProps {
   correctToken?: string;
 }
 
-const PDFModal: React.FC<PDFModalProps> = ({
-  isOpen,
-  onClose,
-  onSubmit,
-  correctToken,
-}) => {
+const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit, correctToken }) => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    phone: "",
-    email: "",
+    name: '',
+    phone: '',
+    email: '',
   });
-  const [tokens, setTokens] = useState<string>("");
+  const [tokens, setTokens] = useState<string>('');
   const [isTokenForm, setIsTokenForm] = useState<boolean>(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,17 +46,17 @@ const PDFModal: React.FC<PDFModalProps> = ({
       if (tokens === correctToken) {
         // 直接使用预设的正确信息
         setFormData({
-          name: "张工",
-          phone: "13800138000",
-          email: "zhanggong@example.com",
+          name: '张工',
+          phone: '13800138000',
+          email: 'zhanggong@example.com',
         });
         setIsTokenForm(false);
       } else {
-        alert("Token验证失败，请检查输入是否正确");
+        alert('Token验证失败，请检查输入是否正确');
       }
     } catch (error) {
-      console.error("Token validation failed:", error);
-      alert("Token验证失败，请检查输入是否正确");
+      console.error('Token validation failed:', error);
+      alert('Token验证失败，请检查输入是否正确');
     }
   };
 
@@ -73,111 +68,111 @@ const PDFModal: React.FC<PDFModalProps> = ({
 
   return (
     <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
       className="modal-content"
+      isOpen={isOpen}
       overlayClassName="modal-overlay"
+      onRequestClose={onClose}
     >
       <div className="bg-white p-6 rounded-lg max-w-md mx-auto">
-        <h2 className="text-2xl font-bold mb-4">{t("pdfModal.title")}</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('pdfModal.title')}</h2>
         <div className="flex justify-end mb-4">
           <label className="flex items-center space-x-2">
-            <span className="whitespace-nowrap">{t("pdfModal.useToken")}</span>
+            <span className="whitespace-nowrap">{t('pdfModal.useToken')}</span>
             <input
-              type="checkbox"
               checked={isTokenForm}
-              onChange={() => setIsTokenForm(!isTokenForm)}
               className="form-switch"
+              type="checkbox"
+              onChange={() => setIsTokenForm(!isTokenForm)}
             />
           </label>
         </div>
         {isTokenForm ? (
-          <form onSubmit={handleTokenValidation} className="space-y-4">
+          <form className="space-y-4" onSubmit={handleTokenValidation}>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                {t("pdfModal.tokenLabel")}
+                {t('pdfModal.tokenLabel')}
               </label>
               <input
-                type="text"
+                required
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                 name="tokens"
+                type="text"
                 value={tokens}
                 onChange={handleTokenChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                required
               />
             </div>
             <div className="flex justify-end space-x-4">
               <button
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
               >
-                {t("common.cancel")}
+                {t('common.cancel')}
               </button>
               <button
-                type="submit"
-                disabled={!tokens}
                 className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary-dark disabled:opacity-50"
+                disabled={!tokens}
+                type="submit"
               >
-                {t("pdfModal.verifyToken")}
+                {t('pdfModal.verifyToken')}
               </button>
             </div>
           </form>
         ) : (
-          <form onSubmit={handleFormSubmit} className="space-y-4">
+          <form className="space-y-4" onSubmit={handleFormSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                {t("pdfModal.nameLabel")}
+                {t('pdfModal.nameLabel')}
               </label>
               <input
-                type="text"
+                required
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                 name="name"
+                type="text"
                 value={formData.name}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                required
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                {t("pdfModal.phoneLabel")}
+                {t('pdfModal.phoneLabel')}
               </label>
               <input
-                type="tel"
+                required
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                 name="phone"
+                type="tel"
                 value={formData.phone}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                required
               />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">
-                {t("pdfModal.emailLabel")}
+                {t('pdfModal.emailLabel')}
               </label>
               <input
-                type="email"
+                required
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                 name="email"
+                type="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                required
               />
             </div>
             <div className="flex justify-end space-x-4">
               <button
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
               >
-                {t("common.cancel")}
+                {t('common.cancel')}
               </button>
               <button
-                type="submit"
-                disabled={!formData.name || !formData.phone || !formData.email}
                 className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary-dark disabled:opacity-50"
+                disabled={!formData.name || !formData.phone || !formData.email}
+                type="submit"
               >
-                {t("pdfModal.confirmInfo")}
+                {t('pdfModal.confirmInfo')}
               </button>
             </div>
           </form>

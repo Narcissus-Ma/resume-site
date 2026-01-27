@@ -1,13 +1,10 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
-import {
-  Form,
-  message,
-} from "antd";
+import { Form, message } from 'antd';
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import { HomeData, Skill, Experience, Project } from "@/types";
+import { HomeData, Skill, Experience, Project } from '@/types';
 
 const useHomeManage = () => {
   const [form] = Form.useForm();
@@ -26,7 +23,7 @@ const useHomeManage = () => {
           form.setFieldsValue(homeData);
         }
       } catch (error) {
-        console.error("获取主页数据失败:", error);
+        console.error('获取主页数据失败:', error);
       }
     };
 
@@ -34,86 +31,98 @@ const useHomeManage = () => {
   }, [form, i18n.language]);
 
   // 保存数据
-  const handleSave = useCallback(() => async () => {
-    try {
-      setLoading(true);
-      const values = await form.validateFields();
+  const handleSave = useCallback(
+    () => async () => {
+      try {
+        setLoading(true);
+        const values = await form.validateFields();
 
-      // 发送请求保存数据
-      const response = await fetch(`http://localhost:3001/api/home?lang=${i18n.language}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+        // 发送请求保存数据
+        const response = await fetch(`http://localhost:3001/api/home?lang=${i18n.language}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        });
 
-      if (response.ok) {
-        message.success("保存成功");
-      } else {
-        message.error("保存失败");
+        if (response.ok) {
+          message.success('保存成功');
+        } else {
+          message.error('保存失败');
+        }
+      } catch {
+        message.error('保存失败');
+      } finally {
+        setLoading(false);
       }
-    } catch {
-      message.error("保存失败");
-    } finally {
-      setLoading(false);
-    }
-  },[form, i18n.language]);
+    },
+    [form, i18n.language],
+  );
 
   // 添加技能
   const handleAddSkill = useCallback(() => {
     if (!data) return;
-    const newSkill: Skill = { name: "新技能", value: 50 };
+    const newSkill: Skill = { name: '新技能', value: 50 };
     const newSkills = [...data.skills, newSkill];
     setData({ ...data, skills: newSkills });
-  },[data]);
+  }, [data]);
 
   // 删除技能
-  const handleDeleteSkill = useCallback((index: number) => {
-    if (!data) return;
-    const newSkills = data.skills.filter((_, i) => i !== index);
-    setData({ ...data, skills: newSkills });
-  },[data]);
+  const handleDeleteSkill = useCallback(
+    (index: number) => {
+      if (!data) return;
+      const newSkills = data.skills.filter((_, i) => i !== index);
+      setData({ ...data, skills: newSkills });
+    },
+    [data],
+  );
 
   // 添加工作经历
   const handleAddExperience = useCallback(() => {
     if (!data) return;
     const newExperience: Experience = {
-      year: "2024 - 至今",
-      title: "新职位",
-      company: "新公司",
-      description: "工作描述",
+      year: '2024 - 至今',
+      title: '新职位',
+      company: '新公司',
+      description: '工作描述',
     };
     const newExperiences = [...data.experiences, newExperience];
     setData({ ...data, experiences: newExperiences });
-  },[data]);
+  }, [data]);
 
   // 删除工作经历
-  const handleDeleteExperience = useCallback((index: number) => {
-    if (!data) return;
-    const newExperiences = data.experiences.filter((_, i) => i !== index);
-    setData({ ...data, experiences: newExperiences });
-  },[data]);
+  const handleDeleteExperience = useCallback(
+    (index: number) => {
+      if (!data) return;
+      const newExperiences = data.experiences.filter((_, i) => i !== index);
+      setData({ ...data, experiences: newExperiences });
+    },
+    [data],
+  );
 
   // 添加项目
   const handleAddProject = useCallback(() => {
     if (!data) return;
     const newProject: Project = {
-      title: "新项目",
-      description: "项目描述",
-      image: "portfolio1.jpg",
-      link: "#",
+      title: '新项目',
+      description: '项目描述',
+      image: 'portfolio1.jpg',
+      link: '#',
     };
     const newProjects = [...data.projects, newProject];
     setData({ ...data, projects: newProjects });
-  },[data]);
+  }, [data]);
 
   // 删除项目
-  const handleDeleteProject = useCallback((index: number) => {
-    if (!data) return;
-    const newProjects = data.projects.filter((_, i) => i !== index);
-    setData({ ...data, projects: newProjects });
-  },[data]);
+  const handleDeleteProject = useCallback(
+    (index: number) => {
+      if (!data) return;
+      const newProjects = data.projects.filter((_, i) => i !== index);
+      setData({ ...data, projects: newProjects });
+    },
+    [data],
+  );
 
   return {
     form,
@@ -126,6 +135,6 @@ const useHomeManage = () => {
     handleDeleteExperience,
     handleAddProject,
     handleDeleteProject,
-  }
-}
+  };
+};
 export default useHomeManage;

@@ -18,12 +18,12 @@ const useBackendStatus = () => {
         // 发送请求到后台服务的API端点
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 1000); // 设置超时时间，避免等待太长
-        
+
         const response = await fetch('http://localhost:3001/api/resume', {
           method: 'HEAD',
           signal: controller.signal,
         });
-        
+
         clearTimeout(timeoutId); // 清除超时定时器
         setIsBackendAvailable(response.ok);
       } catch (error) {

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { ResumeData } from "@/types/resume";
+import { ResumeData } from '@/types/resume';
 
-import { useResumeData } from "./use-translated-data";
+import { useResumeData } from './use-translated-data';
 
 interface UserInfo {
   name: string;
@@ -13,9 +13,9 @@ interface UserInfo {
 const useResume = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [userInfo, setUserInfo] = useState<UserInfo>({
-    name: "",
-    phone: "",
-    email: "",
+    name: '',
+    phone: '',
+    email: '',
   });
   const resumeData: ResumeData = useResumeData();
 

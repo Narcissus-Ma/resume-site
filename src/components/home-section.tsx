@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Button, Typography } from "antd";
+import { Button, Typography } from 'antd';
 
 import {
   ArrowRightOutlined,
@@ -8,13 +8,13 @@ import {
   LinkedinOutlined,
   MailOutlined,
   MenuFoldOutlined,
-} from "@ant-design/icons";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+} from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-import catImage from "@/assets/img/cat.png";
+import catImage from '@/assets/img/cat.png';
 
-import { ThemeProps } from "../types";
+import { ThemeProps } from '../types';
 
 const { Title, Paragraph } = Typography;
 
@@ -22,11 +22,15 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
   const { t } = useTranslation();
   return (
     <section
-      id="part-1"
       className="min-h-[60vh] flex items-center justify-center relative overflow-hidden"
+      id="part-1"
     >
-      <div className={`absolute inset-0 ${darkMode ? 'bg-gradient-to-br from-gray-900 to-gray-800' : 'bg-gradient-to-br from-blue-50 to-indigo-50'} -z-10`} />
-      <div className={`absolute right-0 top-0 w-full h-full ${darkMode ? 'bg-gradient-to-br from-purple-900/20 to-indigo-900/20' : 'bg-gradient-to-br from-purple-500/10 to-indigo-500/10'} -z-10`} />
+      <div
+        className={`absolute inset-0 ${darkMode ? 'bg-gradient-to-br from-gray-900 to-gray-800' : 'bg-gradient-to-br from-blue-50 to-indigo-50'} -z-10`}
+      />
+      <div
+        className={`absolute right-0 top-0 w-full h-full ${darkMode ? 'bg-gradient-to-br from-purple-900/20 to-indigo-900/20' : 'bg-gradient-to-br from-purple-500/10 to-indigo-500/10'} -z-10`}
+      />
 
       <div className="container mx-auto px-4 py-12 flex flex-col items-center">
         <div className="flex items-center justify-center gap-16">
@@ -37,7 +41,7 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
                 <a
                   href="#"
                   className={`hover:text-purple-500 transition-colors ${
-                    darkMode ? "text-gray-400" : "text-gray-600"
+                    darkMode ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
                   <GithubOutlined size={32} />
@@ -45,7 +49,7 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
                 <a
                   href="#"
                   className={`hover:text-purple-500 transition-colors ${
-                    darkMode ? "text-gray-400" : "text-gray-600"
+                    darkMode ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
                   <LinkedinOutlined size={32} />
@@ -53,7 +57,7 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
                 <a
                   href="#"
                   className={`hover:text-purple-500 transition-colors ${
-                    darkMode ? "text-gray-400" : "text-gray-600"
+                    darkMode ? 'text-gray-400' : 'text-gray-600'
                   }`}
                 >
                   <MailOutlined size={32} />
@@ -61,74 +65,60 @@ const HomeSection: React.FC<ThemeProps> = ({ darkMode }) => {
               </div>
 
               <Paragraph
-                className={`text-5xl font-bold ${
-                  darkMode ? "text-gray-300" : "text-gray-800"
-                }`}
+                className={`text-5xl font-bold ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}
               >
-                {t("home.hi")}
+                {t('home.hi')}
               </Paragraph>
               <Title
                 level={1}
                 className={`text-5xl md:text-6xl font-bold mb-4 ${
-                  darkMode ? "text-white" : "text-gray-800"
+                  darkMode ? 'text-white' : 'text-gray-800'
                 }`}
               >
                 Narcissus
               </Title>
               <Paragraph
-                className={`text-2xl mb-6 ${
-                  darkMode ? "text-gray-300" : "text-gray-600"
-                }`}
+                className={`text-2xl mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}
               >
-                {t("home.occupation")}
+                {t('home.occupation')}
               </Paragraph>
               <Paragraph
-                className={`text-lg max-w-xl ${
-                  darkMode ? "text-gray-400" : "text-gray-700"
-                }`}
+                className={`text-lg max-w-xl ${darkMode ? 'text-gray-400' : 'text-gray-700'}`}
               >
-                {t("home.description")}
+                {t('home.description')}
               </Paragraph>
             </div>
 
             <Button
-              type="primary"
               size="large"
+              type="primary"
               className={`px-8 ${
                 darkMode
-                  ? "bg-blue-600 hover:bg-blue-700 text-white"
-                  : "bg-blue-600 hover:bg-blue-700 text-white"
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                  : 'bg-blue-600 hover:bg-blue-700 text-white'
               }`}
             >
-              <Link to="/resume" className="text-white flex items-center">
-                {t("home.viewResume")} <ArrowRightOutlined className="ml-2" />
+              <Link className="text-white flex items-center" to="/resume">
+                {t('home.viewResume')} <ArrowRightOutlined className="ml-2" />
               </Link>
             </Button>
           </div>
 
           <div className="hidden md:block">
             <div className="w-56 h-56 rounded-full bg-blue-500 flex items-center justify-center p-4">
-              <img
-                src={catImage}
-                alt="Logo"
-                className="w-full h-full object-contain"
-              />
+              <img alt="Logo" className="w-full h-full object-contain" src={catImage} />
             </div>
           </div>
         </div>
 
         {/* 往下滑提示 */}
         <div className="mt-8 flex flex-col items-center animate-bounce">
-            <Paragraph
-              className={`mb-2 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
-            >
-              {t("home.scrollDown")}
-            </Paragraph>
+          <Paragraph className={`mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            {t('home.scrollDown')}
+          </Paragraph>
           <MenuFoldOutlined
-            className={`${
-              darkMode ? "text-gray-400" : "text-gray-600"
-            }`}
-            style={{rotate: '-90deg'}}
+            className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
+            style={{ rotate: '-90deg' }}
           />
         </div>
       </div>

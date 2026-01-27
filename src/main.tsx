@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { createRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client';
 
-import App from './app'
-import './index.css'
-import './i18n/config'
+import App from './app';
+import './i18n/config';
+import './index.css';
 
 // Only import and enable react-scan when SCAN_ENABLED environment variable is set to true
 if (process.env.NODE_ENV === 'development' && import.meta.env.VITE_SCAN_ENABLED === 'true') {
@@ -25,5 +25,5 @@ if (process.env.NODE_ENV === 'development' && import.meta.env.VITE_GRAB_ENABLED 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
-)
+  </React.StrictMode>,
+);

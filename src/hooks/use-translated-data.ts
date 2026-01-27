@@ -11,14 +11,14 @@ import resumeDataZhCN from '../data/resumeData_zh-CN.json';
 const resumeDataMap = {
   'zh-CN': resumeDataZhCN,
   'en-US': resumeDataEnUS,
-  'ja-JP': resumeDataJaJP
+  'ja-JP': resumeDataJaJP,
 };
 
 // 首页数据映射
 const homeDataMap = {
   'zh-CN': homeDataZhCN,
   'en-US': homeDataEnUS,
-  'ja-JP': homeDataJaJP
+  'ja-JP': homeDataJaJP,
 };
 
 // 使用简历数据的Hook

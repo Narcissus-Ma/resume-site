@@ -27,43 +27,19 @@
       },
       {
         "category": "Multi-platform Development",
-        "items": [
-          "ReactNative",
-          "uni-app",
-          "taro",
-          "mini-program",
-          "electron"
-        ]
+        "items": ["ReactNative", "uni-app", "taro", "mini-program", "electron"]
       },
       {
         "category": "Backend Development",
-        "items": [
-          "Node.js",
-          "Express",
-          "Koa",
-          "nest.js",
-          "MySQL",
-          "Java",
-          "RESTful API"
-        ]
+        "items": ["Node.js", "Express", "Koa", "nest.js", "MySQL", "Java", "RESTful API"]
       },
       {
         "category": "Development Tools",
-        "items": [
-          "Git",
-          "VS Code",
-          "Docker",
-          "Postman"
-        ]
+        "items": ["Git", "VS Code", "Docker", "Postman"]
       },
       {
         "category": "AI-assisted Development",
-        "items": [
-          "Cursor",
-          "cline",
-          "Ollama",
-          "copilot"
-        ]
+        "items": ["Cursor", "cline", "Ollama", "copilot"]
       }
     ]
   },

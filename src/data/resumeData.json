@@ -27,43 +27,19 @@
       },
       {
         "category": "多端开发",
-        "items": [
-          "ReactNative",
-          "uni-app",
-          "taro",
-          "mini-program",
-          "electron"
-        ]
+        "items": ["ReactNative", "uni-app", "taro", "mini-program", "electron"]
       },
       {
         "category": "后端开发",
-        "items": [
-          "Node.js",
-          "Express",
-          "Koa",
-          "nest.js",
-          "MySQL",
-          "Java",
-          "RESTful API"
-        ]
+        "items": ["Node.js", "Express", "Koa", "nest.js", "MySQL", "Java", "RESTful API"]
       },
       {
         "category": "开发工具",
-        "items": [
-          "Git",
-          "VS Code",
-          "Docker",
-          "Postman"
-        ]
+        "items": ["Git", "VS Code", "Docker", "Postman"]
       },
       {
         "category": "AI辅助开发",
-        "items": [
-          "Cursor",
-          "cline",
-          "Ollama",
-          "copilot"
-        ]
+        "items": ["Cursor", "cline", "Ollama", "copilot"]
       }
     ]
   },

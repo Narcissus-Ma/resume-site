@@ -7,7 +7,7 @@ const args = process.argv.slice(2);
 let envVars = {};
 
 // 检查命令行参数并设置相应的环境变量
-args.forEach(arg => {
+args.forEach((arg) => {
   if (arg === '--scan' || arg === '-s') {
     envVars.VITE_SCAN_ENABLED = 'true';
   } else if (arg === '--grab' || arg === '-g') {
@@ -53,7 +53,7 @@ const viteArgs = ['--port', envVars.PORT];
 // 启动vite进程
 const viteProcess = spawn('npx', ['vite', ...viteArgs], {
   stdio: 'inherit',
-  env: env
+  env: env,
 });
 
 viteProcess.on('error', (err) => {

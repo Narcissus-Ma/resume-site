@@ -64,19 +64,19 @@ button:disabled {
   button {
     display: none !important;
   }
-  
+
   /* 确保简历内容占满整个页面 */
   main {
     max-width: 100% !important;
     margin: 0 !important;
     padding: 0 !important;
   }
-  
+
   /* 调整页边距 */
   @page {
     margin: 1cm;
   }
-  
+
   /* 确保内容清晰可见 */
   body {
     font-size: 12pt;

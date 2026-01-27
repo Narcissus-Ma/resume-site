@@ -1,12 +1,12 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo } from 'react';
 
-import portfolio1 from "@/assets/img/portfolio1.jpg";
-import portfolio2 from "@/assets/img/portfolio2.jpg";
-import portfolio3 from "@/assets/img/portfolio3.jpg";
-import { Experience, Project, Skill } from "@/types";
+import portfolio1 from '@/assets/img/portfolio1.jpg';
+import portfolio2 from '@/assets/img/portfolio2.jpg';
+import portfolio3 from '@/assets/img/portfolio3.jpg';
+import { Experience, Project, Skill } from '@/types';
 
-import useTheme from "./use-theme";
-import { useHomeData } from "./use-translated-data";
+import useTheme from './use-theme';
+import { useHomeData } from './use-translated-data';
 
 const useHome = () => {
   const { darkMode, setDarkMode } = useTheme();
@@ -19,13 +19,13 @@ const useHome = () => {
   const projectsWithImages = homeData.projects.map((project: Project) => {
     let imageSrc;
     switch (project.image) {
-      case "portfolio1.jpg":
+      case 'portfolio1.jpg':
         imageSrc = portfolio1;
         break;
-      case "portfolio2.jpg":
+      case 'portfolio2.jpg':
         imageSrc = portfolio2;
         break;
-      case "portfolio3.jpg":
+      case 'portfolio3.jpg':
         imageSrc = portfolio3;
         break;
       default:

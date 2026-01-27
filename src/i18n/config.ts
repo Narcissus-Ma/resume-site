@@ -8,25 +8,23 @@ import zhCN from './locales/zh-CN.json';
 
 const resources = {
   'zh-CN': {
-    translation: zhCN
+    translation: zhCN,
   },
   'en-US': {
-    translation: enUS
+    translation: enUS,
   },
   'ja-JP': {
-    translation: jaJP
-  }
+    translation: jaJP,
+  },
 };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: 'zh-CN', // 默认语言
-    fallbackLng: 'zh-CN', // 回退语言
-    interpolation: {
-      escapeValue: false // React已经处理了XSS
-    }
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'zh-CN', // 默认语言
+  fallbackLng: 'zh-CN', // 回退语言
+  interpolation: {
+    escapeValue: false, // React已经处理了XSS
+  },
+});
 
 export default i18n;

@@ -16,7 +16,7 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
   return (
     <>
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">{t("resume.projects")}</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('resume.projects')}</h2>
         <div className="space-y-6">
           {projects.map((project) => (
             <div key={project.name} className="border-l-4 border-primary pl-4">
@@ -34,7 +34,7 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
       </section>
 
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">{t("resume.experience")}</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('resume.experience')}</h2>
         <div className="space-y-6">
           {experience.map((exp) => (
             <div key={exp.company} className="border-l-4 border-primary pl-4">
@@ -44,7 +44,9 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
               </p>
               <ul className="mt-2 list-disc list-inside space-y-1">
                 {exp.achievements?.map((item: string, index: number) => (
-                  <li key={index} className="text-gray-700">{item}</li>
+                  <li key={index} className="text-gray-700">
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -53,11 +55,13 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
       </section>
 
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">{t("resume.education")}</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('resume.education')}</h2>
         {education.map((edu) => (
           <div key={edu.school}>
             <h3 className="text-xl font-semibold">{edu.school}</h3>
-            <p className="text-gray-600">{edu.degree} | {edu.period}</p>
+            <p className="text-gray-600">
+              {edu.degree} | {edu.period}
+            </p>
             <ul className="mt-2 list-disc list-inside space-y-1">
               {edu.achievements?.map((item: string, index: number) => (
                 <li key={index}>{item}</li>
@@ -68,15 +72,15 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
       </section>
 
       <section className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-2xl font-bold mb-4">{t("resume.websites")}</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('resume.websites')}</h2>
         <div className="flex flex-wrap gap-4">
           {website.map((site) => (
             <a
               key={site.name}
-              href={site.url}
-              target="_blank"
-              rel="noopener noreferrer"
               className="bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition-colors"
+              href={site.url}
+              rel="noopener noreferrer"
+              target="_blank"
             >
               {site.name}
             </a>
