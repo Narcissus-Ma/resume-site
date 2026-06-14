@@ -340,6 +340,10 @@
             ],
             "skills": [
               {
+                "category": "多端开发",
+                "items": ["ReactNative", "uni-app", "taro", "mini-program", "electron"]
+              },
+              {
                 "category": "前端开发",
                 "items": [
                   "HTML5/CSS3",
@@ -349,10 +353,6 @@
                   "Webpack/Vite",
                   "Sass/less/css-in-js"
                 ]
-              },
-              {
-                "category": "多端开发",
-                "items": ["ReactNative", "uni-app", "taro", "mini-program", "electron"]
               },
               {
                 "category": "后端开发",
@@ -367,14 +367,14 @@
           },
           "experience": [
             {
-              "company": "郑州菏怀软件科技有限公司",
-              "position": "高级前端工程师",
-              "period": "2022.09 - 2024-12"
-            },
-            {
               "company": "深圳市法本信息网络科技有限公司",
               "position": "中级前端工程师",
               "period": "2021.09 - 2022.08"
+            },
+            {
+              "company": "郑州菏怀软件科技有限公司",
+              "position": "高级前端工程师",
+              "period": "2022.09 - 2024-12"
             },
             {
               "company": "成都风灵网络科技有限公司",
@@ -391,14 +391,14 @@
           ],
           "projects": [
             {
-              "name": "物联应用开发平台",
-              "period": "2022.03 - 2024.12",
-              "description": "物联应用开发平台是一个以低代码为主、结合物联应用零代码的可视化前端应用开发平台，通过简单的拖拉拽可完成应用页面开发，并提供了数据源接口或数据库的绑定配置，项目基于开源项目appsmith搭建。"
-            },
-            {
               "name": "Booklide低代码平台",
               "period": "2021.06 - 2021.12",
               "description": "低代码+可视化搭建平台，涵盖数据源管理与加工、页面组装、流程引擎、低代码编辑器"
+            },
+            {
+              "name": "物联应用开发平台",
+              "period": "2022.03 - 2024.12",
+              "description": "物联应用开发平台是一个以低代码为主、结合物联应用零代码的可视化前端应用开发平台，通过简单的拖拉拽可完成应用页面开发，并提供了数据源接口或数据库的绑定配置，项目基于开源项目appsmith搭建。"
             },
             {
               "name": "前端业务组件hooks库",
@@ -415,13 +415,13 @@
             { "name": "123", "period": "2024.01 - 2024.12", "description": "项目描述" }
           ],
           "education": [
-            { "school": "湖北第二师范学院", "degree": "本科", "period": "2013.09 - 2017.06" },
             { "school": "122", "degree": "学历", "period": "2024.01 - 2024.12" },
+            { "school": "湖北第二师范学院", "degree": "本科", "period": "2013.09 - 2017.06" },
             { "school": "新学校", "degree": "学历", "period": "2024.01 - 2024.12" }
           ],
           "website": [
-            { "name": "博客", "url": "https://blog.384385.xyz" },
             { "name": "导航网站", "url": "https://navigation.384385.xyz/" },
+            { "name": "博客", "url": "https://blog.384385.xyz" },
             { "name": "低代码平台", "url": "https://narcissus-ma.github.io/low-code-platform/#" },
             { "name": "自定义hooks", "url": "https://narcissus-ma.github.io/narcissus-hooks/" },
             { "name": "前端编码规范工程化", "url": "https://narcissus-ma.github.io/nm-spec" },

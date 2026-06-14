@@ -1,6 +1,13 @@
 import { Button, Form, Input, Card, Space, Typography, Modal, Result, Spin } from 'antd';
 
-import { PlusOutlined, DeleteOutlined, SaveOutlined, EyeOutlined } from '@ant-design/icons';
+import {
+  ArrowDownOutlined,
+  ArrowUpOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+  PlusOutlined,
+  SaveOutlined,
+} from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -35,18 +42,24 @@ const ResumeEditor = () => {
     cancelPendingAction,
     handleAddSkillCategory,
     handleDeleteSkillCategory,
+    handleMoveSkillCategory,
     handleAddSkillItem,
     handleDeleteSkillItem,
     handleAddSkillDescription,
     handleDeleteSkillDescription,
+    handleMoveSkillDescription,
     handleAddWebsite,
     handleDeleteWebsite,
+    handleMoveWebsite,
     handleAddEducation,
     handleDeleteEducation,
+    handleMoveEducation,
     handleAddProject,
     handleDeleteProject,
+    handleMoveProject,
     handleAddExperience,
     handleDeleteExperience,
+    handleMoveExperience,
     handleSave,
   } = useResumeEditor();
   const { t } = useTranslation();
@@ -121,20 +134,42 @@ const ResumeEditor = () => {
             {/* 技能描述 */}
             <Card className="mb-4" title={t('skills.descriptionTitle')}>
               {data.basicInfo.skillDescriptions.map((_, index) => (
-                <Space key={index} align="baseline" className="mb-2">
-                  <Form.Item noStyle name={['basicInfo', 'skillDescriptions', index]}>
+                <div key={index} className="mb-4 rounded border p-4">
+                  <div className="mb-2 flex justify-end">
+                    <Space>
+                      <Button
+                        aria-label={t('resumeEditor.moveSkillDescriptionUp')}
+                        disabled={index === 0}
+                        htmlType="button"
+                        icon={<ArrowUpOutlined />}
+                        type="text"
+                        onClick={() => handleMoveSkillDescription(index, -1)}
+                      />
+                      <Button
+                        aria-label={t('resumeEditor.moveSkillDescriptionDown')}
+                        disabled={index === data.basicInfo.skillDescriptions.length - 1}
+                        htmlType="button"
+                        icon={<ArrowDownOutlined />}
+                        type="text"
+                        onClick={() => handleMoveSkillDescription(index, 1)}
+                      />
+                      <Button
+                        danger
+                        aria-label={t('resumeEditor.deleteSkillDescription')}
+                        htmlType="button"
+                        icon={<DeleteOutlined />}
+                        type="text"
+                        onClick={() => handleDeleteSkillDescription(index)}
+                      />
+                    </Space>
+                  </div>
+                  <Form.Item className="mb-0" name={['basicInfo', 'skillDescriptions', index]}>
                     <TextArea
                       placeholder={t('resumeEditor.skillDescriptionPlaceholder')}
                       rows={2}
                     />
                   </Form.Item>
-                  <Button
-                    danger
-                    icon={<DeleteOutlined />}
-                    type="text"
-                    onClick={() => handleDeleteSkillDescription(index)}
-                  />
-                </Space>
+                </div>
               ))}
               <Button
                 block
@@ -150,7 +185,7 @@ const ResumeEditor = () => {
             <Card className="mb-4" title={t('resumeEditor.skills')}>
               {data.basicInfo.skills.map((skill, categoryIndex) => (
                 <div key={categoryIndex} className="mb-4 p-4 border rounded">
-                  <Space align="baseline" className="mb-2">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <Form.Item
                       noStyle
                       label={t('resumeEditor.skillCategory')}
@@ -158,13 +193,33 @@ const ResumeEditor = () => {
                     >
                       <Input placeholder="技能类别" />
                     </Form.Item>
-                    <Button
-                      danger
-                      icon={<DeleteOutlined />}
-                      type="text"
-                      onClick={() => handleDeleteSkillCategory(categoryIndex)}
-                    />
-                  </Space>
+                    <Space>
+                      <Button
+                        aria-label={t('resumeEditor.moveSkillCategoryUp')}
+                        disabled={categoryIndex === 0}
+                        htmlType="button"
+                        icon={<ArrowUpOutlined />}
+                        type="text"
+                        onClick={() => handleMoveSkillCategory(categoryIndex, -1)}
+                      />
+                      <Button
+                        aria-label={t('resumeEditor.moveSkillCategoryDown')}
+                        disabled={categoryIndex === data.basicInfo.skills.length - 1}
+                        htmlType="button"
+                        icon={<ArrowDownOutlined />}
+                        type="text"
+                        onClick={() => handleMoveSkillCategory(categoryIndex, 1)}
+                      />
+                      <Button
+                        danger
+                        aria-label={t('resumeEditor.deleteSkillCategory')}
+                        htmlType="button"
+                        icon={<DeleteOutlined />}
+                        type="text"
+                        onClick={() => handleDeleteSkillCategory(categoryIndex)}
+                      />
+                    </Space>
+                  </div>
 
                   {skill.items.map((_, itemIndex) => (
                     <Space key={itemIndex} align="baseline" className="mb-2">
@@ -198,17 +253,37 @@ const ResumeEditor = () => {
             <Card className="mb-4" title={t('resumeEditor.workExperience')}>
               {data.experience.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
-                  <Space align="baseline" className="mb-2">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <Text strong>
                       {t('resumeEditor.workExperience')} {index + 1}
                     </Text>
-                    <Button
-                      danger
-                      icon={<DeleteOutlined />}
-                      type="text"
-                      onClick={() => handleDeleteExperience(index)}
-                    />
-                  </Space>
+                    <Space>
+                      <Button
+                        aria-label={t('resumeEditor.moveExperienceUp')}
+                        disabled={index === 0}
+                        htmlType="button"
+                        icon={<ArrowUpOutlined />}
+                        type="text"
+                        onClick={() => handleMoveExperience(index, -1)}
+                      />
+                      <Button
+                        aria-label={t('resumeEditor.moveExperienceDown')}
+                        disabled={index === data.experience.length - 1}
+                        htmlType="button"
+                        icon={<ArrowDownOutlined />}
+                        type="text"
+                        onClick={() => handleMoveExperience(index, 1)}
+                      />
+                      <Button
+                        danger
+                        aria-label={t('resumeEditor.deleteExperience')}
+                        htmlType="button"
+                        icon={<DeleteOutlined />}
+                        type="text"
+                        onClick={() => handleDeleteExperience(index)}
+                      />
+                    </Space>
+                  </div>
 
                   <Form.Item
                     noStyle
@@ -244,17 +319,37 @@ const ResumeEditor = () => {
             <Card className="mb-4" title={t('resumeEditor.projectExperience')}>
               {data.projects.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
-                  <Space align="baseline" className="mb-2">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <Text strong>
                       {t('resumeEditor.projects')} {index + 1}
                     </Text>
-                    <Button
-                      danger
-                      icon={<DeleteOutlined />}
-                      type="text"
-                      onClick={() => handleDeleteProject(index)}
-                    />
-                  </Space>
+                    <Space>
+                      <Button
+                        aria-label={t('resumeEditor.moveProjectUp')}
+                        disabled={index === 0}
+                        htmlType="button"
+                        icon={<ArrowUpOutlined />}
+                        type="text"
+                        onClick={() => handleMoveProject(index, -1)}
+                      />
+                      <Button
+                        aria-label={t('resumeEditor.moveProjectDown')}
+                        disabled={index === data.projects.length - 1}
+                        htmlType="button"
+                        icon={<ArrowDownOutlined />}
+                        type="text"
+                        onClick={() => handleMoveProject(index, 1)}
+                      />
+                      <Button
+                        danger
+                        aria-label={t('resumeEditor.deleteProject')}
+                        htmlType="button"
+                        icon={<DeleteOutlined />}
+                        type="text"
+                        onClick={() => handleDeleteProject(index)}
+                      />
+                    </Space>
+                  </div>
 
                   <Form.Item
                     noStyle
@@ -290,17 +385,37 @@ const ResumeEditor = () => {
             <Card className="mb-4" title={t('resumeEditor.education')}>
               {data.education.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
-                  <Space align="baseline" className="mb-2">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <Text strong>
                       {t('resumeEditor.education')} {index + 1}
                     </Text>
-                    <Button
-                      danger
-                      icon={<DeleteOutlined />}
-                      type="text"
-                      onClick={() => handleDeleteEducation(index)}
-                    />
-                  </Space>
+                    <Space>
+                      <Button
+                        aria-label={t('resumeEditor.moveEducationUp')}
+                        disabled={index === 0}
+                        htmlType="button"
+                        icon={<ArrowUpOutlined />}
+                        type="text"
+                        onClick={() => handleMoveEducation(index, -1)}
+                      />
+                      <Button
+                        aria-label={t('resumeEditor.moveEducationDown')}
+                        disabled={index === data.education.length - 1}
+                        htmlType="button"
+                        icon={<ArrowDownOutlined />}
+                        type="text"
+                        onClick={() => handleMoveEducation(index, 1)}
+                      />
+                      <Button
+                        danger
+                        aria-label={t('resumeEditor.deleteEducation')}
+                        htmlType="button"
+                        icon={<DeleteOutlined />}
+                        type="text"
+                        onClick={() => handleDeleteEducation(index)}
+                      />
+                    </Space>
+                  </div>
 
                   <Form.Item
                     noStyle
@@ -336,17 +451,37 @@ const ResumeEditor = () => {
             <Card className="mb-4" title={t('resumeEditor.websites')}>
               {data.website.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
-                  <Space align="baseline" className="mb-2">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <Text strong>
                       {t('resumeEditor.websites')} {index + 1}
                     </Text>
-                    <Button
-                      danger
-                      icon={<DeleteOutlined />}
-                      type="text"
-                      onClick={() => handleDeleteWebsite(index)}
-                    />
-                  </Space>
+                    <Space>
+                      <Button
+                        aria-label={t('resumeEditor.moveWebsiteUp')}
+                        disabled={index === 0}
+                        htmlType="button"
+                        icon={<ArrowUpOutlined />}
+                        type="text"
+                        onClick={() => handleMoveWebsite(index, -1)}
+                      />
+                      <Button
+                        aria-label={t('resumeEditor.moveWebsiteDown')}
+                        disabled={index === data.website.length - 1}
+                        htmlType="button"
+                        icon={<ArrowDownOutlined />}
+                        type="text"
+                        onClick={() => handleMoveWebsite(index, 1)}
+                      />
+                      <Button
+                        danger
+                        aria-label={t('resumeEditor.deleteWebsite')}
+                        htmlType="button"
+                        icon={<DeleteOutlined />}
+                        type="text"
+                        onClick={() => handleDeleteWebsite(index)}
+                      />
+                    </Space>
+                  </div>
 
                   <Form.Item
                     noStyle

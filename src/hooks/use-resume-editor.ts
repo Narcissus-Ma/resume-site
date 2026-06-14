@@ -10,6 +10,12 @@ import {
   appendSkillDescription,
   appendSkillItem,
   appendWebsite,
+  moveEducation,
+  moveExperience,
+  moveProject,
+  moveSkillCategory,
+  moveSkillDescription,
+  moveWebsite,
 } from '@/domain/resume/rules/resume-editor';
 
 import useResumeProfileManagement from './use-resume-profile-management';
@@ -18,6 +24,7 @@ const useResumeEditor = () => {
   const [form] = Form.useForm();
   const profileManagement = useResumeProfileManagement({ form });
   const { data, updateData } = profileManagement;
+  const current = useCallback(() => form.getFieldsValue(true), [form]);
 
   // 添加技能类别
   const handleAddSkillCategory = useCallback(() => {
@@ -34,6 +41,13 @@ const useResumeEditor = () => {
       updateData({ ...data, basicInfo: { ...data.basicInfo, skills: newSkills } });
     },
     [data, updateData],
+  );
+
+  const handleMoveSkillCategory = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveSkillCategory(data, current(), index, offset));
+    },
+    [current, data, updateData],
   );
 
   // 添加技能项
@@ -79,6 +93,13 @@ const useResumeEditor = () => {
     [data, updateData],
   );
 
+  const handleMoveSkillDescription = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveSkillDescription(data, current(), index, offset));
+    },
+    [current, data, updateData],
+  );
+
   // 添加工作经历
   const handleAddExperience = useCallback(() => {
     if (!data) return;
@@ -94,6 +115,13 @@ const useResumeEditor = () => {
       updateData({ ...data, experience: newExperience });
     },
     [data, updateData],
+  );
+
+  const handleMoveExperience = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveExperience(data, current(), index, offset));
+    },
+    [current, data, updateData],
   );
 
   // 添加项目经历
@@ -113,6 +141,13 @@ const useResumeEditor = () => {
     [data, updateData],
   );
 
+  const handleMoveProject = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveProject(data, current(), index, offset));
+    },
+    [current, data, updateData],
+  );
+
   // 添加教育经历
   const handleAddEducation = useCallback(() => {
     if (!data) return;
@@ -128,6 +163,13 @@ const useResumeEditor = () => {
       updateData({ ...data, education: newEducation });
     },
     [data, updateData],
+  );
+
+  const handleMoveEducation = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveEducation(data, current(), index, offset));
+    },
+    [current, data, updateData],
   );
 
   // 添加网站链接
@@ -147,23 +189,36 @@ const useResumeEditor = () => {
     [data, updateData],
   );
 
+  const handleMoveWebsite = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveWebsite(data, current(), index, offset));
+    },
+    [current, data, updateData],
+  );
+
   return {
     form,
     ...profileManagement,
     handleAddSkillCategory,
     handleDeleteSkillCategory,
+    handleMoveSkillCategory,
     handleAddSkillItem,
     handleDeleteSkillItem,
     handleAddSkillDescription,
     handleDeleteSkillDescription,
+    handleMoveSkillDescription,
     handleAddExperience,
     handleDeleteExperience,
+    handleMoveExperience,
     handleAddProject,
     handleDeleteProject,
+    handleMoveProject,
     handleAddEducation,
     handleDeleteEducation,
+    handleMoveEducation,
     handleAddWebsite,
     handleDeleteWebsite,
+    handleMoveWebsite,
   };
 };
 
