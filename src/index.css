@@ -109,9 +109,12 @@ select:focus-visible {
 }
 
 .theme-header {
-  border-bottom: 1px solid var(--color-border);
   background: var(--color-header-bg);
   color: var(--color-text-primary);
+}
+
+.theme-header .ant-anchor-wrapper-horizontal::before {
+  display: none;
 }
 
 .ant-card.theme-surface {

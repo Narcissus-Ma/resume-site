@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { Anchor, Button, Dropdown } from 'antd';
 
@@ -45,6 +45,7 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
     key: item.key,
     label: <a href={item.href}>{item.title}</a>,
   }));
+  const handleGetCurrentAnchor = useCallback((activeLink: string) => activeLink || '#part-1', []);
 
   return (
     <header className="theme-header sticky top-0 z-50 shadow-sm backdrop-blur-md">
@@ -53,6 +54,7 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
           affix={false}
           className="hidden md:block"
           direction="horizontal"
+          getCurrentAnchor={handleGetCurrentAnchor}
           items={navigationItems}
         />
         <Dropdown menu={{ items: mobileMenuItems }} placement="bottomLeft" trigger={['click']}>
