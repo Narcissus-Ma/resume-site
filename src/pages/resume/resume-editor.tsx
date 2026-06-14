@@ -1,9 +1,10 @@
-import { Button, Form, Input, Card, Space, Typography } from 'antd';
+import { Button, Form, Input, Card, Space, Typography, Modal, Result, Spin } from 'antd';
 
 import { PlusOutlined, DeleteOutlined, SaveOutlined, EyeOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import ResumeProfileToolbar from '@/components/resume-profile-toolbar';
 import useResumeEditor from '@/hooks/use-resume-editor';
 
 const { TextArea } = Input;
@@ -12,8 +13,26 @@ const { Title, Text } = Typography;
 const ResumeEditor = () => {
   const {
     form,
+    catalog,
     data,
     loading,
+    error,
+    isDirty,
+    selectedResumeId,
+    selectedLanguage,
+    unsavedDialogOpen,
+    markDirty,
+    selectResume,
+    selectLanguage,
+    createResume,
+    copyResume,
+    renameResume,
+    deleteResume,
+    setActiveResume,
+    retry,
+    confirmSaveAndContinue,
+    confirmDiscardAndContinue,
+    cancelPendingAction,
     handleAddSkillCategory,
     handleDeleteSkillCategory,
     handleAddSkillItem,
@@ -39,6 +58,25 @@ const ResumeEditor = () => {
           {t('resumeEditor.title')}
         </Title>
 
+        {catalog && (
+          <Card className="mb-4">
+            <ResumeProfileToolbar
+              catalog={catalog}
+              isDirty={isDirty}
+              loading={loading}
+              selectedLanguage={selectedLanguage}
+              selectedResumeId={selectedResumeId}
+              onCopyResume={copyResume}
+              onCreateResume={createResume}
+              onDeleteResume={deleteResume}
+              onRenameResume={renameResume}
+              onSelectLanguage={selectLanguage}
+              onSelectResume={selectResume}
+              onSetActiveResume={setActiveResume}
+            />
+          </Card>
+        )}
+
         <Card className="mb-4">
           <Space>
             <Button icon={<SaveOutlined />} loading={loading} type="primary" onClick={handleSave}>
@@ -52,8 +90,27 @@ const ResumeEditor = () => {
           </Space>
         </Card>
 
+        {loading && !data && (
+          <div className="flex min-h-60 items-center justify-center">
+            <Spin size="large" />
+          </div>
+        )}
+
+        {error && !data && (
+          <Result
+            status="error"
+            subTitle={error}
+            title={t('resumeEditor.profile.loadFailed')}
+            extra={
+              <Button type="primary" onClick={retry}>
+                {t('resumeEditor.profile.retry')}
+              </Button>
+            }
+          />
+        )}
+
         {data && (
-          <Form form={form} initialValues={data} layout="vertical">
+          <Form form={form} initialValues={data} layout="vertical" onValuesChange={markDirty}>
             {/* 基本信息 */}
             <Card className="mb-4" title={t('resumeEditor.basicInfo')}>
               <Form.Item label={t('resumeEditor.titleLabel')} name={['basicInfo', 'title']}>
@@ -315,6 +372,26 @@ const ResumeEditor = () => {
           </Form>
         )}
       </div>
+
+      <Modal
+        closable={false}
+        maskClosable={false}
+        open={unsavedDialogOpen}
+        title={t('resumeEditor.profile.unsavedTitle')}
+        footer={[
+          <Button key="cancel" onClick={cancelPendingAction}>
+            {t('resumeEditor.profile.cancel')}
+          </Button>,
+          <Button key="discard" danger onClick={confirmDiscardAndContinue}>
+            {t('resumeEditor.profile.discardAndContinue')}
+          </Button>,
+          <Button key="save" loading={loading} type="primary" onClick={confirmSaveAndContinue}>
+            {t('resumeEditor.profile.saveAndContinue')}
+          </Button>,
+        ]}
+      >
+        {t('resumeEditor.profile.unsavedDescription')}
+      </Modal>
     </div>
   );
 };

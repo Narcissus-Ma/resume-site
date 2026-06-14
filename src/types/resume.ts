@@ -44,3 +44,31 @@ export interface ResumeData {
   website: Website[];
   correctToken?: string;
 }
+
+export const RESUME_LANGUAGES = ['zh-CN', 'en-US', 'ja-JP'] as const;
+
+export type ResumeLanguage = (typeof RESUME_LANGUAGES)[number];
+
+export interface ResumeProfile {
+  id: string;
+  name: string;
+  contents: Record<ResumeLanguage, ResumeData>;
+}
+
+export interface ResumeCatalog {
+  schemaVersion: 1;
+  activeResumeId: string;
+  resumes: ResumeProfile[];
+}
+
+export interface ResumeCatalogMutationResult {
+  catalog: ResumeCatalog;
+  resumeId: string;
+}
+
+export interface ResumeApiErrorPayload {
+  error: {
+    code: string;
+    message: string;
+  };
+}

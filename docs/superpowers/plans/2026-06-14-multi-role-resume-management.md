@@ -47,6 +47,7 @@
 ## Task 1：建立目录类型与纯规则
 
 **Files:**
+
 - Modify: `src/types/resume.ts`
 - Create: `src/domain/resume/rules/resume-catalog.ts`
 - Create: `tests/resume-catalog.test.ts`
@@ -112,6 +113,7 @@ git commit -m "feat: add resume catalog domain rules"
 ## Task 2：迁移为单一简历目录数据
 
 **Files:**
+
 - Create: `src/data/resume-catalog.json`
 - Modify: `src/hooks/use-translated-data.ts`
 - Delete: `src/data/resumeData.json`
@@ -185,6 +187,7 @@ git commit -m "feat: migrate resumes to a single catalog"
 ## Task 3：实现可替换的服务端仓库和 API
 
 **Files:**
+
 - Create: `src/server/resume-catalog-repository.ts`
 - Create: `src/server/create-server.ts`
 - Modify: `server.ts`
@@ -249,6 +252,7 @@ git commit -m "feat: add resume catalog management api"
 ## Task 4：实现统一前端 API 服务
 
 **Files:**
+
 - Create: `src/services/resume-api.ts`
 - Create: `tests/resume-api.test.ts`
 
@@ -300,6 +304,7 @@ git commit -m "feat: add resume catalog api client"
 ## Task 5：接入管理 Hook 和工具栏
 
 **Files:**
+
 - Modify: `src/hooks/use-resume-editor.ts`
 - Create: `src/components/resume-profile-toolbar.tsx`
 - Modify: `src/pages/resume/resume-editor.tsx`
@@ -381,6 +386,7 @@ git commit -m "feat: manage resume profiles and languages"
 ## Task 6：更新翻译脚本
 
 **Files:**
+
 - Modify: `scripts/translate-data.js`
 - Test: `tests/resume-catalog.test.ts`
 
@@ -414,6 +420,7 @@ git commit -m "feat: translate every resume profile"
 ## Task 7：完整验证和浏览器验收
 
 **Files:**
+
 - Modify only if verification finds defects.
 
 - [ ] **Step 1：运行自动化检查**

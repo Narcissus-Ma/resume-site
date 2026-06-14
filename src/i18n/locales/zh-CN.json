@@ -131,6 +131,7 @@
     "period": "时间段",
     "addWorkExperience": "添加工作经历",
     "projectExperience": "项目经历",
+    "projects": "项目",
     "projectName": "项目名称",
     "projectDescription": "项目描述",
     "addProjectExperience": "添加项目经历",
@@ -143,6 +144,37 @@
     "websiteUrl": "网站URL",
     "addWebsite": "添加网站链接",
     "timePeriod": "时间段",
-    "skillDescriptionPlaceholder": "技能描述"
+    "skillDescriptionPlaceholder": "技能描述",
+    "profile": {
+      "label": "岗位简历",
+      "active": "已启用",
+      "unsaved": "未保存",
+      "setActive": "设为启用",
+      "create": "新增",
+      "copy": "复制",
+      "rename": "重命名",
+      "delete": "删除",
+      "confirm": "确认",
+      "cancel": "取消",
+      "createTitle": "新增岗位简历",
+      "copyTitle": "复制当前岗位简历",
+      "renameTitle": "重命名岗位简历",
+      "namePlaceholder": "请输入岗位名称",
+      "deleteTitle": "删除岗位简历",
+      "deleteDescription": "确定删除“{{name}}”吗？此操作无法撤销。",
+      "loadFailed": "简历目录加载失败",
+      "retry": "重新加载",
+      "unsavedTitle": "当前内容尚未保存",
+      "unsavedDescription": "继续操作前，请选择保存当前内容、放弃修改或取消操作。",
+      "saveAndContinue": "保存并继续",
+      "discardAndContinue": "放弃修改",
+      "copySuccess": "岗位简历复制成功"
+    },
+    "language": {
+      "label": "内容语言",
+      "zhCN": "中文",
+      "enUS": "英文",
+      "jaJP": "日文"
+    }
   }
 }

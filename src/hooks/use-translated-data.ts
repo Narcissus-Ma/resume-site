@@ -1,18 +1,14 @@
 import { useTranslation } from 'react-i18next';
 
+import { getActiveResumeContent } from '@/domain/resume/rules/resume-catalog';
+import type { ResumeCatalog, ResumeLanguage } from '@/types/resume';
+
 import homeDataEnUS from '../data/homeData_en-US.json';
 import homeDataJaJP from '../data/homeData_ja-JP.json';
 import homeDataZhCN from '../data/homeData_zh-CN.json';
-import resumeDataEnUS from '../data/resumeData_en-US.json';
-import resumeDataJaJP from '../data/resumeData_ja-JP.json';
-import resumeDataZhCN from '../data/resumeData_zh-CN.json';
+import resumeCatalogData from '../data/resume-catalog.json';
 
-// 简历数据映射
-const resumeDataMap = {
-  'zh-CN': resumeDataZhCN,
-  'en-US': resumeDataEnUS,
-  'ja-JP': resumeDataJaJP,
-};
+const resumeCatalog = resumeCatalogData as ResumeCatalog;
 
 // 首页数据映射
 const homeDataMap = {
@@ -24,7 +20,8 @@ const homeDataMap = {
 // 使用简历数据的Hook
 export const useResumeData = () => {
   const { i18n } = useTranslation();
-  return resumeDataMap[i18n.language as keyof typeof resumeDataMap] || resumeDataMap['zh-CN'];
+
+  return getActiveResumeContent(resumeCatalog, i18n.language as ResumeLanguage);
 };
 
 // 使用首页数据的Hook

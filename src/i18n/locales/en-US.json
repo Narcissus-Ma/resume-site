@@ -131,6 +131,7 @@
     "period": "Time Period",
     "addWorkExperience": "Add Work Experience",
     "projectExperience": "Project Experience",
+    "projects": "Project",
     "projectName": "Project Name",
     "projectDescription": "Project Description",
     "addProjectExperience": "Add Project Experience",
@@ -143,6 +144,37 @@
     "websiteUrl": "Website URL",
     "addWebsite": "Add Website",
     "timePeriod": "Time Period",
-    "skillDescriptionPlaceholder": "Skill Description"
+    "skillDescriptionPlaceholder": "Skill Description",
+    "profile": {
+      "label": "Resume Profile",
+      "active": "Active",
+      "unsaved": "Unsaved",
+      "setActive": "Set Active",
+      "create": "New",
+      "copy": "Copy",
+      "rename": "Rename",
+      "delete": "Delete",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "createTitle": "Create Resume Profile",
+      "copyTitle": "Copy Current Resume Profile",
+      "renameTitle": "Rename Resume Profile",
+      "namePlaceholder": "Enter a profile name",
+      "deleteTitle": "Delete Resume Profile",
+      "deleteDescription": "Delete “{{name}}”? This action cannot be undone.",
+      "loadFailed": "Failed to Load Resume Catalog",
+      "retry": "Retry",
+      "unsavedTitle": "Unsaved Changes",
+      "unsavedDescription": "Save the current content, discard the changes, or cancel before continuing.",
+      "saveAndContinue": "Save and Continue",
+      "discardAndContinue": "Discard Changes",
+      "copySuccess": "Resume profile copied"
+    },
+    "language": {
+      "label": "Content Language",
+      "zhCN": "Chinese",
+      "enUS": "English",
+      "jaJP": "Japanese"
+    }
   }
 }

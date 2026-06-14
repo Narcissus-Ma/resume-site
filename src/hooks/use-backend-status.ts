@@ -19,7 +19,7 @@ const useBackendStatus = () => {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 1000); // 设置超时时间，避免等待太长
 
-        const response = await fetch('http://localhost:3001/api/resume', {
+        const response = await fetch('http://localhost:3001/api/resume-catalog', {
           method: 'HEAD',
           signal: controller.signal,
         });

@@ -1,122 +1,117 @@
-import fs from 'fs/promises';
-import path from 'path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+
 import translate from 'google-translate-api';
+import { format, resolveConfig } from 'prettier';
 
-// 源数据文件路径
-const SOURCE_DATA_DIR = path.resolve(process.cwd(), './src/data');
-const SOURCE_LANG = 'zh-CN';
-const TARGET_LANGS = ['en-US', 'ja-JP'];
+const DATA_DIRECTORY = path.resolve(process.cwd(), 'src/data');
+const RESUME_CATALOG_PATH = path.join(DATA_DIRECTORY, 'resume-catalog.json');
+const SOURCE_LANGUAGE = 'zh-CN';
+const TARGET_LANGUAGES = ['en-US', 'ja-JP'];
 
-// 递归翻译JSON对象
-async function translateJson(obj, targetLang) {
-  const result = {};
+const writeJsonFile = async (filePath, value) => {
+  const prettierConfig = await resolveConfig(path.join(process.cwd(), 'package.json'));
+  const content = await format(JSON.stringify(value), {
+    ...prettierConfig,
+    parser: 'json',
+  });
+  await fs.writeFile(filePath, content, 'utf8');
+};
 
-  for (const key in obj) {
-    if (typeof obj[key] === 'string') {
-      try {
-        // 翻译字符串值 - 使用备用服务器地址
-        const translation = await translate(obj[key], {
-          to: getGoogleLangCode(targetLang),
-          host: 'translate.google.cn', // 使用Google中国镜像
-        });
-        result[key] = translation.text;
-        console.log(`翻译: ${obj[key]} -> ${result[key]}`);
-      } catch (error) {
-        console.error(`翻译失败: ${obj[key]}`, error.message);
-        result[key] = obj[key]; // 翻译失败时保持原文
-      }
-      // 添加延迟以避免请求过于频繁
-      await new Promise((resolve) => setTimeout(resolve, 300));
-    } else if (Array.isArray(obj[key])) {
-      result[key] = [];
-      for (const item of obj[key]) {
-        if (typeof item === 'string') {
-          try {
-            const translation = await translate(item, {
-              to: getGoogleLangCode(targetLang),
-              host: 'translate.google.cn', // 使用Google中国镜像
-            });
-            result[key].push(translation.text);
-            console.log(`翻译: ${item} -> ${result[key][result[key].length - 1]}`);
-          } catch (error) {
-            console.error(`翻译失败: ${item}`, error.message);
-            result[key].push(item); // 翻译失败时保持原文
-          }
-          // 添加延迟以避免请求过于频繁
-          await new Promise((resolve) => setTimeout(resolve, 300));
-        } else if (typeof item === 'object' && item !== null) {
-          result[key].push(await translateJson(item, targetLang));
-        } else {
-          result[key].push(item);
-        }
-      }
-    } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-      result[key] = await translateJson(obj[key], targetLang);
-    } else {
-      result[key] = obj[key];
-    }
-  }
-
-  return result;
-}
-
-// 获取Google翻译API的语言代码
-function getGoogleLangCode(lang) {
-  const langMap = {
+const getGoogleLanguageCode = (language) => {
+  const languageMap = {
     'en-US': 'en',
     'ja-JP': 'ja',
     'zh-CN': 'zh',
   };
-  return langMap[lang] || lang;
-}
 
-// 翻译单个数据文件
-async function translateDataFile(filename, targetLang) {
-  const sourcePath = path.join(SOURCE_DATA_DIR, `${filename}_${SOURCE_LANG}.json`);
-  const targetPath = path.join(SOURCE_DATA_DIR, `${filename}_${targetLang}.json`);
+  return languageMap[language] ?? language;
+};
 
-  console.log(`正在翻译文件: ${sourcePath} -> ${targetPath}`);
-
+const translateText = async (text, targetLanguage) => {
   try {
-    // 读取源文件
-    const sourceData = JSON.parse(await fs.readFile(sourcePath, 'utf8'));
-
-    // 翻译数据
-    const translatedData = await translateJson(sourceData, targetLang);
-
-    // 写入目标文件
-    await fs.writeFile(targetPath, JSON.stringify(translatedData, null, 2), 'utf8');
-
-    console.log(`翻译完成: ${targetPath}`);
+    const result = await translate(text, {
+      to: getGoogleLanguageCode(targetLanguage),
+      host: 'translate.google.cn',
+    });
+    console.log(`翻译: ${text} -> ${result.text}`);
+    return result.text;
   } catch (error) {
-    console.error(`处理文件失败: ${sourcePath}`, error);
+    console.error(`翻译失败: ${text}`, error.message);
+    return text;
+  } finally {
+    await new Promise((resolve) => setTimeout(resolve, 300));
   }
-}
+};
 
-// 翻译所有数据文件
-async function translateAllData() {
-  try {
-    // 获取所有源数据文件
-    const files = await fs.readdir(SOURCE_DATA_DIR);
-    const sourceFiles = files
-      .filter((file) => file.endsWith(`_${SOURCE_LANG}.json`))
-      .map((file) => file.replace(`_${SOURCE_LANG}.json`, ''));
+const translateJson = async (value, targetLanguage) => {
+  if (typeof value === 'string') {
+    return translateText(value, targetLanguage);
+  }
 
-    console.log(`找到源数据文件: ${sourceFiles.join(', ')}`);
+  if (Array.isArray(value)) {
+    return Promise.all(value.map((item) => translateJson(item, targetLanguage)));
+  }
 
-    for (const file of sourceFiles) {
-      for (const lang of TARGET_LANGS) {
-        await translateDataFile(file, lang);
-      }
+  if (typeof value === 'object' && value !== null) {
+    const entries = await Promise.all(
+      Object.entries(value).map(async ([key, item]) => [
+        key,
+        await translateJson(item, targetLanguage),
+      ]),
+    );
+    return Object.fromEntries(entries);
+  }
+
+  return value;
+};
+
+const translateResumeCatalog = async (
+  catalog,
+  translateContent = (content, language) => translateJson(content, language),
+) => {
+  const nextCatalog = structuredClone(catalog);
+
+  for (const resume of nextCatalog.resumes) {
+    const sourceContent = resume.contents[SOURCE_LANGUAGE];
+
+    for (const language of TARGET_LANGUAGES) {
+      resume.contents[language] = await translateContent(sourceContent, language);
     }
-
-    console.log('所有文件翻译完成！');
-  } catch (error) {
-    console.error('翻译过程出错:', error);
   }
+
+  return nextCatalog;
+};
+
+const translateHomeData = async () => {
+  const sourcePath = path.join(DATA_DIRECTORY, `homeData_${SOURCE_LANGUAGE}.json`);
+  const sourceData = JSON.parse(await fs.readFile(sourcePath, 'utf8'));
+
+  for (const language of TARGET_LANGUAGES) {
+    const targetPath = path.join(DATA_DIRECTORY, `homeData_${language}.json`);
+    const translatedData = await translateJson(sourceData, language);
+    await writeJsonFile(targetPath, translatedData);
+    console.log(`首页数据翻译完成: ${targetPath}`);
+  }
+};
+
+const translateAllData = async () => {
+  const catalog = JSON.parse(await fs.readFile(RESUME_CATALOG_PATH, 'utf8'));
+  const translatedCatalog = await translateResumeCatalog(catalog);
+
+  await writeJsonFile(RESUME_CATALOG_PATH, translatedCatalog);
+  console.log(`简历目录翻译完成: ${RESUME_CATALOG_PATH}`);
+
+  await translateHomeData();
+  console.log('所有数据翻译完成');
+};
+
+const isDirectExecution =
+  process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;
+
+if (isDirectExecution) {
+  await translateAllData();
 }
 
-// 执行翻译
-await translateAllData();
-
-export { translateJson, translateDataFile, translateAllData };
+export { translateAllData, translateJson, translateResumeCatalog };
