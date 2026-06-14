@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-import { translateHomeCatalog } from '../scripts/translate-data.js';
+import { translateHomeCatalog, translateHomeContent } from '../scripts/translate-data.js';
 import {
   copyHomeProfile,
   createHomeProfile,
@@ -16,6 +16,8 @@ import type { HomeCatalog, HomeData } from '../src/types/index.ts';
 const createHomeData = (occupation: string): HomeData => ({
   occupation,
   description: `${occupation}简介`,
+  skillSectionDescription: `${occupation}技能简介`,
+  skillHighlights: [],
   skills: [],
   experiences: [],
   projects: [],
@@ -59,6 +61,8 @@ test('创建空白主页岗位时包含三语言完整字段', () => {
   assert.equal(result.homeId, 'backend');
   assert.deepEqual(Object.keys(created.contents).sort(), ['en-US', 'ja-JP', 'zh-CN']);
   assert.equal(created.contents['zh-CN'].occupation, '');
+  assert.equal(created.contents['zh-CN'].skillSectionDescription, '');
+  assert.deepEqual(created.contents['zh-CN'].skillHighlights, []);
   assert.deepEqual(created.contents['zh-CN'].projects, []);
 });
 
@@ -106,11 +110,20 @@ test('迁移后的主页目录保留现有三语言内容', async () => {
   const catalog = JSON.parse(await readFile(fileUrl, 'utf8')) as HomeCatalog;
   const frontendHome = catalog.homes.find((home) => home.id === 'frontend');
 
-  assert.equal(catalog.activeHomeId, 'frontend');
+  assert.ok(catalog.homes.some((home) => home.id === catalog.activeHomeId));
   assert.ok(frontendHome);
   assert.equal(frontendHome.contents['zh-CN'].occupation, '前端工程师');
   assert.equal(frontendHome.contents['en-US'].occupation, 'Frontend Engineer');
   assert.equal(frontendHome.contents['zh-CN'].skills[0].name, '前端开发啊');
+  assert.match(frontendHome.contents['zh-CN'].skillSectionDescription, /前端和后端技术/);
+  assert.deepEqual(
+    frontendHome.contents['zh-CN'].skillHighlights.map(({ id, icon }) => ({ id, icon })),
+    [
+      { id: 'frontend', icon: 'code' },
+      { id: 'backend', icon: 'database' },
+      { id: 'uiux', icon: 'design' },
+    ],
+  );
 });
 
 test('翻译主页目录会更新全部岗位且保留启用状态', async () => {
@@ -126,4 +139,26 @@ test('翻译主页目录会更新全部岗位且保留启用状态', async () =>
 
   assert.equal(translated.activeHomeId, 'frontend');
   assert.equal(translated.homes[1].contents['en-US'].occupation, '前端工程师-en-US');
+});
+
+test('翻译主页技能卡片时保留结构字段', async () => {
+  const sourceContent = createHomeData('Agent 工程师');
+  sourceContent.skillHighlights = [
+    {
+      id: 'agent-card',
+      icon: 'agent',
+      title: 'Agent 开发',
+      description: '构建可靠的智能体应用',
+    },
+  ];
+
+  const translated = (await translateHomeContent(
+    sourceContent,
+    'en-US',
+    async (text, language) => `${text}-${language}`,
+  )) as HomeData;
+
+  assert.equal(translated.skillHighlights[0].id, 'agent-card');
+  assert.equal(translated.skillHighlights[0].icon, 'agent');
+  assert.equal(translated.skillHighlights[0].title, 'Agent 开发-en-US');
 });

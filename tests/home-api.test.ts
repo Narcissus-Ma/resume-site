@@ -21,7 +21,15 @@ test('主页 API 客户端发送正确内容更新请求', async () => {
   await api.updateContent({
     homeId: 'frontend',
     language: 'zh-CN',
-    content: { occupation: '', description: '', skills: [], experiences: [], projects: [] },
+    content: {
+      occupation: '',
+      description: '',
+      skillSectionDescription: '',
+      skillHighlights: [],
+      skills: [],
+      experiences: [],
+      projects: [],
+    },
   });
 
   assert.equal(url, 'https://example.com/api/home-catalog/content');

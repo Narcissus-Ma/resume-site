@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import HomeProfileToolbar from '@/components/home-profile-toolbar';
+import HomeSkillHighlightsEditor from '@/components/home-skill-highlights-editor';
 import useHomeManage from '@/hooks/use-home-manage';
 
 const { TextArea } = Input;
@@ -47,6 +48,9 @@ const HomeManage = () => {
     handleSave,
     handleAddSkill,
     handleDeleteSkill,
+    handleAddSkillHighlight,
+    handleDeleteSkillHighlight,
+    handleMoveSkillHighlight,
     handleAddExperience,
     handleDeleteExperience,
     handleAddProject,
@@ -124,6 +128,14 @@ const HomeManage = () => {
               >
                 <TextArea placeholder={t('homeManage.heroDescription')} rows={3} />
               </Form.Item>
+            </Card>
+            <Card className="mb-4" title={t('homeManage.skillHighlights')}>
+              <HomeSkillHighlightsEditor
+                highlights={data.skillHighlights}
+                onAdd={handleAddSkillHighlight}
+                onDelete={handleDeleteSkillHighlight}
+                onMove={handleMoveSkillHighlight}
+              />
             </Card>
             {/* 技能 */}
             <Card className="mb-4" title={t('homeManage.skills')}>

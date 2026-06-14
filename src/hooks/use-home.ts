@@ -41,6 +41,8 @@ const useHome = () => {
     toggleTheme,
     occupation: homeData.occupation,
     description: homeData.description,
+    skillSectionDescription: homeData.skillSectionDescription,
+    skillHighlights: homeData.skillHighlights,
     skills,
     experiences,
     projects,

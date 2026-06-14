@@ -68,6 +68,8 @@ const assertUniqueName = (catalog: HomeCatalog, name: string, excludedHomeId?: s
 export const createEmptyHomeData = (): HomeData => ({
   occupation: '',
   description: '',
+  skillSectionDescription: '',
+  skillHighlights: [],
   skills: [],
   experiences: [],
   projects: [],

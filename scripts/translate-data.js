@@ -68,6 +68,37 @@ const translateJson = async (value, targetLanguage) => {
   return value;
 };
 
+const HOME_STRUCTURAL_FIELDS = new Set(['icon', 'id', 'image', 'link']);
+
+const translateHomeContent = async (
+  value,
+  targetLanguage,
+  textTranslator = translateText,
+  fieldName = '',
+) => {
+  if (typeof value === 'string') {
+    return HOME_STRUCTURAL_FIELDS.has(fieldName) ? value : textTranslator(value, targetLanguage);
+  }
+
+  if (Array.isArray(value)) {
+    return Promise.all(
+      value.map((item) => translateHomeContent(item, targetLanguage, textTranslator, fieldName)),
+    );
+  }
+
+  if (typeof value === 'object' && value !== null) {
+    const entries = await Promise.all(
+      Object.entries(value).map(async ([key, item]) => [
+        key,
+        await translateHomeContent(item, targetLanguage, textTranslator, key),
+      ]),
+    );
+    return Object.fromEntries(entries);
+  }
+
+  return value;
+};
+
 const translateResumeCatalog = async (
   catalog,
   translateContent = (content, language) => translateJson(content, language),
@@ -87,7 +118,7 @@ const translateResumeCatalog = async (
 
 const translateHomeCatalog = async (
   catalog,
-  translateContent = (content, language) => translateJson(content, language),
+  translateContent = (content, language) => translateHomeContent(content, language),
 ) => {
   const nextCatalog = structuredClone(catalog);
   for (const home of nextCatalog.homes) {
@@ -119,4 +150,10 @@ if (isDirectExecution) {
   await translateAllData();
 }
 
-export { translateAllData, translateHomeCatalog, translateJson, translateResumeCatalog };
+export {
+  translateAllData,
+  translateHomeCatalog,
+  translateHomeContent,
+  translateJson,
+  translateResumeCatalog,
+};

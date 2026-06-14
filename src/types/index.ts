@@ -4,6 +4,15 @@ export interface Skill {
   value: number;
 }
 
+export type SkillHighlightIcon = 'code' | 'database' | 'design' | 'agent' | 'tool';
+
+export interface SkillHighlight {
+  id: string;
+  icon: SkillHighlightIcon;
+  title: string;
+  description: string;
+}
+
 // 工作经历类型
 export interface Experience {
   year: string;
@@ -30,6 +39,8 @@ export interface ThemeProps {
 export interface HomeData {
   occupation: string;
   description: string;
+  skillSectionDescription: string;
+  skillHighlights: SkillHighlight[];
   skills: Skill[];
   experiences: Experience[];
   projects: Project[];

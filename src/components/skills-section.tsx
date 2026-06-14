@@ -2,20 +2,41 @@ import React from 'react';
 
 import { Card, Col, Progress, Row, Typography } from 'antd';
 
-import { DatabaseOutlined, CodeOutlined, BackwardOutlined } from '@ant-design/icons';
+import {
+  BgColorsOutlined,
+  CodeOutlined,
+  DatabaseOutlined,
+  RobotOutlined,
+  ToolOutlined,
+} from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
-import { ThemeProps, Skill } from '../types';
+import type { Skill, SkillHighlight, SkillHighlightIcon, ThemeProps } from '../types';
 
 const { Title, Paragraph, Text } = Typography;
 const { Meta } = Card;
 
 interface SkillsSectionProps extends ThemeProps {
+  highlights: SkillHighlight[];
+  sectionDescription: string;
   skills: Skill[];
 }
 
-const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
+const highlightIcons: Record<SkillHighlightIcon, React.ReactNode> = {
+  code: <CodeOutlined className="text-blue-500 text-3xl" />,
+  database: <DatabaseOutlined className="text-green-500 text-3xl" />,
+  design: <BgColorsOutlined className="text-purple-500 text-3xl" />,
+  agent: <RobotOutlined className="text-cyan-500 text-3xl" />,
+  tool: <ToolOutlined className="text-orange-500 text-3xl" />,
+};
+
+const SkillsSection: React.FC<SkillsSectionProps> = ({
+  highlights,
+  sectionDescription,
+  skills,
+}) => {
   const { t } = useTranslation();
+
   return (
     <section className="theme-section min-h-screen py-20" id="part-2">
       <div className="container mx-auto px-4">
@@ -24,9 +45,11 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
             {t('skills.title')}
           </Title>
           <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
-          <Paragraph className="theme-text-secondary mx-auto mt-4 max-w-2xl">
-            {t('skills.description')}
-          </Paragraph>
+          {sectionDescription && (
+            <Paragraph className="theme-text-secondary mx-auto mt-4 max-w-2xl">
+              {sectionDescription}
+            </Paragraph>
+          )}
         </div>
 
         <Row gutter={[24, 24]}>
@@ -56,43 +79,23 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
           ))}
         </Row>
 
-        <Row className="mt-12" gutter={[24, 24]}>
-          <Col md={8} xs={24}>
-            <Card className="theme-surface transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <Meta
-                avatar={<CodeOutlined className="text-blue-500 text-3xl" />}
-                title={t('skills.frontend.title')}
-                description={
-                  <Text className="theme-text-secondary">{t('skills.frontend.description')}</Text>
-                }
-              />
-            </Card>
-          </Col>
-
-          <Col md={8} xs={24}>
-            <Card className="theme-surface transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <Meta
-                avatar={<DatabaseOutlined className="text-green-500 text-3xl" />}
-                title={t('skills.backend.title')}
-                description={
-                  <Text className="theme-text-secondary">{t('skills.backend.description')}</Text>
-                }
-              />
-            </Card>
-          </Col>
-
-          <Col md={8} xs={24}>
-            <Card className="theme-surface transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-              <Meta
-                avatar={<BackwardOutlined className="text-purple-500 text-3xl" />}
-                title={t('skills.uiux.title')}
-                description={
-                  <Text className="theme-text-secondary">{t('skills.uiux.description')}</Text>
-                }
-              />
-            </Card>
-          </Col>
-        </Row>
+        {highlights.length > 0 && (
+          <Row className="mt-12" gutter={[24, 24]}>
+            {highlights.map((highlight) => (
+              <Col key={highlight.id} lg={8} md={12} xs={24}>
+                <Card className="theme-surface h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <Meta
+                    avatar={highlightIcons[highlight.icon]}
+                    title={highlight.title}
+                    description={
+                      <Text className="theme-text-secondary">{highlight.description}</Text>
+                    }
+                  />
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
     </section>
   );

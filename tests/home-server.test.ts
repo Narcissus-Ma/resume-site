@@ -19,6 +19,8 @@ import type { ResumeCatalog } from '../src/types/resume.ts';
 const createHomeData = (occupation: string): HomeData => ({
   occupation,
   description: `${occupation}简介`,
+  skillSectionDescription: `${occupation}技能简介`,
+  skillHighlights: [],
   skills: [],
   experiences: [],
   projects: [],

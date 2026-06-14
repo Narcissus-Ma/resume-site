@@ -9,6 +9,27 @@
         "zh-CN": {
           "occupation": "前端工程师",
           "description": "热爱学习，热爱生活，创造更高质量工作成果。",
+          "skillSectionDescription": "我掌握了多种前端和后端技术，能够独立完成从设计到实现的全流程开发工作。",
+          "skillHighlights": [
+            {
+              "id": "frontend",
+              "icon": "code",
+              "title": "前端开发",
+              "description": "精通HTML、CSS、JavaScript、React、Vue等前端技术栈，能够构建响应式、高性能的Web应用。"
+            },
+            {
+              "id": "backend",
+              "icon": "database",
+              "title": "后端开发",
+              "description": "熟悉Node.js、Express、MongoDB等后端技术，能够开发RESTful API和全栈应用。"
+            },
+            {
+              "id": "uiux",
+              "icon": "design",
+              "title": "UI/UX设计",
+              "description": "具备良好的设计感和用户体验意识，能够创建美观、易用的界面设计。"
+            }
+          ],
           "skills": [
             { "name": "前端开发啊", "value": 95 },
             { "name": "React/Vue", "value": 85 },
@@ -61,6 +82,27 @@
         "en-US": {
           "occupation": "Frontend Engineer",
           "description": "Love learning, love life, create higher quality work results.",
+          "skillSectionDescription": "I have mastered various frontend and backend technologies, and can independently complete the full development process from design to implementation.",
+          "skillHighlights": [
+            {
+              "id": "frontend",
+              "icon": "code",
+              "title": "Frontend Development",
+              "description": "Proficient in HTML, CSS, JavaScript, React, Vue and other frontend technologies, able to build responsive and high-performance web applications."
+            },
+            {
+              "id": "backend",
+              "icon": "database",
+              "title": "Backend Development",
+              "description": "Familiar with Node.js, Express, MongoDB and other backend technologies, able to develop RESTful APIs and full-stack applications."
+            },
+            {
+              "id": "uiux",
+              "icon": "design",
+              "title": "UI/UX Design",
+              "description": "With good design sense and user experience awareness, able to create beautiful and easy-to-use interface designs."
+            }
+          ],
           "skills": [
             { "name": "Frontend Development", "value": 95 },
             { "name": "React/Vue", "value": 85 },
@@ -113,6 +155,27 @@
         "ja-JP": {
           "occupation": "フロントエンドエンジニア",
           "description": "学習を愛し、生活を愛し、より高品質な仕事成果を生み出します。",
+          "skillSectionDescription": "私は多様なフロントエンドとバックエンドの技術を習得しており、設計から実装までのフル開発プロセスを独立して完了することができます。",
+          "skillHighlights": [
+            {
+              "id": "frontend",
+              "icon": "code",
+              "title": "フロントエンド開発",
+              "description": "HTML、CSS、JavaScript、React、Vueなどのフロントエンド技術に精通し、レスポンシブで高性能なWebアプリケーションを構築することができます。"
+            },
+            {
+              "id": "backend",
+              "icon": "database",
+              "title": "バックエンド開発",
+              "description": "Node.js、Express、MongoDBなどのバックエンド技術に精通し、RESTful APIとフルスタックアプリケーションを開発することができます。"
+            },
+            {
+              "id": "uiux",
+              "icon": "design",
+              "title": "UI/UXデザイン",
+              "description": "良好なデザインセンスとユーザーエクスペリエンスの意識を持ち、美しく使いやすいインターフェースデザインを作成することができます。"
+            }
+          ],
           "skills": [
             { "name": "フロントエンド開発", "value": 95 },
             { "name": "React/Vue", "value": 85 },
@@ -171,6 +234,33 @@
         "zh-CN": {
           "occupation": "agent 开发工程师",
           "description": "热爱学习，热爱生活，创造更高质量工作成果。123456",
+          "skillSectionDescription": "我掌握了多种前端和后端技术，能够独立完成从设计到实现的全流程开发工作。 哈哈",
+          "skillHighlights": [
+            {
+              "id": "frontend",
+              "icon": "code",
+              "title": "前端开发",
+              "description": "精通HTML、CSS、JavaScript、React、Vue等前端技术栈，能够构建响应式、高性能的Web应用。"
+            },
+            {
+              "id": "backend",
+              "icon": "database",
+              "title": "后端开发",
+              "description": "熟悉Node.js、Express、MongoDB等后端技术，能够开发RESTful API和全栈应用。"
+            },
+            {
+              "id": "uiux",
+              "icon": "design",
+              "title": "UI/UX设计",
+              "description": "具备良好的设计感和用户体验意识，能够创建美观、易用的界面设计。"
+            },
+            {
+              "id": "b92b29e6-5e71-458c-a0d6-77e911a6213d",
+              "icon": "agent",
+              "title": "agent 开发",
+              "description": "agent 开发工程师"
+            }
+          ],
           "skills": [
             { "name": "前端开发啊", "value": 95 },
             { "name": "React/Vue", "value": 85 },
@@ -244,6 +334,27 @@
         "en-US": {
           "occupation": "Frontend Engineer",
           "description": "Love learning, love life, create higher quality work results.",
+          "skillSectionDescription": "I have mastered various frontend and backend technologies, and can independently complete the full development process from design to implementation.",
+          "skillHighlights": [
+            {
+              "id": "frontend",
+              "icon": "code",
+              "title": "Frontend Development",
+              "description": "Proficient in HTML, CSS, JavaScript, React, Vue and other frontend technologies, able to build responsive and high-performance web applications."
+            },
+            {
+              "id": "backend",
+              "icon": "database",
+              "title": "Backend Development",
+              "description": "Familiar with Node.js, Express, MongoDB and other backend technologies, able to develop RESTful APIs and full-stack applications."
+            },
+            {
+              "id": "uiux",
+              "icon": "design",
+              "title": "UI/UX Design",
+              "description": "With good design sense and user experience awareness, able to create beautiful and easy-to-use interface designs."
+            }
+          ],
           "skills": [
             { "name": "Frontend Development", "value": 95 },
             { "name": "React/Vue", "value": 85 },
@@ -296,6 +407,27 @@
         "ja-JP": {
           "occupation": "フロントエンドエンジニア",
           "description": "学習を愛し、生活を愛し、より高品質な仕事成果を生み出します。",
+          "skillSectionDescription": "私は多様なフロントエンドとバックエンドの技術を習得しており、設計から実装までのフル開発プロセスを独立して完了することができます。",
+          "skillHighlights": [
+            {
+              "id": "frontend",
+              "icon": "code",
+              "title": "フロントエンド開発",
+              "description": "HTML、CSS、JavaScript、React、Vueなどのフロントエンド技術に精通し、レスポンシブで高性能なWebアプリケーションを構築することができます。"
+            },
+            {
+              "id": "backend",
+              "icon": "database",
+              "title": "バックエンド開発",
+              "description": "Node.js、Express、MongoDBなどのバックエンド技術に精通し、RESTful APIとフルスタックアプリケーションを開発することができます。"
+            },
+            {
+              "id": "uiux",
+              "icon": "design",
+              "title": "UI/UXデザイン",
+              "description": "良好なデザインセンスとユーザーエクスペリエンスの意識を持ち、美しく使いやすいインターフェースデザインを作成することができます。"
+            }
+          ],
           "skills": [
             { "name": "フロントエンド開発", "value": 95 },
             { "name": "React/Vue", "value": 85 },

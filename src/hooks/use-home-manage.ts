@@ -6,6 +6,9 @@ import {
   appendHomeExperience,
   appendHomeProject,
   appendHomeSkill,
+  appendHomeSkillHighlight,
+  moveHomeSkillHighlight,
+  removeHomeSkillHighlight,
 } from '@/domain/home/rules/home-editor';
 import type { HomeData } from '@/types';
 
@@ -30,6 +33,24 @@ const useHomeManage = () => {
         ...values,
         skills: values.skills.filter((_, itemIndex) => itemIndex !== index),
       });
+    },
+    [current, data, updateData],
+  );
+
+  const handleAddSkillHighlight = useCallback(() => {
+    if (data) updateData(appendHomeSkillHighlight(data, current(), crypto.randomUUID()));
+  }, [current, data, updateData]);
+
+  const handleDeleteSkillHighlight = useCallback(
+    (index: number) => {
+      if (data) updateData(removeHomeSkillHighlight(data, current(), index));
+    },
+    [current, data, updateData],
+  );
+
+  const handleMoveSkillHighlight = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveHomeSkillHighlight(data, current(), index, offset));
     },
     [current, data, updateData],
   );
@@ -71,6 +92,9 @@ const useHomeManage = () => {
     ...management,
     handleAddSkill,
     handleDeleteSkill,
+    handleAddSkillHighlight,
+    handleDeleteSkillHighlight,
+    handleMoveSkillHighlight,
     handleAddExperience,
     handleDeleteExperience,
     handleAddProject,
