@@ -18,7 +18,12 @@ import { ThemeProps } from '../types';
 
 const { Title, Paragraph } = Typography;
 
-const HomeSection: React.FC<ThemeProps> = () => {
+interface HomeSectionProps extends ThemeProps {
+  occupation: string;
+  description: string;
+}
+
+const HomeSection: React.FC<HomeSectionProps> = ({ occupation, description }) => {
   const { t } = useTranslation();
   return (
     <section
@@ -63,11 +68,9 @@ const HomeSection: React.FC<ThemeProps> = () => {
               <Title className="theme-text-primary mb-4 text-5xl font-bold md:text-6xl" level={1}>
                 Narcissus
               </Title>
-              <Paragraph className="theme-text-secondary mb-5 text-2xl">
-                {t('home.occupation')}
-              </Paragraph>
+              <Paragraph className="theme-text-secondary mb-5 text-2xl">{occupation}</Paragraph>
               <Paragraph className="theme-text-secondary max-w-xl text-lg leading-8">
-                {t('home.description')}
+                {description}
               </Paragraph>
             </div>
 

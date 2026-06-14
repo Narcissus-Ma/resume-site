@@ -39,6 +39,8 @@ const useHome = () => {
   return {
     darkMode,
     toggleTheme,
+    occupation: homeData.occupation,
+    description: homeData.description,
     skills,
     experiences,
     projects,

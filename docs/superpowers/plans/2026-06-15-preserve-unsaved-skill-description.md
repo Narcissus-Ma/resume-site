@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 点击“添加技能描述”时保留表单中尚未保存的技能描述内容。
+**Goal:** 执行管理页面的动态列表新增操作时保留表单中尚未保存的内容。
 
-**Architecture:** 在 resume domain rules 中新增纯函数，以 Form 实时值为数据源追加技能描述。`use-resume-editor` 读取完整表单值并调用规则函数，然后沿用现有 `updateData` 同步状态和表单。
+**Architecture:** 在 resume domain rules 中使用纯函数，以 Form 实时值为数据源追加各类默认项。`use-resume-editor` 读取完整表单值并调用规则函数，然后沿用现有 `updateData` 同步状态和表单。
 
 **Tech Stack:** React 18、TypeScript、Ant Design Form、Node.js test runner
 
@@ -20,7 +20,7 @@
 
 - [ ] **Step 1: 编写失败测试**
 
-验证表单实时值覆盖旧数据，并在其后追加“新的技能描述”。
+验证表单实时值覆盖旧数据，并在其后追加技能描述、技能类别、技能、工作经历、项目经历、教育经历和网站链接。
 
 - [ ] **Step 2: 运行测试并确认失败**
 

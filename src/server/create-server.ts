@@ -1,6 +1,4 @@
 import { randomUUID } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
-import path from 'node:path';
 
 import cors from 'cors';
 import express, {
@@ -10,7 +8,17 @@ import express, {
   type Response,
 } from 'express';
 
+import type { HomeCatalogRepository } from './home-catalog-repository';
 import type { ResumeCatalogRepository } from './resume-catalog-repository';
+import {
+  copyHomeProfile,
+  createHomeProfile,
+  deleteHomeProfile,
+  HomeCatalogError,
+  renameHomeProfile,
+  setActiveHomeProfile,
+  updateHomeContent,
+} from '../domain/home/rules/home-catalog';
 import {
   copyResumeProfile,
   createResumeProfile,
@@ -20,12 +28,13 @@ import {
   setActiveResumeProfile,
   updateResumeContent,
 } from '../domain/resume/rules/resume-catalog';
+import { HOME_LANGUAGES, type HomeLanguage } from '../types';
 import { RESUME_LANGUAGES, type ResumeLanguage } from '../types/resume';
 
 interface CreateServerOptions {
   repository: ResumeCatalogRepository;
+  homeRepository?: HomeCatalogRepository;
   createId?: () => string;
-  dataDirectory?: string;
 }
 
 interface HttpError extends Error {
@@ -56,13 +65,28 @@ const getCatalogErrorStatus = (error: ResumeCatalogError): number => {
   return 400;
 };
 
+const getHomeCatalogErrorStatus = (error: HomeCatalogError): number => {
+  if (error.code === 'HOME_NOT_FOUND' || error.code === 'ACTIVE_HOME_NOT_FOUND') return 404;
+  if (
+    error.code === 'DUPLICATE_HOME_NAME' ||
+    error.code === 'LAST_HOME' ||
+    error.code === 'HOME_IS_ACTIVE'
+  ) {
+    return 409;
+  }
+  return 400;
+};
+
 const isResumeLanguage = (value: unknown): value is ResumeLanguage =>
   typeof value === 'string' && RESUME_LANGUAGES.some((language) => language === value);
 
+const isHomeLanguage = (value: unknown): value is HomeLanguage =>
+  typeof value === 'string' && HOME_LANGUAGES.some((language) => language === value);
+
 export const createServer = ({
   repository,
+  homeRepository,
   createId = randomUUID,
-  dataDirectory = path.join(process.cwd(), 'src', 'data'),
 }: CreateServerOptions) => {
   const app = express();
 
@@ -136,25 +160,74 @@ export const createServer = ({
     response.json(catalog);
   });
 
-  app.get('/api/home', async (request, response) => {
-    const language = typeof request.query.lang === 'string' ? request.query.lang : 'zh-CN';
-    const filePath = path.join(dataDirectory, `homeData_${language}.json`);
-    response.json(JSON.parse(await readFile(filePath, 'utf8')));
-  });
+  if (homeRepository) {
+    app.get('/api/home-catalog', async (_request, response) => {
+      response.json(await homeRepository.read());
+    });
 
-  app.post('/api/home', async (request, response) => {
-    const language = typeof request.query.lang === 'string' ? request.query.lang : 'zh-CN';
-    const filePath = path.join(dataDirectory, `homeData_${language}.json`);
-    await writeFile(filePath, `${JSON.stringify(request.body, null, 2)}\n`, 'utf8');
-    response.json({ success: true, message: '主页数据保存成功' });
-  });
+    app.put('/api/home-catalog/content', async (request, response) => {
+      const { homeId, language, content } = request.body;
+      if (typeof homeId !== 'string' || !isHomeLanguage(language) || !content) {
+        throw createHttpError(400, 'INVALID_REQUEST', '主页内容请求参数无效');
+      }
+      const catalog = updateHomeContent(await homeRepository.read(), homeId, language, content);
+      await homeRepository.write(catalog);
+      response.json(catalog);
+    });
+
+    app.post('/api/home-catalog/homes', async (request, response) => {
+      const { mode, name, sourceHomeId } = request.body;
+      if (typeof name !== 'string' || (mode !== 'empty' && mode !== 'copy')) {
+        throw createHttpError(400, 'INVALID_REQUEST', '创建主页岗位请求参数无效');
+      }
+      const currentCatalog = await homeRepository.read();
+      const result =
+        mode === 'copy'
+          ? copyHomeProfile(currentCatalog, { name, sourceHomeId, createId })
+          : createHomeProfile(currentCatalog, { name, createId });
+      await homeRepository.write(result.catalog);
+      response.status(201).json(result);
+    });
+
+    app.patch('/api/home-catalog/homes/:homeId', async (request, response) => {
+      const { name } = request.body;
+      if (typeof name !== 'string') {
+        throw createHttpError(400, 'INVALID_REQUEST', '重命名主页岗位请求参数无效');
+      }
+      const catalog = renameHomeProfile(await homeRepository.read(), request.params.homeId, name);
+      await homeRepository.write(catalog);
+      response.json(catalog);
+    });
+
+    app.delete('/api/home-catalog/homes/:homeId', async (request, response) => {
+      const catalog = deleteHomeProfile(await homeRepository.read(), request.params.homeId);
+      await homeRepository.write(catalog);
+      response.json(catalog);
+    });
+
+    app.put('/api/home-catalog/active', async (request, response) => {
+      const { homeId } = request.body;
+      if (typeof homeId !== 'string') {
+        throw createHttpError(400, 'INVALID_REQUEST', '启用主页岗位请求参数无效');
+      }
+      const catalog = setActiveHomeProfile(await homeRepository.read(), homeId);
+      await homeRepository.write(catalog);
+      response.json(catalog);
+    });
+  }
 
   app.use((error: HttpError, _request: Request, response: Response, next: NextFunction) => {
     void next;
     const status =
-      error instanceof ResumeCatalogError ? getCatalogErrorStatus(error) : (error.status ?? 500);
+      error instanceof ResumeCatalogError
+        ? getCatalogErrorStatus(error)
+        : error instanceof HomeCatalogError
+          ? getHomeCatalogErrorStatus(error)
+          : (error.status ?? 500);
     const code =
-      error instanceof ResumeCatalogError ? error.code : (error.code ?? 'INTERNAL_SERVER_ERROR');
+      error instanceof ResumeCatalogError || error instanceof HomeCatalogError
+        ? error.code
+        : (error.code ?? 'INTERNAL_SERVER_ERROR');
 
     if (status === 500) {
       console.error('服务端请求处理失败:', error);

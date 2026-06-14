@@ -2,7 +2,15 @@ import { useCallback } from 'react';
 
 import { Form } from 'antd';
 
-import { appendSkillDescription } from '@/domain/resume/rules/resume-editor';
+import {
+  appendEducation,
+  appendExperience,
+  appendProject,
+  appendSkillCategory,
+  appendSkillDescription,
+  appendSkillItem,
+  appendWebsite,
+} from '@/domain/resume/rules/resume-editor';
 
 import useResumeProfileManagement from './use-resume-profile-management';
 
@@ -14,9 +22,9 @@ const useResumeEditor = () => {
   // 添加技能类别
   const handleAddSkillCategory = useCallback(() => {
     if (!data) return;
-    const newSkills = [...data.basicInfo.skills, { category: '新技能类别', items: ['新技能'] }];
-    updateData({ ...data, basicInfo: { ...data.basicInfo, skills: newSkills } });
-  }, [data, updateData]);
+    const formData = form.getFieldsValue(true);
+    updateData(appendSkillCategory(data, formData));
+  }, [data, form, updateData]);
 
   // 删除技能类别
   const handleDeleteSkillCategory = useCallback(
@@ -32,11 +40,10 @@ const useResumeEditor = () => {
   const handleAddSkillItem = useCallback(
     (categoryIndex: number) => {
       if (!data) return;
-      const newSkills = structuredClone(data.basicInfo.skills);
-      newSkills[categoryIndex].items.push('新技能');
-      updateData({ ...data, basicInfo: { ...data.basicInfo, skills: newSkills } });
+      const formData = form.getFieldsValue(true);
+      updateData(appendSkillItem(data, formData, categoryIndex));
     },
-    [data, updateData],
+    [data, form, updateData],
   );
 
   // 删除技能项
@@ -75,17 +82,9 @@ const useResumeEditor = () => {
   // 添加工作经历
   const handleAddExperience = useCallback(() => {
     if (!data) return;
-    const newExperience = [
-      ...data.experience,
-      {
-        company: '新公司',
-        position: '新职位',
-        period: '2024.01 - 2024.12',
-        achievements: ['新成就'],
-      },
-    ];
-    updateData({ ...data, experience: newExperience });
-  }, [data, updateData]);
+    const formData = form.getFieldsValue(true);
+    updateData(appendExperience(data, formData));
+  }, [data, form, updateData]);
 
   // 删除工作经历
   const handleDeleteExperience = useCallback(
@@ -100,17 +99,9 @@ const useResumeEditor = () => {
   // 添加项目经历
   const handleAddProject = useCallback(() => {
     if (!data) return;
-    const newProjects = [
-      ...data.projects,
-      {
-        name: '新项目',
-        period: '2024.01 - 2024.12',
-        description: '项目描述',
-        responsibilities: ['职责'],
-      },
-    ];
-    updateData({ ...data, projects: newProjects });
-  }, [data, updateData]);
+    const formData = form.getFieldsValue(true);
+    updateData(appendProject(data, formData));
+  }, [data, form, updateData]);
 
   // 删除项目经历
   const handleDeleteProject = useCallback(
@@ -125,17 +116,9 @@ const useResumeEditor = () => {
   // 添加教育经历
   const handleAddEducation = useCallback(() => {
     if (!data) return;
-    const newEducation = [
-      ...data.education,
-      {
-        school: '新学校',
-        degree: '学历',
-        period: '2024.01 - 2024.12',
-        achievements: ['成就'],
-      },
-    ];
-    updateData({ ...data, education: newEducation });
-  }, [data, updateData]);
+    const formData = form.getFieldsValue(true);
+    updateData(appendEducation(data, formData));
+  }, [data, form, updateData]);
 
   // 删除教育经历
   const handleDeleteEducation = useCallback(
@@ -150,15 +133,9 @@ const useResumeEditor = () => {
   // 添加网站链接
   const handleAddWebsite = useCallback(() => {
     if (!data) return;
-    const newWebsite = [
-      ...data.website,
-      {
-        name: '新网站',
-        url: 'https://example.com',
-      },
-    ];
-    updateData({ ...data, website: newWebsite });
-  }, [data, updateData]);
+    const formData = form.getFieldsValue(true);
+    updateData(appendWebsite(data, formData));
+  }, [data, form, updateData]);
 
   // 删除网站链接
   const handleDeleteWebsite = useCallback(

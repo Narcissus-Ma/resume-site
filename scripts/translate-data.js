@@ -6,6 +6,7 @@ import translate from 'google-translate-api';
 import { format, resolveConfig } from 'prettier';
 
 const DATA_DIRECTORY = path.resolve(process.cwd(), 'src/data');
+const HOME_CATALOG_PATH = path.join(DATA_DIRECTORY, 'home-catalog.json');
 const RESUME_CATALOG_PATH = path.join(DATA_DIRECTORY, 'resume-catalog.json');
 const SOURCE_LANGUAGE = 'zh-CN';
 const TARGET_LANGUAGES = ['en-US', 'ja-JP'];
@@ -84,16 +85,18 @@ const translateResumeCatalog = async (
   return nextCatalog;
 };
 
-const translateHomeData = async () => {
-  const sourcePath = path.join(DATA_DIRECTORY, `homeData_${SOURCE_LANGUAGE}.json`);
-  const sourceData = JSON.parse(await fs.readFile(sourcePath, 'utf8'));
-
-  for (const language of TARGET_LANGUAGES) {
-    const targetPath = path.join(DATA_DIRECTORY, `homeData_${language}.json`);
-    const translatedData = await translateJson(sourceData, language);
-    await writeJsonFile(targetPath, translatedData);
-    console.log(`首页数据翻译完成: ${targetPath}`);
+const translateHomeCatalog = async (
+  catalog,
+  translateContent = (content, language) => translateJson(content, language),
+) => {
+  const nextCatalog = structuredClone(catalog);
+  for (const home of nextCatalog.homes) {
+    const sourceContent = home.contents[SOURCE_LANGUAGE];
+    for (const language of TARGET_LANGUAGES) {
+      home.contents[language] = await translateContent(sourceContent, language);
+    }
   }
+  return nextCatalog;
 };
 
 const translateAllData = async () => {
@@ -103,7 +106,9 @@ const translateAllData = async () => {
   await writeJsonFile(RESUME_CATALOG_PATH, translatedCatalog);
   console.log(`简历目录翻译完成: ${RESUME_CATALOG_PATH}`);
 
-  await translateHomeData();
+  const homeCatalog = JSON.parse(await fs.readFile(HOME_CATALOG_PATH, 'utf8'));
+  await writeJsonFile(HOME_CATALOG_PATH, await translateHomeCatalog(homeCatalog));
+  console.log(`主页目录翻译完成: ${HOME_CATALOG_PATH}`);
   console.log('所有数据翻译完成');
 };
 
@@ -114,4 +119,4 @@ if (isDirectExecution) {
   await translateAllData();
 }
 
-export { translateAllData, translateJson, translateResumeCatalog };
+export { translateAllData, translateHomeCatalog, translateJson, translateResumeCatalog };

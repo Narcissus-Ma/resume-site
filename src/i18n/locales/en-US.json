@@ -110,7 +110,39 @@
     "projectDescription": "Project Description",
     "imagePath": "Image Path",
     "projectLink": "Project Link",
-    "addProject": "Add Project"
+    "addProject": "Add Project",
+    "hero": "Hero Introduction",
+    "occupation": "Occupation",
+    "heroDescription": "Profile Description",
+    "profile": {
+      "label": "Home Profile",
+      "active": "Active",
+      "unsaved": "Unsaved",
+      "setActive": "Set Active",
+      "create": "New",
+      "copy": "Copy",
+      "rename": "Rename",
+      "delete": "Delete",
+      "createTitle": "Create Home Profile",
+      "copyTitle": "Copy Home Profile",
+      "renameTitle": "Rename Home Profile",
+      "namePlaceholder": "Enter a home profile name",
+      "deleteTitle": "Delete Home Profile",
+      "deleteDescription": "Delete “{{name}}”?",
+      "loadFailed": "Failed to Load Home Catalog",
+      "retry": "Retry",
+      "cancel": "Cancel",
+      "unsavedTitle": "Unsaved Home Content",
+      "unsavedDescription": "Save, discard, or cancel before continuing.",
+      "saveAndContinue": "Save and Continue",
+      "discardAndContinue": "Discard Changes"
+    },
+    "language": {
+      "label": "Content Language",
+      "zhCN": "Chinese",
+      "enUS": "English",
+      "jaJP": "Japanese"
+    }
   },
   "resumeEditor": {
     "title": "Resume Editor",

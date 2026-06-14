@@ -360,7 +360,9 @@
               },
               { "category": "开发工具", "items": ["Git", "VS Code", "Docker", "Postman"] },
               { "category": "AI辅助开发", "items": ["Cursor", "cline", "Ollama", "copilot"] },
-              { "category": "agent开发", "items": ["新技能", "新技能", "新技能"] }
+              { "category": "agent开发", "items": ["新技能", "新技能", "新技能"] },
+              { "category": "123", "items": ["1234", "5678", "新333"] },
+              { "category": "新技能类别", "items": ["新技能"] }
             ]
           },
           "experience": [
@@ -383,7 +385,9 @@
               "company": "深圳市易佰网络科技有限公司",
               "position": "网站运营",
               "period": "2017.09 - 2019.08"
-            }
+            },
+            { "company": "222", "position": "新职位", "period": "2024.01 - 2024.12" },
+            { "company": "新公司", "position": "新职位", "period": "2024.01 - 2024.12" }
           ],
           "projects": [
             {
@@ -405,10 +409,15 @@
               "name": "餐饮SaaS管理平台",
               "period": "2021.06 - 2021.12",
               "description": "餐饮SaaS是一个为商家提供店铺管理、人员管理、销售业务统计、广告投放、活动设置的管理平台。"
-            }
+            },
+            { "name": "123", "period": "2024.01 - 2024.12", "description": "项目描述" },
+            { "name": "新项目", "period": "2024.01 - 2024.12", "description": "项目描述" },
+            { "name": "123", "period": "2024.01 - 2024.12", "description": "项目描述" }
           ],
           "education": [
-            { "school": "湖北第二师范学院", "degree": "本科", "period": "2013.09 - 2017.06" }
+            { "school": "湖北第二师范学院", "degree": "本科", "period": "2013.09 - 2017.06" },
+            { "school": "122", "degree": "学历", "period": "2024.01 - 2024.12" },
+            { "school": "新学校", "degree": "学历", "period": "2024.01 - 2024.12" }
           ],
           "website": [
             { "name": "博客", "url": "https://blog.384385.xyz" },
@@ -417,7 +426,9 @@
             { "name": "自定义hooks", "url": "https://narcissus-ma.github.io/narcissus-hooks/" },
             { "name": "前端编码规范工程化", "url": "https://narcissus-ma.github.io/nm-spec" },
             { "name": "GitHub", "url": "https://github.com/Narcissus-Ma" },
-            { "name": "Gitee", "url": "https://gitee.com/Narcissus-ma" }
+            { "name": "Gitee", "url": "https://gitee.com/Narcissus-ma" },
+            { "name": "1232", "url": "https://example.com" },
+            { "name": "新网站", "url": "https://example.com" }
           ]
         },
         "en-US": {

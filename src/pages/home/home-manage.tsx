@@ -1,9 +1,21 @@
-import { Button, Form, Input, Card, Space, Typography, InputNumber } from 'antd';
+import {
+  Button,
+  Form,
+  Input,
+  Card,
+  Space,
+  Typography,
+  InputNumber,
+  Modal,
+  Result,
+  Spin,
+} from 'antd';
 
 import { PlusOutlined, DeleteOutlined, SaveOutlined, EyeOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import HomeProfileToolbar from '@/components/home-profile-toolbar';
 import useHomeManage from '@/hooks/use-home-manage';
 
 const { TextArea } = Input;
@@ -12,8 +24,26 @@ const { Title, Text } = Typography;
 const HomeManage = () => {
   const {
     form,
+    catalog,
     data,
     loading,
+    error,
+    isDirty,
+    selectedHomeId,
+    selectedLanguage,
+    unsavedDialogOpen,
+    markDirty,
+    selectHome,
+    selectLanguage,
+    createHome,
+    copyHome,
+    renameHome,
+    deleteHome,
+    setActiveHome,
+    retry,
+    confirmSaveAndContinue,
+    confirmDiscardAndContinue,
+    cancelPendingAction,
     handleSave,
     handleAddSkill,
     handleDeleteSkill,
@@ -31,6 +61,25 @@ const HomeManage = () => {
           {t('homeManage.title')}
         </Title>
 
+        {catalog && (
+          <Card className="mb-4">
+            <HomeProfileToolbar
+              catalog={catalog}
+              isDirty={isDirty}
+              loading={loading}
+              selectedHomeId={selectedHomeId}
+              selectedLanguage={selectedLanguage}
+              onCopyHome={copyHome}
+              onCreateHome={createHome}
+              onDeleteHome={deleteHome}
+              onRenameHome={renameHome}
+              onSelectHome={selectHome}
+              onSelectLanguage={selectLanguage}
+              onSetActiveHome={setActiveHome}
+            />
+          </Card>
+        )}
+
         <Card className="mb-4">
           <Space>
             <Button icon={<SaveOutlined />} loading={loading} type="primary" onClick={handleSave}>
@@ -44,8 +93,38 @@ const HomeManage = () => {
           </Space>
         </Card>
 
+        {loading && !data && (
+          <div className="flex min-h-60 items-center justify-center">
+            <Spin size="large" />
+          </div>
+        )}
+        {error && !data && (
+          <Result
+            extra={<Button onClick={retry}>{t('homeManage.profile.retry')}</Button>}
+            status="error"
+            subTitle={error}
+            title={t('homeManage.profile.loadFailed')}
+          />
+        )}
+
         {data && (
-          <Form form={form} initialValues={data} layout="vertical">
+          <Form form={form} initialValues={data} layout="vertical" onValuesChange={markDirty}>
+            <Card className="mb-4" title={t('homeManage.hero')}>
+              <Form.Item
+                label={t('homeManage.occupation')}
+                name="occupation"
+                rules={[{ required: true }]}
+              >
+                <Input placeholder={t('homeManage.occupation')} />
+              </Form.Item>
+              <Form.Item
+                label={t('homeManage.heroDescription')}
+                name="description"
+                rules={[{ required: true }]}
+              >
+                <TextArea placeholder={t('homeManage.heroDescription')} rows={3} />
+              </Form.Item>
+            </Card>
             {/* 技能 */}
             <Card className="mb-4" title={t('homeManage.skills')}>
               {data.skills.map((_, index) => (
@@ -205,6 +284,25 @@ const HomeManage = () => {
           </Form>
         )}
       </div>
+      <Modal
+        closable={false}
+        maskClosable={false}
+        open={unsavedDialogOpen}
+        title={t('homeManage.profile.unsavedTitle')}
+        footer={[
+          <Button key="cancel" onClick={cancelPendingAction}>
+            {t('homeManage.profile.cancel')}
+          </Button>,
+          <Button key="discard" danger onClick={confirmDiscardAndContinue}>
+            {t('homeManage.profile.discardAndContinue')}
+          </Button>,
+          <Button key="save" type="primary" onClick={confirmSaveAndContinue}>
+            {t('homeManage.profile.saveAndContinue')}
+          </Button>,
+        ]}
+      >
+        {t('homeManage.profile.unsavedDescription')}
+      </Modal>
     </div>
   );
 };

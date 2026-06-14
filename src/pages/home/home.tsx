@@ -13,12 +13,13 @@ import SkillsSection from '../../components/skills-section';
 // 导入项目图片
 
 const Home: React.FC = () => {
-  const { darkMode, toggleTheme, skills, experiences, projects } = useHome();
+  const { darkMode, toggleTheme, occupation, description, skills, experiences, projects } =
+    useHome();
 
   return (
     <div className="theme-page min-h-screen font-sans">
       <Header darkMode={darkMode} toggleTheme={toggleTheme} />
-      <HomeSection darkMode={darkMode} />
+      <HomeSection darkMode={darkMode} description={description} occupation={occupation} />
       <SkillsSection darkMode={darkMode} skills={skills} />
       <AboutSection darkMode={darkMode} experiences={experiences} />
       <ProjectsSection darkMode={darkMode} projects={projects} />

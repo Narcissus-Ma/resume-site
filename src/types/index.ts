@@ -28,7 +28,30 @@ export interface ThemeProps {
 
 // 主页数据类型
 export interface HomeData {
+  occupation: string;
+  description: string;
   skills: Skill[];
   experiences: Experience[];
   projects: Project[];
+}
+
+export type HomeLanguage = 'zh-CN' | 'en-US' | 'ja-JP';
+
+export const HOME_LANGUAGES: HomeLanguage[] = ['zh-CN', 'en-US', 'ja-JP'];
+
+export interface HomeProfile {
+  id: string;
+  name: string;
+  contents: Record<HomeLanguage, HomeData>;
+}
+
+export interface HomeCatalog {
+  schemaVersion: 1;
+  activeHomeId: string;
+  homes: HomeProfile[];
+}
+
+export interface HomeCatalogMutationResult {
+  catalog: HomeCatalog;
+  homeId: string;
 }
