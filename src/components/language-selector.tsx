@@ -7,8 +7,10 @@ const LanguageSelector = () => {
 
   return (
     <Select
+      aria-label="选择语言"
+      className="language-selector"
       options={optionsConfig}
-      style={{ width: 100, height: 20, fontSize: 12 }}
+      style={{ width: 100 }}
       value={i18n.language}
       onChange={handleChange}
     />

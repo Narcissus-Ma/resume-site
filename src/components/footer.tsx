@@ -11,21 +11,16 @@ import { ThemeProps } from '../types';
 
 const { Title, Paragraph } = Typography;
 
-const Footer: React.FC<ThemeProps> = ({ darkMode }) => {
+const Footer: React.FC<ThemeProps> = () => {
   const { t } = useTranslation();
   return (
-    <footer className={`py-12 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-900 text-white'}`}>
+    <footer className="border-t border-[var(--color-border)] bg-slate-950 py-12 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center">
-          <Title
-            className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-white'}`}
-            level={4}
-          >
+          <Title className="mb-4 text-2xl font-bold text-white" level={4}>
             {t('footer.title')}
           </Title>
-          <Paragraph
-            className={`max-w-2xl mx-auto mb-8 ${darkMode ? 'text-gray-300' : 'text-gray-400'}`}
-          >
+          <Paragraph className="mx-auto mb-8 max-w-2xl text-slate-300">
             {t('footer.description')}
           </Paragraph>
           <Space className="justify-center" size="large">
@@ -42,7 +37,7 @@ const Footer: React.FC<ThemeProps> = ({ darkMode }) => {
               <MailOutlined className="text-xl" />
             </a>
           </Space>
-          <div className={`mt-8 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+          <div className="mt-8 text-sm text-slate-400">
             {t('footer.copyright', { year: new Date().getFullYear() })}
           </div>
         </div>

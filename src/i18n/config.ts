@@ -1,4 +1,4 @@
-import i18n from 'i18next';
+import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 // 导入翻译资源
@@ -18,7 +18,9 @@ const resources = {
   },
 };
 
-i18n.use(initReactI18next).init({
+const i18next = createInstance();
+
+i18next.use(initReactI18next).init({
   resources,
   lng: 'zh-CN', // 默认语言
   fallbackLng: 'zh-CN', // 回退语言
@@ -27,4 +29,4 @@ i18n.use(initReactI18next).init({
   },
 });
 
-export default i18n;
+export default i18next;

@@ -13,7 +13,7 @@ interface ProjectsSectionProps extends ThemeProps {
   projects?: Project[];
 }
 
-const ProjectsSection: React.FC<ProjectsSectionProps> = ({ darkMode, projects: propProjects }) => {
+const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects: propProjects }) => {
   const { t } = useTranslation();
   // 使用传入的projects参数，如果没有则使用默认模拟数据
   const projects = propProjects || [
@@ -39,45 +39,38 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ darkMode, projects: p
   ];
 
   return (
-    <section className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`} id="part-4">
+    <section className="theme-page py-20" id="part-4">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <Title
-            className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}
-            level={2}
-          >
+          <Title className="theme-text-primary mb-2 text-3xl font-bold" level={2}>
             {t('projects.title')}
           </Title>
-          <Paragraph className={`text-gray-500 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-            {t('projects.recent')}
-          </Paragraph>
+          <Paragraph className="theme-text-secondary">{t('projects.recent')}</Paragraph>
         </div>
 
         <div className="max-w-4xl mx-auto">
           <Carousel arrows autoplay dots autoplaySpeed={5000} className="relative">
-            {projects.map((project, index) => (
-              <div key={index} className="flex items-center justify-center py-8 px-[50px]">
-                <div className="flex items-center">
+            {projects.map((project) => (
+              <div
+                key={project.title}
+                className="flex items-center justify-center px-4 py-8 sm:px-12"
+              >
+                <div className="flex min-w-0 flex-col items-center gap-6 md:flex-row md:gap-8">
                   {/* 项目图片 */}
-                  <div className="w-64 h-64">
+                  <div className="h-56 w-full max-w-64 shrink-0 sm:h-64 sm:w-64">
                     <img
                       alt={project.title}
-                      className={`w-full h-full object-cover rounded-lg shadow-lg ${darkMode ? 'border border-gray-700 brightness-90' : ''}`}
+                      className="h-full w-full rounded-lg border border-[var(--color-border)] object-cover shadow-lg"
                       src={project.image}
                     />
                   </div>
 
                   {/* 项目信息 */}
-                  <div className="ml-8">
-                    <Title
-                      level={4}
-                      className={`text-2xl font-bold mb-4 ${
-                        darkMode ? 'text-white' : 'text-gray-800'
-                      }`}
-                    >
+                  <div className="min-w-0 text-center md:text-left">
+                    <Title className="theme-text-primary mb-4 text-2xl font-bold" level={4}>
                       {project.title}
                     </Title>
-                    <Paragraph className={`mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                    <Paragraph className="theme-text-secondary mb-6">
                       {project.description}
                     </Paragraph>
                     <Button

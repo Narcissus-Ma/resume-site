@@ -26,7 +26,7 @@ const useBackendStatus = () => {
 
         clearTimeout(timeoutId); // 清除超时定时器
         setIsBackendAvailable(response.ok);
-      } catch (error) {
+      } catch {
         // 请求失败或超时，说明后台服务未启动
         setIsBackendAvailable(false);
       } finally {

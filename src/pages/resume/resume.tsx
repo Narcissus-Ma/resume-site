@@ -18,9 +18,9 @@ const Resume = () => {
   const { isBackendAvailable } = useBackendStatus();
   const { t } = useTranslation();
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="theme-page min-h-screen">
       <Header onExportClick={() => setIsModalOpen(true)} />
-      <main className="container mx-auto px-4 py-8" id="resume-content">
+      <main className="container mx-auto max-w-5xl px-4 py-8" id="resume-content">
         {process.env.NODE_ENV === 'development' && isBackendAvailable && (
           <div className="mb-6 flex justify-end">
             <Link to="/resume-editor">

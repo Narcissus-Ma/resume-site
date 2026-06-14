@@ -1,12 +1,13 @@
 import { RouterProvider } from 'react-router-dom';
 
 import router from '@/router';
+import { ThemeProvider } from '@/theme/theme-context';
 
 function App() {
   return (
-    <div>
+    <ThemeProvider>
       <RouterProvider router={router} />
-    </div>
+    </ThemeProvider>
   );
 }
 

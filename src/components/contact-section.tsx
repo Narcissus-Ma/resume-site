@@ -18,21 +18,13 @@ import { ThemeProps } from '../types';
 
 const { Title, Text } = Typography;
 
-const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
+const ContactSection: React.FC<ThemeProps> = () => {
   const { t } = useTranslation();
   return (
-    <section
-      id="part-5"
-      className={`min-h-screen py-20 ${
-        darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-gray-50 to-gray-100'
-      }`}
-    >
+    <section className="theme-section min-h-screen py-20" id="part-5">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Title
-            className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}
-            level={2}
-          >
+          <Title className="theme-text-primary mb-4 text-4xl font-bold" level={2}>
             {t('contact.title')}
           </Title>
           <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
@@ -40,69 +32,43 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
 
         <Row justify="center">
           <Col md={12} xs={24}>
-            <Card className="border-0 shadow-lg">
+            <Card className="theme-surface">
               <div className="p-8">
                 <Row gutter={[24, 24]}>
                   <Col md={12} xs={24}>
                     <div className="flex items-start space-x-4 mb-6">
                       <PhoneOutlined className="text-blue-500 text-2xl mt-1" />
                       <div>
-                        <Title
-                          level={5}
-                          className={`text-lg font-semibold ${
-                            darkMode ? 'text-white' : 'text-gray-800'
-                          }`}
-                        >
+                        <Title className="theme-text-primary text-lg font-semibold" level={5}>
                           {t('contact.phone')}
                         </Title>
-                        <Text className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
-                          138-1234-5678
-                        </Text>
+                        <Text className="theme-text-secondary">138-1234-5678</Text>
                       </div>
                     </div>
 
                     <div className="flex items-start space-x-4 mb-6">
                       <MailOutlined className="text-blue-500 text-2xl mt-1" />
                       <div>
-                        <Title
-                          level={5}
-                          className={`text-lg font-semibold ${
-                            darkMode ? 'text-white' : 'text-gray-800'
-                          }`}
-                        >
+                        <Title className="theme-text-primary text-lg font-semibold" level={5}>
                           {t('contact.email')}
                         </Title>
-                        <Text className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
-                          contact@example.com
-                        </Text>
+                        <Text className="theme-text-secondary">contact@example.com</Text>
                       </div>
                     </div>
 
                     <div className="flex items-start space-x-4">
                       <EnvironmentOutlined className="text-blue-500 text-2xl mt-1" />
                       <div>
-                        <Title
-                          level={5}
-                          className={`text-lg font-semibold ${
-                            darkMode ? 'text-white' : 'text-gray-800'
-                          }`}
-                        >
+                        <Title className="theme-text-primary text-lg font-semibold" level={5}>
                           {t('contact.address')}
                         </Title>
-                        <Text className={darkMode ? 'text-gray-300' : 'text-gray-600'}>
-                          北京市海淀区中关村科技园
-                        </Text>
+                        <Text className="theme-text-secondary">北京市海淀区中关村科技园</Text>
                       </div>
                     </div>
                   </Col>
 
                   <Col md={12} xs={24}>
-                    <Title
-                      level={5}
-                      className={`text-lg font-semibold mb-4 ${
-                        darkMode ? 'text-white' : 'text-gray-800'
-                      }`}
-                    >
+                    <Title className="theme-text-primary mb-4 text-lg font-semibold" level={5}>
                       {t('contact.socialMedia')}
                     </Title>
                     <Space wrap size="large">
@@ -121,12 +87,7 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
                     </Space>
 
                     <div className="mt-8">
-                      <Title
-                        level={5}
-                        className={`text-lg font-semibold mb-4 ${
-                          darkMode ? 'text-white' : 'text-gray-800'
-                        }`}
-                      >
+                      <Title className="theme-text-primary mb-4 text-lg font-semibold" level={5}>
                         {t('contact.sendMessage')}
                       </Title>
                       <div className="space-y-4">
@@ -140,11 +101,9 @@ const ContactSection: React.FC<ThemeProps> = ({ darkMode }) => {
                         </Button>
                         <Button
                           block
+                          className="border-[var(--color-border)] bg-[var(--color-surface-muted)] text-[var(--color-text-primary)]"
                           size="large"
                           type="default"
-                          className={
-                            darkMode ? 'border-gray-600 bg-gray-700 text-white' : 'border-gray-300'
-                          }
                         >
                           {t('contact.appointment')}
                         </Button>

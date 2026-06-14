@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Anchor, Button } from 'antd';
+import { Anchor, Button, Dropdown } from 'antd';
 
-import { MoonOutlined, SunOutlined, SettingOutlined } from '@ant-design/icons';
+import { MenuOutlined, MoonOutlined, SettingOutlined, SunOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -14,48 +14,60 @@ import LanguageSelector from './language-selector';
 const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
   const { isBackendAvailable } = useBackendStatus();
   const { t } = useTranslation();
+  const navigationItems = [
+    {
+      key: 'part-1',
+      href: '#part-1',
+      title: t('common.home'),
+    },
+    {
+      key: 'part-2',
+      href: '#part-2',
+      title: t('resume.skills'),
+    },
+    {
+      key: 'part-3',
+      href: '#part-3',
+      title: t('common.about'),
+    },
+    {
+      key: 'part-4',
+      href: '#part-4',
+      title: t('resume.projects'),
+    },
+    {
+      key: 'part-5',
+      href: '#part-5',
+      title: t('common.contact'),
+    },
+  ];
+  const mobileMenuItems = navigationItems.map((item) => ({
+    key: item.key,
+    label: <a href={item.href}>{item.title}</a>,
+  }));
+
   return (
-    <div
-      className={`sticky top-0 z-50 ${
-        darkMode ? 'bg-gray-800/80 text-white' : 'bg-white/80 text-gray-800'
-      } backdrop-blur-md shadow-sm`}
-    >
-      <div className="container mx-auto px-4 flex justify-between items-center">
+    <header className="theme-header sticky top-0 z-50 shadow-sm backdrop-blur-md">
+      <div className="container mx-auto flex min-h-16 items-center justify-between gap-3 px-4">
         <Anchor
           affix={false}
+          className="hidden md:block"
           direction="horizontal"
-          items={[
-            {
-              key: 'part-1',
-              href: '#part-1',
-              title: t('common.home'),
-            },
-            {
-              key: 'part-2',
-              href: '#part-2',
-              title: t('resume.skills'),
-            },
-            {
-              key: 'part-3',
-              href: '#part-3',
-              title: t('common.about'),
-            },
-            {
-              key: 'part-4',
-              href: '#part-4',
-              title: t('resume.projects'),
-            },
-            {
-              key: 'part-5',
-              href: '#part-5',
-              title: t('common.contact'),
-            },
-          ]}
+          items={navigationItems}
         />
-        <div className="flex items-center">
+        <Dropdown menu={{ items: mobileMenuItems }} placement="bottomLeft" trigger={['click']}>
+          <Button
+            aria-label="打开页面导航"
+            className="theme-text-primary md:hidden"
+            icon={<MenuOutlined />}
+            type="text"
+          />
+        </Dropdown>
+        <div className="flex min-w-0 items-center gap-1">
           <LanguageSelector />
           <Button
-            className={`rounded-full ml-2 ${darkMode ? 'text-yellow-300' : 'text-gray-700'}`}
+            aria-label={darkMode ? '切换到亮色主题' : '切换到暗色主题'}
+            className="theme-text-primary rounded-full"
             icon={darkMode ? <SunOutlined /> : <MoonOutlined />}
             type="text"
             onClick={toggleTheme}
@@ -63,7 +75,8 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
           {process.env.NODE_ENV === 'development' && isBackendAvailable && (
             <Link to="/home-manage">
               <Button
-                className={`rounded-full mr-2 ${darkMode ? 'text-blue-300' : 'text-gray-700'}`}
+                aria-label="打开首页管理"
+                className="theme-text-primary rounded-full"
                 icon={<SettingOutlined />}
                 type="text"
               />
@@ -71,7 +84,7 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
           )}
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

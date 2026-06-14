@@ -73,7 +73,7 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit, correctT
       overlayClassName="modal-overlay"
       onRequestClose={onClose}
     >
-      <div className="bg-white p-6 rounded-lg max-w-md mx-auto">
+      <div className="mx-auto max-w-md rounded-lg bg-[var(--color-surface)] p-6 text-[var(--color-text-primary)]">
         <h2 className="text-2xl font-bold mb-4">{t('pdfModal.title')}</h2>
         <div className="flex justify-end mb-4">
           <label className="flex items-center space-x-2">
@@ -89,7 +89,7 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit, correctT
         {isTokenForm ? (
           <form className="space-y-4" onSubmit={handleTokenValidation}>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="theme-text-secondary block text-sm font-medium">
                 {t('pdfModal.tokenLabel')}
               </label>
               <input
@@ -103,14 +103,14 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit, correctT
             </div>
             <div className="flex justify-end space-x-4">
               <button
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+                className="rounded-md bg-[var(--color-surface-muted)] px-4 py-2 text-sm font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-border)]"
                 type="button"
                 onClick={onClose}
               >
                 {t('common.cancel')}
               </button>
               <button
-                className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary-dark disabled:opacity-50"
+                className="rounded-md bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-primary-hover)] disabled:opacity-50"
                 disabled={!tokens}
                 type="submit"
               >
@@ -121,7 +121,7 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit, correctT
         ) : (
           <form className="space-y-4" onSubmit={handleFormSubmit}>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="theme-text-secondary block text-sm font-medium">
                 {t('pdfModal.nameLabel')}
               </label>
               <input
@@ -134,7 +134,7 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit, correctT
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="theme-text-secondary block text-sm font-medium">
                 {t('pdfModal.phoneLabel')}
               </label>
               <input
@@ -147,7 +147,7 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit, correctT
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="theme-text-secondary block text-sm font-medium">
                 {t('pdfModal.emailLabel')}
               </label>
               <input
@@ -161,14 +161,14 @@ const PDFModal: React.FC<PDFModalProps> = ({ isOpen, onClose, onSubmit, correctT
             </div>
             <div className="flex justify-end space-x-4">
               <button
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+                className="rounded-md bg-[var(--color-surface-muted)] px-4 py-2 text-sm font-medium text-[var(--color-text-primary)] hover:bg-[var(--color-border)]"
                 type="button"
                 onClick={onClose}
               >
                 {t('common.cancel')}
               </button>
               <button
-                className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary-dark disabled:opacity-50"
+                className="rounded-md bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-primary-hover)] disabled:opacity-50"
                 disabled={!formData.name || !formData.phone || !formData.email}
                 type="submit"
               >

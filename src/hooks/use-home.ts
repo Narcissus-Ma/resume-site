@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import portfolio1 from '@/assets/img/portfolio1.jpg';
 import portfolio2 from '@/assets/img/portfolio2.jpg';
@@ -9,10 +9,7 @@ import useTheme from './use-theme';
 import { useHomeData } from './use-translated-data';
 
 const useHome = () => {
-  const { darkMode, setDarkMode } = useTheme();
-  const toggleTheme = useCallback(() => {
-    setDarkMode(!darkMode);
-  }, [darkMode, setDarkMode]);
+  const { darkMode, toggleTheme } = useTheme();
 
   const homeData = useHomeData();
 
@@ -35,8 +32,8 @@ const useHome = () => {
   });
 
   // 数据状态管理 - 使用多语言数据
-  const skills: Skill[] = useMemo(() => homeData.skills, []);
-  const experiences: Experience[] = useMemo(() => homeData.experiences, []);
+  const skills: Skill[] = useMemo(() => homeData.skills, [homeData.skills]);
+  const experiences: Experience[] = useMemo(() => homeData.experiences, [homeData.experiences]);
   const projects: Project[] = useMemo(() => projectsWithImages, [projectsWithImages]);
 
   return {

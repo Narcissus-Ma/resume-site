@@ -16,11 +16,7 @@ const Home: React.FC = () => {
   const { darkMode, toggleTheme, skills, experiences, projects } = useHome();
 
   return (
-    <div
-      className={`min-h-screen ${
-        darkMode ? 'dark bg-gray-900 text-white' : 'bg-gradient-to-b from-gray-50 to-gray-100'
-      } font-sans`}
-    >
+    <div className="theme-page min-h-screen font-sans">
       <Header darkMode={darkMode} toggleTheme={toggleTheme} />
       <HomeSection darkMode={darkMode} />
       <SkillsSection darkMode={darkMode} skills={skills} />

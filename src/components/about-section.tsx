@@ -14,16 +14,13 @@ interface AboutSectionProps extends ThemeProps {
   experiences: Experience[];
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({ darkMode, experiences }) => {
+const AboutSection: React.FC<AboutSectionProps> = ({ experiences }) => {
   const { t } = useTranslation();
   return (
-    <section className={`min-h-screen py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`} id="part-3">
+    <section className="theme-page min-h-screen overflow-hidden py-20" id="part-3">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Title
-            className={`text-4xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-800'}`}
-            level={2}
-          >
+          <Title className="theme-text-primary mb-4 text-4xl font-bold" level={2}>
             {t('about.title')}
           </Title>
           <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full" />
@@ -35,13 +32,13 @@ const AboutSection: React.FC<AboutSectionProps> = ({ darkMode, experiences }) =>
               <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-100 rounded-full -z-10" />
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-yellow-100 rounded-full -z-10" />
               <div
-                className={`relative w-full rounded-xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-105 ${darkMode ? 'border border-gray-700' : ''}`}
+                className="relative w-full transform overflow-hidden rounded-xl border border-[var(--color-border)] shadow-xl transition-all duration-500 hover:scale-[1.02]"
                 style={{ maxHeight: '600px' }}
               >
                 {/* 图片作为背景 */}
                 <img
                   alt="About me"
-                  className={`w-full h-full object-cover ${darkMode ? 'brightness-90' : ''}`}
+                  className="h-full w-full object-cover"
                   src={aboutImage}
                   style={{ width: '100%', height: '100%' }}
                 />
@@ -59,14 +56,9 @@ const AboutSection: React.FC<AboutSectionProps> = ({ darkMode, experiences }) =>
           </Col>
 
           <Col className="order-2 lg:order-2" lg={10} xs={24}>
-            <Card className="border-0 shadow-lg overflow-hidden">
+            <Card className="theme-surface overflow-hidden">
               <div className="p-6">
-                <Title
-                  level={4}
-                  className={`text-xl font-semibold mb-4 ${
-                    darkMode ? 'text-white' : 'text-gray-800'
-                  }`}
-                >
+                <Title className="theme-text-primary mb-4 text-xl font-semibold" level={4}>
                   {t('about.experience')}
                 </Title>
                 <Timeline
@@ -74,26 +66,19 @@ const AboutSection: React.FC<AboutSectionProps> = ({ darkMode, experiences }) =>
                     color: 'blue',
                     children: (
                       <div>
-                        <Text strong className={darkMode ? 'text-white' : 'text-gray-800'}>
+                        <Text strong className="theme-text-primary">
                           {exp.title} - {exp.company}
                         </Text>
-                        <Paragraph
-                          className={`mt-1 mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
-                        >
+                        <Paragraph className="theme-text-secondary mb-2 mt-1">
                           {exp.description}
                         </Paragraph>
-                        <Text type="secondary">{exp.year}</Text>
+                        <Text className="theme-text-muted">{exp.year}</Text>
                       </div>
                     ),
                   }))}
                 />
 
-                <Title
-                  level={4}
-                  className={`text-xl font-semibold mt-8 mb-4 ${
-                    darkMode ? 'text-white' : 'text-gray-800'
-                  }`}
-                >
+                <Title className="theme-text-primary mb-4 mt-8 text-xl font-semibold" level={4}>
                   {t('about.education')}
                 </Title>
                 <Timeline
@@ -102,12 +87,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ darkMode, experiences }) =>
                       color: 'green',
                       children: (
                         <div>
-                          <Text strong className={darkMode ? 'text-white' : 'text-gray-800'}>
+                          <Text strong className="theme-text-primary">
                             计算机科学与技术硕士
                           </Text>
-                          <Paragraph
-                            className={`mt-1 mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
-                          >
+                          <Paragraph className="theme-text-secondary mb-2 mt-1">
                             北京大学 - 2016-2018
                           </Paragraph>
                         </div>
@@ -117,12 +100,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ darkMode, experiences }) =>
                       color: 'green',
                       children: (
                         <div>
-                          <Text strong className={darkMode ? 'text-white' : 'text-gray-800'}>
+                          <Text strong className="theme-text-primary">
                             软件工程学士
                           </Text>
-                          <Paragraph
-                            className={`mt-1 mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
-                          >
+                          <Paragraph className="theme-text-secondary mb-2 mt-1">
                             清华大学 - 2012-2016
                           </Paragraph>
                         </div>
