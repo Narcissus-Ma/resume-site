@@ -11,7 +11,14 @@ import {
   Spin,
 } from 'antd';
 
-import { PlusOutlined, DeleteOutlined, SaveOutlined, EyeOutlined } from '@ant-design/icons';
+import {
+  ArrowDownOutlined,
+  ArrowUpOutlined,
+  DeleteOutlined,
+  EyeOutlined,
+  PlusOutlined,
+  SaveOutlined,
+} from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
@@ -48,13 +55,16 @@ const HomeManage = () => {
     handleSave,
     handleAddSkill,
     handleDeleteSkill,
+    handleMoveSkill,
     handleAddSkillHighlight,
     handleDeleteSkillHighlight,
     handleMoveSkillHighlight,
     handleAddExperience,
     handleDeleteExperience,
+    handleMoveExperience,
     handleAddProject,
     handleDeleteProject,
+    handleMoveProject,
   } = useHomeManage();
   const { t } = useTranslation();
 
@@ -141,17 +151,34 @@ const HomeManage = () => {
             <Card className="mb-4" title={t('homeManage.skills')}>
               {data.skills.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
-                  <Space align="baseline" className="mb-2">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <Text strong>
                       {t('homeManage.skill')} {index + 1}
                     </Text>
-                    <Button
-                      danger
-                      icon={<DeleteOutlined />}
-                      type="text"
-                      onClick={() => handleDeleteSkill(index)}
-                    />
-                  </Space>
+                    <Space>
+                      <Button
+                        aria-label={t('homeManage.moveSkillUp')}
+                        disabled={index === 0}
+                        icon={<ArrowUpOutlined />}
+                        type="text"
+                        onClick={() => handleMoveSkill(index, -1)}
+                      />
+                      <Button
+                        aria-label={t('homeManage.moveSkillDown')}
+                        disabled={index === data.skills.length - 1}
+                        icon={<ArrowDownOutlined />}
+                        type="text"
+                        onClick={() => handleMoveSkill(index, 1)}
+                      />
+                      <Button
+                        danger
+                        aria-label={t('homeManage.deleteSkill')}
+                        icon={<DeleteOutlined />}
+                        type="text"
+                        onClick={() => handleDeleteSkill(index)}
+                      />
+                    </Space>
+                  </div>
 
                   <Space.Compact block className="mb-2">
                     <Form.Item
@@ -182,17 +209,34 @@ const HomeManage = () => {
             <Card className="mb-4" title={t('homeManage.experience')}>
               {data.experiences.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
-                  <Space align="baseline" className="mb-2">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <Text strong>
                       {t('homeManage.experience')} {index + 1}
                     </Text>
-                    <Button
-                      danger
-                      icon={<DeleteOutlined />}
-                      type="text"
-                      onClick={() => handleDeleteExperience(index)}
-                    />
-                  </Space>
+                    <Space>
+                      <Button
+                        aria-label={t('homeManage.moveExperienceUp')}
+                        disabled={index === 0}
+                        icon={<ArrowUpOutlined />}
+                        type="text"
+                        onClick={() => handleMoveExperience(index, -1)}
+                      />
+                      <Button
+                        aria-label={t('homeManage.moveExperienceDown')}
+                        disabled={index === data.experiences.length - 1}
+                        icon={<ArrowDownOutlined />}
+                        type="text"
+                        onClick={() => handleMoveExperience(index, 1)}
+                      />
+                      <Button
+                        danger
+                        aria-label={t('homeManage.deleteExperience')}
+                        icon={<DeleteOutlined />}
+                        type="text"
+                        onClick={() => handleDeleteExperience(index)}
+                      />
+                    </Space>
+                  </div>
 
                   <Form.Item
                     noStyle
@@ -240,17 +284,34 @@ const HomeManage = () => {
             <Card className="mb-4" title={t('homeManage.projects')}>
               {data.projects.map((_, index) => (
                 <div key={index} className="mb-4 p-4 border rounded">
-                  <Space align="baseline" className="mb-2">
+                  <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
                     <Text strong>
                       {t('homeManage.projects')} {index + 1}
                     </Text>
-                    <Button
-                      danger
-                      icon={<DeleteOutlined />}
-                      type="text"
-                      onClick={() => handleDeleteProject(index)}
-                    />
-                  </Space>
+                    <Space>
+                      <Button
+                        aria-label={t('homeManage.moveProjectUp')}
+                        disabled={index === 0}
+                        icon={<ArrowUpOutlined />}
+                        type="text"
+                        onClick={() => handleMoveProject(index, -1)}
+                      />
+                      <Button
+                        aria-label={t('homeManage.moveProjectDown')}
+                        disabled={index === data.projects.length - 1}
+                        icon={<ArrowDownOutlined />}
+                        type="text"
+                        onClick={() => handleMoveProject(index, 1)}
+                      />
+                      <Button
+                        danger
+                        aria-label={t('homeManage.deleteProject')}
+                        icon={<DeleteOutlined />}
+                        type="text"
+                        onClick={() => handleDeleteProject(index)}
+                      />
+                    </Space>
+                  </div>
 
                   <Form.Item
                     noStyle

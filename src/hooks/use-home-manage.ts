@@ -7,6 +7,9 @@ import {
   appendHomeProject,
   appendHomeSkill,
   appendHomeSkillHighlight,
+  moveHomeExperience,
+  moveHomeProject,
+  moveHomeSkill,
   moveHomeSkillHighlight,
   removeHomeSkillHighlight,
 } from '@/domain/home/rules/home-editor';
@@ -33,6 +36,13 @@ const useHomeManage = () => {
         ...values,
         skills: values.skills.filter((_, itemIndex) => itemIndex !== index),
       });
+    },
+    [current, data, updateData],
+  );
+
+  const handleMoveSkill = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveHomeSkill(data, current(), index, offset));
     },
     [current, data, updateData],
   );
@@ -71,6 +81,13 @@ const useHomeManage = () => {
     [current, data, updateData],
   );
 
+  const handleMoveExperience = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveHomeExperience(data, current(), index, offset));
+    },
+    [current, data, updateData],
+  );
+
   const handleAddProject = useCallback(() => {
     if (data) updateData(appendHomeProject(data, current()));
   }, [current, data, updateData]);
@@ -87,18 +104,28 @@ const useHomeManage = () => {
     [current, data, updateData],
   );
 
+  const handleMoveProject = useCallback(
+    (index: number, offset: -1 | 1) => {
+      if (data) updateData(moveHomeProject(data, current(), index, offset));
+    },
+    [current, data, updateData],
+  );
+
   return {
     form,
     ...management,
     handleAddSkill,
     handleDeleteSkill,
+    handleMoveSkill,
     handleAddSkillHighlight,
     handleDeleteSkillHighlight,
     handleMoveSkillHighlight,
     handleAddExperience,
     handleDeleteExperience,
+    handleMoveExperience,
     handleAddProject,
     handleDeleteProject,
+    handleMoveProject,
   };
 };
 
