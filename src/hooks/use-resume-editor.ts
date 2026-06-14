@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 
 import { Form } from 'antd';
 
+import { appendSkillDescription } from '@/domain/resume/rules/resume-editor';
+
 import useResumeProfileManagement from './use-resume-profile-management';
 
 const useResumeEditor = () => {
@@ -53,12 +55,9 @@ const useResumeEditor = () => {
   // 添加技能描述
   const handleAddSkillDescription = useCallback(() => {
     if (!data) return;
-    const newDescriptions = [...data.basicInfo.skillDescriptions, '新的技能描述'];
-    updateData({
-      ...data,
-      basicInfo: { ...data.basicInfo, skillDescriptions: newDescriptions },
-    });
-  }, [data, updateData]);
+    const formData = form.getFieldsValue(true);
+    updateData(appendSkillDescription(data, formData));
+  }, [data, form, updateData]);
 
   // 删除技能描述
   const handleDeleteSkillDescription = useCallback(
