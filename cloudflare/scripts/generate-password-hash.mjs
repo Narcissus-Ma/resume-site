@@ -1,7 +1,7 @@
 import { pbkdf2Sync, randomBytes } from 'node:crypto';
 import { createInterface } from 'node:readline/promises';
 
-const DEFAULT_ITERATIONS = 210_000;
+const DEFAULT_ITERATIONS = 100_000;
 
 const getPasswordArgument = () => {
   const index = process.argv.indexOf('--password');

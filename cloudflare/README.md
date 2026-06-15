@@ -85,3 +85,12 @@ VITE_PUBLIC_API_TIMEOUT_MS=3000
 - `pnpm backup:remote` 能导出两个目录信封。
 
 README 和 Git 配置中不得记录密码、密码哈希、签名密钥、限流盐、Token 或备份内容。
+
+## 当前生产资源
+
+- Worker：`resume-api`
+- API 域名：`https://resume-api.narcissus2ma.dpdns.org`
+- Production KV：`resume-api-catalog`
+- Preview KV：`resume-api-catalog-preview`
+- 允许来源：`https://narcissus-ma.github.io`、
+  `https://resume.narcissus2ma.dpdns.org`

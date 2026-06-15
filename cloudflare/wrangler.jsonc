@@ -3,8 +3,15 @@
   "name": "resume-api",
   "main": "src/index.ts",
   "compatibility_date": "2025-12-10",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "resume-api.narcissus2ma.dpdns.org",
+      "custom_domain": true,
+    },
+  ],
   "vars": {
-    "ALLOWED_ORIGINS": "http://localhost:3000",
+    "ALLOWED_ORIGINS": "https://narcissus-ma.github.io,https://resume.narcissus2ma.dpdns.org,http://localhost:3000",
     "TOKEN_TTL_SECONDS": "7200",
     "LOGIN_FAILURE_LIMIT": "5",
     "LOGIN_COOLDOWN_SECONDS": "900",
@@ -12,8 +19,8 @@
   "kv_namespaces": [
     {
       "binding": "CATALOG_KV",
-      "id": "请输入生产环境KV命名空间ID",
-      "preview_id": "请输入预览环境KV命名空间ID",
+      "id": "a191a42adb394b0397894f62ad59040d",
+      "preview_id": "2569f1ad76564b359f830a07ee6963f6",
     },
   ],
 }

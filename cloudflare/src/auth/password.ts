@@ -1,8 +1,9 @@
 import { constantTimeEqual, decodeBase64Url, encodeBase64Url } from './encoding';
 
 const encoder = new TextEncoder();
-const DEFAULT_ITERATIONS = 210_000;
+const DEFAULT_ITERATIONS = 100_000;
 const MINIMUM_ITERATIONS = 10_000;
+const MAXIMUM_ITERATIONS = 100_000;
 const KEY_LENGTH_BITS = 256;
 
 interface HashPasswordOptions {
@@ -41,7 +42,11 @@ export const hashPassword = async (
   options: HashPasswordOptions = {},
 ): Promise<string> => {
   const iterations = options.iterations ?? DEFAULT_ITERATIONS;
-  if (!Number.isSafeInteger(iterations) || iterations < MINIMUM_ITERATIONS) {
+  if (
+    !Number.isSafeInteger(iterations) ||
+    iterations < MINIMUM_ITERATIONS ||
+    iterations > MAXIMUM_ITERATIONS
+  ) {
     throw new Error('PBKDF2 迭代次数无效');
   }
 
@@ -61,6 +66,7 @@ export const verifyPassword = async (password: string, storedHash: string): Prom
     extra !== undefined ||
     !Number.isSafeInteger(iterations) ||
     iterations < MINIMUM_ITERATIONS ||
+    iterations > MAXIMUM_ITERATIONS ||
     !salt ||
     salt.length < 8 ||
     !expected ||

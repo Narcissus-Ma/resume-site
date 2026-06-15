@@ -29,5 +29,11 @@ describe('管理员密码哈希', () => {
     await expect(verifyPassword('测试密码', 'pbkdf2-sha256$0$invalid$invalid')).resolves.toBe(
       false,
     );
+    await expect(
+      verifyPassword(
+        '测试密码',
+        'pbkdf2-sha256$100001$AQIDBAUGBwg$M5KLDbyOz1hThBzlD2lE7sjvd1Ojnl0GRTfjVjSgVWg',
+      ),
+    ).resolves.toBe(false);
   });
 });
