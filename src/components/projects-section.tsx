@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Button, Typography, Carousel } from 'antd';
+import { Typography } from 'antd';
 
-import { RightOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
 import { ThemeProps, Project } from '../types';
+import { getProjectCardHref } from './project-card-link';
+import styles from './projects-section.module.css';
 
 const { Title, Paragraph } = Typography;
 
@@ -48,43 +49,47 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects: propProject
           <Paragraph className="theme-text-secondary">{t('projects.recent')}</Paragraph>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <Carousel arrows autoplay dots autoplaySpeed={5000} className="relative">
-            {projects.map((project) => (
-              <div
-                key={project.title}
-                className="flex items-center justify-center px-4 py-8 sm:px-12"
-              >
-                <div className="flex min-w-0 flex-col items-center gap-6 md:flex-row md:gap-8">
-                  {/* 项目图片 */}
-                  <div className="h-56 w-full max-w-64 shrink-0 sm:h-64 sm:w-64">
-                    <img
-                      alt={project.title}
-                      className="h-full w-full rounded-lg border border-[var(--color-border)] object-cover shadow-lg"
-                      src={project.image}
-                    />
-                  </div>
-
-                  {/* 项目信息 */}
-                  <div className="min-w-0 text-center md:text-left">
-                    <Title className="theme-text-primary mb-4 text-2xl font-bold" level={4}>
+        <div className="mx-auto max-w-6xl">
+          <div className={styles.grid}>
+            {projects.map((project) => {
+              const href = getProjectCardHref(project.link);
+              const card = (
+                <article className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <div className={styles.imageWrapper}>
+                      <img alt={project.title} className={styles.image} src={project.image} />
+                    </div>
+                    <Title className={`${styles.title} theme-text-primary`} level={4}>
                       {project.title}
                     </Title>
-                    <Paragraph className="theme-text-secondary mb-6">
-                      {project.description}
-                    </Paragraph>
-                    <Button
-                      className="bg-purple-600 hover:bg-purple-700"
-                      icon={<RightOutlined />}
-                      type="primary"
-                    >
-                      {t('projects.demo')}
-                    </Button>
                   </div>
-                </div>
-              </div>
-            ))}
-          </Carousel>
+                  <Paragraph className={`${styles.description} theme-text-secondary`}>
+                    {project.description}
+                  </Paragraph>
+                </article>
+              );
+
+              if (!href) {
+                return (
+                  <div key={`${project.title}-${project.image}`} className={styles.staticCard}>
+                    {card}
+                  </div>
+                );
+              }
+
+              return (
+                <a
+                  key={`${project.title}-${href}`}
+                  className={styles.cardLink}
+                  href={href}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {card}
+                </a>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

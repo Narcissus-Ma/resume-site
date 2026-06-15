@@ -1,4 +1,3 @@
-@import './assets/styles/carousel.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -163,14 +162,6 @@ select:focus-visible {
 .ant-progress-text,
 .ant-timeline .ant-typography {
   color: var(--color-text-secondary);
-}
-
-.ant-carousel .slick-dots li button {
-  background: var(--color-text-muted);
-}
-
-.ant-carousel .slick-dots li.slick-active button {
-  background: var(--color-primary);
 }
 
 .modal-overlay {
