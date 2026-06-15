@@ -3,6 +3,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './app';
+import { AdminAuthProvider } from './auth/admin-auth-context';
 import './i18n/config';
 import './index.css';
 
@@ -24,6 +25,8 @@ if (process.env.NODE_ENV === 'development' && import.meta.env.VITE_GRAB_ENABLED 
 
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <AdminAuthProvider>
+      <App />
+    </AdminAuthProvider>
   </React.StrictMode>,
 );

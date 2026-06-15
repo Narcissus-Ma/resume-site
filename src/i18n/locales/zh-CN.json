@@ -12,6 +12,17 @@
     "title": "个人简历",
     "settings": "设置"
   },
+  "adminAuth": {
+    "title": "管理员登录",
+    "password": "管理员密码",
+    "passwordRequired": "请输入管理员密码",
+    "login": "登录",
+    "cancel": "取消",
+    "logout": "退出管理",
+    "saveSuccess": "已保存，边缘节点可能短暂显示旧内容",
+    "sessionExpired": "管理员会话已失效，请重新登录",
+    "serviceUnavailable": "管理员登录服务暂时不可用"
+  },
   "footer": {
     "title": "张小明的个人主页",
     "description": "感谢您访问我的个人主页，我期待与您合作，共同创造出色的Web应用！",

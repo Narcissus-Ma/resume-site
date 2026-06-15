@@ -15,14 +15,16 @@ test('API 客户端发送正确的内容更新请求', async () => {
   let requestedInit: RequestInit | undefined;
   const api = createResumeApi({
     baseUrl: 'https://resume-api.example.com/',
+    getToken: () => 'admin-token',
     fetcher: async (input, init) => {
       requestedUrl = String(input);
       requestedInit = init;
-      return Response.json(catalog);
+      return Response.json({ revision: 2, catalog });
     },
   });
 
   const result = await api.updateContent({
+    revision: 1,
     resumeId: 'frontend',
     language: 'zh-CN',
     content: {
@@ -36,12 +38,14 @@ test('API 客户端发送正确的内容更新请求', async () => {
 
   assert.equal(requestedUrl, 'https://resume-api.example.com/api/resume-catalog/content');
   assert.equal(requestedInit?.method, 'PUT');
-  assert.deepEqual(result, catalog);
+  assert.equal(new Headers(requestedInit?.headers).get('Authorization'), 'Bearer admin-token');
+  assert.equal(JSON.parse(String(requestedInit?.body)).revision, 1);
+  assert.deepEqual(result, { revision: 2, catalog });
 });
 
 test('非成功响应转换为统一 API 错误', async () => {
   const api = createResumeApi({
-    baseUrl: 'http://localhost:3001',
+    baseUrl: 'https://api.example.com',
     fetcher: async () =>
       Response.json(
         { error: { code: 'RESUME_IS_ACTIVE', message: '不能删除当前启用岗位' } },
@@ -50,7 +54,7 @@ test('非成功响应转换为统一 API 错误', async () => {
   });
 
   await assert.rejects(
-    () => api.deleteResume('frontend'),
+    () => api.deleteResume('frontend', 1),
     (error: unknown) =>
       error instanceof ResumeApiError &&
       error.status === 409 &&
@@ -61,7 +65,7 @@ test('非成功响应转换为统一 API 错误', async () => {
 
 test('网络错误转换为可展示的中文错误', async () => {
   const api = createResumeApi({
-    baseUrl: 'http://localhost:3001',
+    baseUrl: 'https://api.example.com',
     fetcher: async () => {
       throw new TypeError('fetch failed');
     },

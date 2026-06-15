@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import AdminRouteGuard from '@/components/admin-route-guard';
 import NotFound from '@/pages/error-page/not-found';
 import Home from '@/pages/home/home';
 import HomeManage from '@/pages/home/home-manage';
@@ -34,11 +35,19 @@ const router = createBrowserRouter(
     },
     {
       path: '/resume-editor',
-      element: <ResumeEditor />,
+      element: (
+        <AdminRouteGuard cancelTo="/resume">
+          <ResumeEditor />
+        </AdminRouteGuard>
+      ),
     },
     {
       path: '/home-manage',
-      element: <HomeManage />,
+      element: (
+        <AdminRouteGuard cancelTo="/">
+          <HomeManage />
+        </AdminRouteGuard>
+      ),
     },
     {
       path: '*',

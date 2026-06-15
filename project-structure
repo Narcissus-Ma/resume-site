@@ -31,7 +31,6 @@ resume-site/
 │   │   ├── resumeData_en-US.json
 │   │   └── resumeData_ja-JP.json
 │   ├── hooks/
-│   │   ├── use-backend-status.ts
 │   │   ├── use-home-manage.ts
 │   │   ├── use-home.ts
 │   │   ├── use-resume-editor.ts
@@ -68,11 +67,9 @@ resume-site/
 ├── package.json
 ├── postcss.config.js
 ├── prettier.config.js
-├── server.ts
 ├── tailwind.config.js
 ├── tsconfig.json
 ├── tsconfig.node.json
-├── tsconfig.server.json
 ├── vite.config.d.ts
 ├── vite.config.js
 └── vite.config.ts

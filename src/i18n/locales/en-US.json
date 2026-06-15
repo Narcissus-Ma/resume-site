@@ -12,6 +12,17 @@
     "title": "Personal Resume",
     "settings": "Settings"
   },
+  "adminAuth": {
+    "title": "Administrator Login",
+    "password": "Administrator Password",
+    "passwordRequired": "Enter the administrator password",
+    "login": "Log In",
+    "cancel": "Cancel",
+    "logout": "Log Out",
+    "saveSuccess": "Saved. Edge locations may briefly display older content.",
+    "sessionExpired": "The administrator session has expired. Please log in again.",
+    "serviceUnavailable": "The administrator login service is temporarily unavailable."
+  },
   "footer": {
     "title": "Zhang Xiaoming's Personal Homepage",
     "description": "Thank you for visiting my personal homepage. I look forward to working with you to create excellent web applications!",

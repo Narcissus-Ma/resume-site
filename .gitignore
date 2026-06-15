@@ -24,3 +24,9 @@ dist-ssr
 *.sw? 
 
 .trae/
+
+# Cloudflare Worker 本地状态与敏感配置
+cloudflare/.dev.vars
+cloudflare/.wrangler/
+cloudflare/dist/
+cloudflare/backups/

@@ -66,3 +66,12 @@ export interface HomeCatalogMutationResult {
   catalog: HomeCatalog;
   homeId: string;
 }
+
+export interface HomeCatalogResponse {
+  revision: number;
+  catalog: HomeCatalog;
+}
+
+export interface CreateHomeResponse extends HomeCatalogResponse {
+  homeId: string;
+}

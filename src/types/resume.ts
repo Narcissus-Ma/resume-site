@@ -66,6 +66,15 @@ export interface ResumeCatalogMutationResult {
   resumeId: string;
 }
 
+export interface ResumeCatalogResponse {
+  revision: number;
+  catalog: ResumeCatalog;
+}
+
+export interface CreateResumeResponse extends ResumeCatalogResponse {
+  resumeId: string;
+}
+
 export interface ResumeApiErrorPayload {
   error: {
     code: string;

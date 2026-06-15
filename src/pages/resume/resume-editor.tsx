@@ -5,12 +5,14 @@ import {
   ArrowUpOutlined,
   DeleteOutlined,
   EyeOutlined,
+  LogoutOutlined,
   PlusOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { useAdminAuth } from '@/auth/admin-auth-context';
 import ResumeProfileToolbar from '@/components/resume-profile-toolbar';
 import useResumeEditor from '@/hooks/use-resume-editor';
 
@@ -63,6 +65,26 @@ const ResumeEditor = () => {
     handleSave,
   } = useResumeEditor();
   const { t } = useTranslation();
+  const { logout } = useAdminAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const completeLogout = () => {
+      logout();
+      navigate('/resume');
+    };
+    if (!isDirty) {
+      completeLogout();
+      return;
+    }
+    Modal.confirm({
+      title: t('resumeEditor.profile.unsavedTitle'),
+      content: t('resumeEditor.profile.unsavedDescription'),
+      okText: t('resumeEditor.profile.discardAndContinue'),
+      cancelText: t('common.cancel'),
+      onOk: completeLogout,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
@@ -100,6 +122,9 @@ const ResumeEditor = () => {
                 {t('resumeEditor.preview')}
               </Button>
             </Link>
+            <Button danger icon={<LogoutOutlined />} onClick={handleLogout}>
+              {t('adminAuth.logout')}
+            </Button>
           </Space>
         </Card>
 

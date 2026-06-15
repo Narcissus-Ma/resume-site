@@ -4,15 +4,13 @@ import { Anchor, Button, Dropdown } from 'antd';
 
 import { MenuOutlined, MoonOutlined, SettingOutlined, SunOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
-import useBackendStatus from '@/hooks/use-backend-status';
+import AdminEntryLink from '@/components/admin-entry-link';
 
 import { ThemeProps } from '../types';
 import LanguageSelector from './language-selector';
 
 const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
-  const { isBackendAvailable } = useBackendStatus();
   const { t } = useTranslation();
   const navigationItems = [
     {
@@ -74,16 +72,14 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
             type="text"
             onClick={toggleTheme}
           />
-          {process.env.NODE_ENV === 'development' && isBackendAvailable && (
-            <Link to="/home-manage">
-              <Button
-                aria-label="打开首页管理"
-                className="theme-text-primary rounded-full"
-                icon={<SettingOutlined />}
-                type="text"
-              />
-            </Link>
-          )}
+          <AdminEntryLink to="/home-manage">
+            <Button
+              aria-label="打开首页管理"
+              className="theme-text-primary rounded-full"
+              icon={<SettingOutlined />}
+              type="text"
+            />
+          </AdminEntryLink>
         </div>
       </div>
     </header>

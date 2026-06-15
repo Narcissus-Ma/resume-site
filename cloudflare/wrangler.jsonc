@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "resume-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-12-10",
+  "vars": {
+    "ALLOWED_ORIGINS": "http://localhost:3000",
+    "TOKEN_TTL_SECONDS": "7200",
+    "LOGIN_FAILURE_LIMIT": "5",
+    "LOGIN_COOLDOWN_SECONDS": "900",
+  },
+  "kv_namespaces": [
+    {
+      "binding": "CATALOG_KV",
+      "id": "请输入生产环境KV命名空间ID",
+      "preview_id": "请输入预览环境KV命名空间ID",
+    },
+  ],
+}

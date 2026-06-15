@@ -2,8 +2,15 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { type FormInstance, message } from 'antd';
 
+import { useTranslation } from 'react-i18next';
+
+import {
+  beginManagementSave,
+  completeManagementSave,
+  type ManagementSaveResult,
+} from '@/domain/admin/management-state';
 import { homeApi, HomeApiError } from '@/services/home-api';
-import type { HomeCatalog, HomeData, HomeLanguage } from '@/types';
+import type { HomeCatalog, HomeCatalogResponse, HomeData, HomeLanguage } from '@/types';
 
 interface Options {
   form: FormInstance<HomeData>;
@@ -19,7 +26,9 @@ const findContent = (catalog: HomeCatalog, homeId: string, language: HomeLanguag
 };
 
 const useHomeProfileManagement = ({ form }: Options) => {
+  const { t } = useTranslation();
   const [catalog, setCatalog] = useState<HomeCatalog | null>(null);
+  const [revision, setRevision] = useState(0);
   const [data, setData] = useState<HomeData | null>(null);
   const [selectedHomeId, setSelectedHomeId] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState<HomeLanguage>('zh-CN');
@@ -28,11 +37,13 @@ const useHomeProfileManagement = ({ form }: Options) => {
   const [isDirty, setIsDirty] = useState(false);
   const [unsavedDialogOpen, setUnsavedDialogOpen] = useState(false);
   const pendingAction = useRef<null | (() => Promise<void> | void)>(null);
+  const saving = useRef(false);
 
   const applySelection = useCallback(
-    (nextCatalog: HomeCatalog, homeId: string, language: HomeLanguage) => {
+    (nextCatalog: HomeCatalog, nextRevision: number, homeId: string, language: HomeLanguage) => {
       const content = findContent(nextCatalog, homeId, language);
       setCatalog(nextCatalog);
+      setRevision(nextRevision);
       setSelectedHomeId(homeId);
       setSelectedLanguage(language);
       setData(content);
@@ -47,8 +58,8 @@ const useHomeProfileManagement = ({ form }: Options) => {
     setLoading(true);
     setError(null);
     try {
-      const nextCatalog = await homeApi.getCatalog();
-      applySelection(nextCatalog, nextCatalog.activeHomeId, 'zh-CN');
+      const response = await homeApi.getCatalog();
+      applySelection(response.catalog, response.revision, response.catalog.activeHomeId, 'zh-CN');
     } catch (loadError) {
       setError(errorMessage(loadError));
     } finally {
@@ -60,24 +71,36 @@ const useHomeProfileManagement = ({ form }: Options) => {
 
   const saveCurrent = useCallback(async (): Promise<boolean> => {
     if (!catalog || !selectedHomeId) return false;
+    const attempt = beginManagementSave({ isDirty, isSaving: saving.current });
+    if (!attempt.accepted) return false;
+    saving.current = true;
     try {
       setLoading(true);
       const content = await form.validateFields();
       const nextCatalog = await homeApi.updateContent({
+        revision,
         homeId: selectedHomeId,
         language: selectedLanguage,
         content,
       });
-      applySelection(nextCatalog, selectedHomeId, selectedLanguage);
-      message.success('保存成功');
+      applySelection(nextCatalog.catalog, nextCatalog.revision, selectedHomeId, selectedLanguage);
+      message.success(t('adminAuth.saveSuccess'));
       return true;
     } catch (saveError) {
+      const result: ManagementSaveResult =
+        saveError instanceof HomeApiError && saveError.code === 'CATALOG_VERSION_CONFLICT'
+          ? 'revision-conflict'
+          : saveError instanceof HomeApiError && saveError.status === 401
+            ? 'unauthorized'
+            : 'error';
+      setIsDirty(completeManagementSave(attempt.state, result).isDirty);
       message.error(errorMessage(saveError));
       return false;
     } finally {
+      saving.current = false;
       setLoading(false);
     }
-  }, [applySelection, catalog, form, selectedHomeId, selectedLanguage]);
+  }, [applySelection, catalog, form, isDirty, revision, selectedHomeId, selectedLanguage, t]);
 
   const protect = useCallback(
     (action: () => Promise<void> | void) => {
@@ -91,7 +114,10 @@ const useHomeProfileManagement = ({ form }: Options) => {
   const selectHome = useCallback(
     (homeId: string) => {
       if (!catalog || homeId === selectedHomeId) return;
-      protect(async () => applySelection(await homeApi.getCatalog(), homeId, selectedLanguage));
+      protect(async () => {
+        const response = await homeApi.getCatalog();
+        applySelection(response.catalog, response.revision, homeId, selectedLanguage);
+      });
     },
     [applySelection, catalog, protect, selectedHomeId, selectedLanguage],
   );
@@ -99,18 +125,21 @@ const useHomeProfileManagement = ({ form }: Options) => {
   const selectLanguage = useCallback(
     (language: HomeLanguage) => {
       if (!catalog || language === selectedLanguage) return;
-      protect(async () => applySelection(await homeApi.getCatalog(), selectedHomeId, language));
+      protect(async () => {
+        const response = await homeApi.getCatalog();
+        applySelection(response.catalog, response.revision, selectedHomeId, language);
+      });
     },
     [applySelection, catalog, protect, selectedHomeId, selectedLanguage],
   );
 
   const operation = useCallback(
-    (request: () => Promise<HomeCatalog>, targetId = selectedHomeId) =>
+    (request: () => Promise<HomeCatalogResponse>, targetId = selectedHomeId) =>
       protect(async () => {
         try {
           setLoading(true);
-          const nextCatalog = await request();
-          applySelection(nextCatalog, targetId, selectedLanguage);
+          const response = await request();
+          applySelection(response.catalog, response.revision, targetId, selectedLanguage);
         } catch (operationError) {
           message.error(errorMessage(operationError));
         } finally {
@@ -126,18 +155,19 @@ const useHomeProfileManagement = ({ form }: Options) => {
         try {
           setLoading(true);
           const result = await homeApi.createHome({
+            revision,
             name,
             mode,
             sourceHomeId: mode === 'copy' ? selectedHomeId : undefined,
           });
-          applySelection(result.catalog, result.homeId, 'zh-CN');
+          applySelection(result.catalog, result.revision, result.homeId, 'zh-CN');
         } catch (operationError) {
           message.error(errorMessage(operationError));
         } finally {
           setLoading(false);
         }
       }),
-    [applySelection, protect, selectedHomeId],
+    [applySelection, protect, revision, selectedHomeId],
   );
 
   const confirmSaveAndContinue = useCallback(async () => {
@@ -175,10 +205,14 @@ const useHomeProfileManagement = ({ form }: Options) => {
     selectLanguage,
     createHome: (name: string) => createHome(name, 'empty'),
     copyHome: (name: string) => createHome(name, 'copy'),
-    renameHome: (name: string) => operation(() => homeApi.renameHome(selectedHomeId, name)),
+    renameHome: (name: string) =>
+      operation(() => homeApi.renameHome(selectedHomeId, name, revision)),
     deleteHome: () =>
-      operation(() => homeApi.deleteHome(selectedHomeId), catalog?.activeHomeId ?? selectedHomeId),
-    setActiveHome: () => operation(() => homeApi.setActiveHome(selectedHomeId)),
+      operation(
+        () => homeApi.deleteHome(selectedHomeId, revision),
+        catalog?.activeHomeId ?? selectedHomeId,
+      ),
+    setActiveHome: () => operation(() => homeApi.setActiveHome(selectedHomeId, revision)),
     retry: loadCatalog,
     confirmSaveAndContinue,
     confirmDiscardAndContinue,

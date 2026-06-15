@@ -16,12 +16,14 @@ import {
   ArrowUpOutlined,
   DeleteOutlined,
   EyeOutlined,
+  LogoutOutlined,
   PlusOutlined,
   SaveOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { useAdminAuth } from '@/auth/admin-auth-context';
 import HomeProfileToolbar from '@/components/home-profile-toolbar';
 import HomeSkillHighlightsEditor from '@/components/home-skill-highlights-editor';
 import useHomeManage from '@/hooks/use-home-manage';
@@ -67,6 +69,26 @@ const HomeManage = () => {
     handleMoveProject,
   } = useHomeManage();
   const { t } = useTranslation();
+  const { logout } = useAdminAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    const completeLogout = () => {
+      logout();
+      navigate('/');
+    };
+    if (!isDirty) {
+      completeLogout();
+      return;
+    }
+    Modal.confirm({
+      title: t('homeManage.profile.unsavedTitle'),
+      content: t('homeManage.profile.unsavedDescription'),
+      okText: t('homeManage.profile.discardAndContinue'),
+      cancelText: t('common.cancel'),
+      onOk: completeLogout,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
@@ -104,6 +126,9 @@ const HomeManage = () => {
                 {t('homeManage.preview')}
               </Button>
             </Link>
+            <Button danger icon={<LogoutOutlined />} onClick={handleLogout}>
+              {t('adminAuth.logout')}
+            </Button>
           </Space>
         </Card>
 

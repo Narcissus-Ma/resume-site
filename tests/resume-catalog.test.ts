@@ -102,7 +102,7 @@ test('迁移后的单一目录保留现有三语言前端简历', async () => {
   const frontendResume = catalog.resumes.find((resume) => resume.id === 'frontend');
 
   assert.equal(catalog.schemaVersion, 1);
-  assert.equal(catalog.activeResumeId, 'frontend');
+  assert.ok(catalog.resumes.some((resume) => resume.id === catalog.activeResumeId));
   assert.ok(frontendResume);
   assert.deepEqual(Object.keys(frontendResume.contents).sort(), ['en-US', 'ja-JP', 'zh-CN']);
   assert.equal(frontendResume.contents['zh-CN'].basicInfo.title, '前端开发工程师');

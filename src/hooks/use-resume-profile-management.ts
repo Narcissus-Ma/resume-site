@@ -2,8 +2,20 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { type FormInstance, message } from 'antd';
 
+import { useTranslation } from 'react-i18next';
+
+import {
+  beginManagementSave,
+  completeManagementSave,
+  type ManagementSaveResult,
+} from '@/domain/admin/management-state';
 import { resumeApi, ResumeApiError } from '@/services/resume-api';
-import type { ResumeCatalog, ResumeData, ResumeLanguage } from '@/types/resume';
+import type {
+  ResumeCatalog,
+  ResumeCatalogResponse,
+  ResumeData,
+  ResumeLanguage,
+} from '@/types/resume';
 
 interface UseResumeProfileManagementOptions {
   form: FormInstance<ResumeData>;
@@ -27,7 +39,9 @@ const findContent = (
 };
 
 const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions) => {
+  const { t } = useTranslation();
   const [catalog, setCatalog] = useState<ResumeCatalog | null>(null);
+  const [revision, setRevision] = useState(0);
   const [data, setData] = useState<ResumeData | null>(null);
   const [selectedResumeId, setSelectedResumeId] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState<ResumeLanguage>('zh-CN');
@@ -36,11 +50,18 @@ const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions)
   const [isDirty, setIsDirty] = useState(false);
   const [unsavedDialogOpen, setUnsavedDialogOpen] = useState(false);
   const pendingActionRef = useRef<null | (() => Promise<void> | void)>(null);
+  const savingRef = useRef(false);
 
   const applySelection = useCallback(
-    (nextCatalog: ResumeCatalog, resumeId: string, language: ResumeLanguage) => {
+    (
+      nextCatalog: ResumeCatalog,
+      nextRevision: number,
+      resumeId: string,
+      language: ResumeLanguage,
+    ) => {
       const content = findContent(nextCatalog, resumeId, language);
       setCatalog(nextCatalog);
+      setRevision(nextRevision);
       setSelectedResumeId(resumeId);
       setSelectedLanguage(language);
       setData(content);
@@ -56,8 +77,8 @@ const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions)
     setError(null);
 
     try {
-      const nextCatalog = await resumeApi.getCatalog();
-      applySelection(nextCatalog, nextCatalog.activeResumeId, 'zh-CN');
+      const response = await resumeApi.getCatalog();
+      applySelection(response.catalog, response.revision, response.catalog.activeResumeId, 'zh-CN');
     } catch (loadError) {
       setError(getErrorMessage(loadError));
     } finally {
@@ -73,25 +94,37 @@ const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions)
     if (!catalog || !selectedResumeId) {
       return false;
     }
+    const attempt = beginManagementSave({ isDirty, isSaving: savingRef.current });
+    if (!attempt.accepted) return false;
+    savingRef.current = true;
 
     try {
       setLoading(true);
       const content = await form.validateFields();
       const nextCatalog = await resumeApi.updateContent({
+        revision,
         resumeId: selectedResumeId,
         language: selectedLanguage,
         content,
       });
-      applySelection(nextCatalog, selectedResumeId, selectedLanguage);
-      message.success('保存成功');
+      applySelection(nextCatalog.catalog, nextCatalog.revision, selectedResumeId, selectedLanguage);
+      message.success(t('adminAuth.saveSuccess'));
       return true;
     } catch (saveError) {
+      const result: ManagementSaveResult =
+        saveError instanceof ResumeApiError && saveError.code === 'CATALOG_VERSION_CONFLICT'
+          ? 'revision-conflict'
+          : saveError instanceof ResumeApiError && saveError.status === 401
+            ? 'unauthorized'
+            : 'error';
+      setIsDirty(completeManagementSave(attempt.state, result).isDirty);
       message.error(getErrorMessage(saveError));
       return false;
     } finally {
+      savingRef.current = false;
       setLoading(false);
     }
-  }, [applySelection, catalog, form, selectedLanguage, selectedResumeId]);
+  }, [applySelection, catalog, form, isDirty, revision, selectedLanguage, selectedResumeId, t]);
 
   const runProtectedAction = useCallback(
     (action: () => Promise<void> | void) => {
@@ -111,8 +144,8 @@ const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions)
       if (!catalog || resumeId === selectedResumeId) return;
 
       runProtectedAction(async () => {
-        const latestCatalog = await resumeApi.getCatalog();
-        applySelection(latestCatalog, resumeId, selectedLanguage);
+        const response = await resumeApi.getCatalog();
+        applySelection(response.catalog, response.revision, resumeId, selectedLanguage);
       });
     },
     [applySelection, catalog, runProtectedAction, selectedLanguage, selectedResumeId],
@@ -123,20 +156,22 @@ const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions)
       if (!catalog || language === selectedLanguage) return;
 
       runProtectedAction(async () => {
-        const latestCatalog = await resumeApi.getCatalog();
-        applySelection(latestCatalog, selectedResumeId, language);
+        const response = await resumeApi.getCatalog();
+        applySelection(response.catalog, response.revision, selectedResumeId, language);
       });
     },
     [applySelection, catalog, runProtectedAction, selectedLanguage, selectedResumeId],
   );
 
   const runCatalogOperation = useCallback(
-    (operation: () => Promise<ResumeCatalog>, onSuccess: (nextCatalog: ResumeCatalog) => void) => {
+    (
+      operation: () => Promise<ResumeCatalogResponse>,
+      onSuccess: (response: ResumeCatalogResponse) => void,
+    ) => {
       runProtectedAction(async () => {
         try {
           setLoading(true);
-          const nextCatalog = await operation();
-          onSuccess(nextCatalog);
+          onSuccess(await operation());
         } catch (operationError) {
           message.error(getErrorMessage(operationError));
         } finally {
@@ -152,8 +187,8 @@ const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions)
       runProtectedAction(async () => {
         try {
           setLoading(true);
-          const result = await resumeApi.createResume({ name, mode: 'empty' });
-          applySelection(result.catalog, result.resumeId, 'zh-CN');
+          const result = await resumeApi.createResume({ revision, name, mode: 'empty' });
+          applySelection(result.catalog, result.revision, result.resumeId, 'zh-CN');
           message.success('岗位简历创建成功');
         } catch (operationError) {
           message.error(getErrorMessage(operationError));
@@ -162,7 +197,7 @@ const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions)
         }
       });
     },
-    [applySelection, runProtectedAction],
+    [applySelection, revision, runProtectedAction],
   );
 
   const copyResume = useCallback(
@@ -171,11 +206,12 @@ const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions)
         try {
           setLoading(true);
           const result = await resumeApi.createResume({
+            revision,
             name,
             mode: 'copy',
             sourceResumeId: selectedResumeId,
           });
-          applySelection(result.catalog, result.resumeId, 'zh-CN');
+          applySelection(result.catalog, result.revision, result.resumeId, 'zh-CN');
           message.success('岗位简历复制成功');
         } catch (operationError) {
           message.error(getErrorMessage(operationError));
@@ -184,34 +220,42 @@ const useResumeProfileManagement = ({ form }: UseResumeProfileManagementOptions)
         }
       });
     },
-    [applySelection, runProtectedAction, selectedResumeId],
+    [applySelection, revision, runProtectedAction, selectedResumeId],
   );
 
   const renameResume = useCallback(
     (name: string) => {
       runCatalogOperation(
-        () => resumeApi.renameResume(selectedResumeId, name),
-        (nextCatalog) => applySelection(nextCatalog, selectedResumeId, selectedLanguage),
+        () => resumeApi.renameResume(selectedResumeId, name, revision),
+        (response) =>
+          applySelection(response.catalog, response.revision, selectedResumeId, selectedLanguage),
       );
     },
-    [applySelection, runCatalogOperation, selectedLanguage, selectedResumeId],
+    [applySelection, revision, runCatalogOperation, selectedLanguage, selectedResumeId],
   );
 
   const deleteResume = useCallback(() => {
     if (!catalog) return;
 
     runCatalogOperation(
-      () => resumeApi.deleteResume(selectedResumeId),
-      (nextCatalog) => applySelection(nextCatalog, nextCatalog.activeResumeId, selectedLanguage),
+      () => resumeApi.deleteResume(selectedResumeId, revision),
+      (response) =>
+        applySelection(
+          response.catalog,
+          response.revision,
+          response.catalog.activeResumeId,
+          selectedLanguage,
+        ),
     );
-  }, [applySelection, catalog, runCatalogOperation, selectedLanguage, selectedResumeId]);
+  }, [applySelection, catalog, revision, runCatalogOperation, selectedLanguage, selectedResumeId]);
 
   const setActiveResume = useCallback(() => {
     runCatalogOperation(
-      () => resumeApi.setActiveResume(selectedResumeId),
-      (nextCatalog) => applySelection(nextCatalog, selectedResumeId, selectedLanguage),
+      () => resumeApi.setActiveResume(selectedResumeId, revision),
+      (response) =>
+        applySelection(response.catalog, response.revision, selectedResumeId, selectedLanguage),
     );
-  }, [applySelection, runCatalogOperation, selectedLanguage, selectedResumeId]);
+  }, [applySelection, revision, runCatalogOperation, selectedLanguage, selectedResumeId]);
 
   const confirmSaveAndContinue = useCallback(async () => {
     const saved = await saveCurrent();

@@ -11,14 +11,16 @@ test('主页 API 客户端发送正确内容更新请求', async () => {
   let init: RequestInit | undefined;
   const api = createHomeApi({
     baseUrl: 'https://example.com/',
+    getToken: () => 'admin-token',
     fetcher: async (input, requestInit) => {
       url = String(input);
       init = requestInit;
-      return Response.json(catalog);
+      return Response.json({ revision: 2, catalog });
     },
   });
 
   await api.updateContent({
+    revision: 1,
     homeId: 'frontend',
     language: 'zh-CN',
     content: {
@@ -34,6 +36,8 @@ test('主页 API 客户端发送正确内容更新请求', async () => {
 
   assert.equal(url, 'https://example.com/api/home-catalog/content');
   assert.equal(init?.method, 'PUT');
+  assert.equal(new Headers(init?.headers).get('Authorization'), 'Bearer admin-token');
+  assert.equal(JSON.parse(String(init?.body)).revision, 1);
 });
 
 test('主页 API 将失败响应转换为统一错误', async () => {
@@ -47,7 +51,7 @@ test('主页 API 将失败响应转换为统一错误', async () => {
   });
 
   await assert.rejects(
-    () => api.deleteHome('frontend'),
+    () => api.deleteHome('frontend', 1),
     (error: unknown) =>
       error instanceof HomeApiError && error.status === 409 && error.code === 'HOME_IS_ACTIVE',
   );

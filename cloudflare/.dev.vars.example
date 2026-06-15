@@ -1,0 +1,3 @@
+ADMIN_PASSWORD_HASH=请输入生成后的密码哈希
+AUTH_SIGNING_SECRET=请输入随机签名密钥
+AUTH_RATE_LIMIT_SALT=请输入独立的限流盐
