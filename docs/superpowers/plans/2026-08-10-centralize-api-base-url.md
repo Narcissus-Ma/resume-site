@@ -23,6 +23,7 @@
 ### Task 1: 建立可测试的应用配置模块
 
 **Files:**
+
 - Create: `tests/app-config.test.ts`
 - Create: `src/config/app-config.ts`
 
@@ -99,6 +100,7 @@ git commit -m "refactor: 集中管理 API 基础地址"
 ### Task 2: 让所有 API 默认实例使用集中配置
 
 **Files:**
+
 - Create: `tests/default-api-config.test.ts`
 - Modify: `src/services/admin-auth-api.ts`
 - Modify: `src/services/home-api.ts`
@@ -124,13 +126,12 @@ test('所有 API 默认实例统一使用应用配置的基础地址', async () 
   };
 
   try {
-    const [{ adminAuthApi }, { homeApi }, { publicCatalogApi }, { resumeApi }] =
-      await Promise.all([
-        import('../src/services/admin-auth-api.ts'),
-        import('../src/services/home-api.ts'),
-        import('../src/services/public-catalog-api.ts'),
-        import('../src/services/resume-api.ts'),
-      ]);
+    const [{ adminAuthApi }, { homeApi }, { publicCatalogApi }, { resumeApi }] = await Promise.all([
+      import('../src/services/admin-auth-api.ts'),
+      import('../src/services/home-api.ts'),
+      import('../src/services/public-catalog-api.ts'),
+      import('../src/services/resume-api.ts'),
+    ]);
 
     await adminAuthApi.login('管理员密码');
     await homeApi.getCatalog();
@@ -228,6 +229,7 @@ git commit -m "refactor: 统一 API 服务基础地址配置"
 ### Task 3: 完整质量验证
 
 **Files:**
+
 - Verify only
 
 - [ ] **Step 1: 执行完整测试**

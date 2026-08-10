@@ -53,4 +53,3 @@ src/config/app-config.ts
 - 执行现有 API 单元测试，确认工厂函数的依赖注入行为未改变。
 - 执行完整测试、TypeScript 类型检查、ESLint、Prettier 检查和生产构建。
 - 使用全文搜索确认 `VITE_RESUME_API_BASE_URL` 的运行时代码读取只保留在集中配置模块中。
-

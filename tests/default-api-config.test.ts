@@ -12,13 +12,12 @@ test('所有 API 默认实例统一使用应用配置的基础地址', async () 
   };
 
   try {
-    const [{ adminAuthApi }, { homeApi }, { publicCatalogApi }, { resumeApi }] =
-      await Promise.all([
-        import('../src/services/admin-auth-api.ts'),
-        import('../src/services/home-api.ts'),
-        import('../src/services/public-catalog-api.ts'),
-        import('../src/services/resume-api.ts'),
-      ]);
+    const [{ adminAuthApi }, { homeApi }, { publicCatalogApi }, { resumeApi }] = await Promise.all([
+      import('../src/services/admin-auth-api.ts'),
+      import('../src/services/home-api.ts'),
+      import('../src/services/public-catalog-api.ts'),
+      import('../src/services/resume-api.ts'),
+    ]);
 
     await adminAuthApi.login('管理员密码');
     await homeApi.getCatalog();
