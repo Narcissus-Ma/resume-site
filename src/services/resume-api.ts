@@ -1,4 +1,5 @@
 import { getBrowserAdminToken, invalidateBrowserAdminSession } from '@/auth/admin-session';
+import { appConfig } from '@/config/app-config';
 
 import { ApiClientError, createApiClient } from './api-client';
 import type {
@@ -98,9 +99,8 @@ export const createResumeApi = ({
   };
 };
 
-const apiBaseUrl = import.meta.env?.VITE_RESUME_API_BASE_URL ?? 'http://localhost:8787';
 export const resumeApi = createResumeApi({
-  baseUrl: apiBaseUrl,
+  baseUrl: appConfig.apiBaseUrl,
   getToken: getBrowserAdminToken,
   onUnauthorized: invalidateBrowserAdminSession,
 });

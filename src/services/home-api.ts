@@ -1,4 +1,5 @@
 import { getBrowserAdminToken, invalidateBrowserAdminSession } from '@/auth/admin-session';
+import { appConfig } from '@/config/app-config';
 
 import type { CreateHomeResponse, HomeCatalogResponse, HomeData, HomeLanguage } from '../types';
 import { ApiClientError, createApiClient } from './api-client';
@@ -82,9 +83,8 @@ export const createHomeApi = ({ baseUrl, fetcher, getToken, onUnauthorized }: Ho
   };
 };
 
-const apiBaseUrl = import.meta.env?.VITE_RESUME_API_BASE_URL ?? 'http://localhost:8787';
 export const homeApi = createHomeApi({
-  baseUrl: apiBaseUrl,
+  baseUrl: appConfig.apiBaseUrl,
   getToken: getBrowserAdminToken,
   onUnauthorized: invalidateBrowserAdminSession,
 });

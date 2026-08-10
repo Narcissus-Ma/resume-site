@@ -1,3 +1,5 @@
+import { appConfig } from '@/config/app-config';
+
 interface PublicCatalogApiOptions {
   baseUrl: string;
   fetcher?: typeof fetch;
@@ -33,10 +35,9 @@ export const createPublicCatalogApi = ({
   };
 };
 
-const apiBaseUrl = import.meta.env?.VITE_RESUME_API_BASE_URL ?? 'http://localhost:8787';
 const configuredTimeout = Number(import.meta.env?.VITE_PUBLIC_API_TIMEOUT_MS);
 
 export const publicCatalogApi = createPublicCatalogApi({
-  baseUrl: apiBaseUrl,
+  baseUrl: appConfig.apiBaseUrl,
   timeoutMs: Number.isFinite(configuredTimeout) && configuredTimeout > 0 ? configuredTimeout : 1500,
 });

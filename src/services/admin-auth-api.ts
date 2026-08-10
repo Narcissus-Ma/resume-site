@@ -1,4 +1,5 @@
 import type { AdminSession } from '@/auth/admin-session';
+import { appConfig } from '@/config/app-config';
 
 import { ApiClientError, createApiClient } from './api-client';
 
@@ -37,5 +38,4 @@ export const createAdminAuthApi = ({ baseUrl, fetcher }: AdminAuthApiOptions) =>
   };
 };
 
-const apiBaseUrl = import.meta.env?.VITE_RESUME_API_BASE_URL ?? 'http://localhost:8787';
-export const adminAuthApi = createAdminAuthApi({ baseUrl: apiBaseUrl });
+export const adminAuthApi = createAdminAuthApi({ baseUrl: appConfig.apiBaseUrl });
