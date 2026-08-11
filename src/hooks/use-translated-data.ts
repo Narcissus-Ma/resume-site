@@ -15,13 +15,15 @@ const resumeCatalog = resumeCatalogData as ResumeCatalog;
 // 使用简历数据的Hook
 export const useResumeData = () => {
   const { i18n } = useTranslation();
-  const profile = usePublicResumeProfile(resumeCatalog);
+  const { loading, profile } = usePublicResumeProfile(resumeCatalog);
 
-  return (
-    profile.contents[i18n.language as ResumeLanguage] ??
-    profile.contents['zh-CN'] ??
-    getActiveResumeContent(resumeCatalog, i18n.language as ResumeLanguage)
-  );
+  return {
+    loading,
+    resumeData:
+      profile.contents[i18n.language as ResumeLanguage] ??
+      profile.contents['zh-CN'] ??
+      getActiveResumeContent(resumeCatalog, i18n.language as ResumeLanguage),
+  };
 };
 
 // 使用首页数据的Hook

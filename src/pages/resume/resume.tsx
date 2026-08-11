@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 
 import { EditOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
@@ -13,21 +13,30 @@ import Skills from '@/components/skills';
 import useResume from '@/hooks/use-resume';
 
 const Resume = () => {
-  const { isModalOpen, setIsModalOpen, userInfo, setUserInfo, resumeData } = useResume();
+  const { loading, isModalOpen, setIsModalOpen, userInfo, setUserInfo, resumeData } = useResume();
   const { t } = useTranslation();
   return (
     <div className="theme-page min-h-screen">
       <Header onExportClick={() => setIsModalOpen(true)} />
       <main className="container mx-auto max-w-5xl px-4 py-8" id="resume-content">
-        <div className="mb-6 flex justify-end">
-          <AdminEntryLink to="/resume-editor">
-            <Button icon={<EditOutlined />} type="primary">
-              {t('resume.edit')}
-            </Button>
-          </AdminEntryLink>
-        </div>
-        {resumeData && (
+        {loading ? (
+          <div
+            aria-live="polite"
+            className="flex min-h-[60vh] flex-col items-center justify-center gap-4"
+            role="status"
+          >
+            <Spin size="large" />
+            <p className="theme-text-secondary m-0">{t('resume.loading')}</p>
+          </div>
+        ) : (
           <>
+            <div className="mb-6 flex justify-end">
+              <AdminEntryLink to="/resume-editor">
+                <Button icon={<EditOutlined />} type="primary">
+                  {t('resume.edit')}
+                </Button>
+              </AdminEntryLink>
+            </div>
             <About resumeData={resumeData} userInfo={userInfo} />
             <SkillDescription skillDescriptions={resumeData.basicInfo.skillDescriptions} />
             <Skills skills={resumeData.basicInfo.skills} />

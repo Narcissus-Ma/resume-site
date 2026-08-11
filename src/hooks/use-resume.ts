@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import { ResumeData } from '@/types/resume';
-
 import { useResumeData } from './use-translated-data';
 
 interface UserInfo {
@@ -17,9 +15,10 @@ const useResume = () => {
     phone: '',
     email: '',
   });
-  const resumeData: ResumeData = useResumeData();
+  const { loading, resumeData } = useResumeData();
 
   return {
+    loading,
     isModalOpen,
     setIsModalOpen,
     userInfo,

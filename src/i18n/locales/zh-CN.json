@@ -36,7 +36,8 @@
     "projects": "项目经验",
     "websites": "个人网站",
     "printPdf": "打印PDF",
-    "edit": "编辑简历"
+    "edit": "编辑简历",
+    "loading": "正在加载简历..."
   },
   "home": {
     "welcome": "欢迎访问我的个人网站",

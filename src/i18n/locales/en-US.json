@@ -36,7 +36,8 @@
     "projects": "Projects",
     "websites": "Websites",
     "printPdf": "Print PDF",
-    "edit": "Edit Resume"
+    "edit": "Edit Resume",
+    "loading": "Loading resume..."
   },
   "home": {
     "welcome": "Welcome to my personal website",
