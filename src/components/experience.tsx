@@ -22,7 +22,7 @@ const Experience: React.FC<ExperienceProps> = ({ experience, projects, education
             <div key={project.name} className="border-l-4 border-primary pl-4">
               <h3 className="text-xl font-semibold">{project.name}</h3>
               <p className="theme-text-muted">{project.period}</p>
-              <p className="theme-text-secondary mt-2">{project.description}</p>
+              <p className="theme-text-secondary mt-2 whitespace-pre-line">{project.description}</p>
               <ul className="theme-text-secondary mt-2 list-inside list-disc space-y-1">
                 {project.responsibilities?.map((item: string, index: number) => (
                   <li key={index}>{item}</li>
