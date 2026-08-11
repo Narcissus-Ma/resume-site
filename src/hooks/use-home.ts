@@ -11,7 +11,7 @@ import { useHomeData } from './use-translated-data';
 const useHome = () => {
   const { darkMode, toggleTheme } = useTheme();
 
-  const homeData = useHomeData();
+  const { homeData, loading } = useHomeData();
 
   const projectsWithImages = homeData.projects.map((project: Project) => {
     let imageSrc;
@@ -38,6 +38,7 @@ const useHome = () => {
 
   return {
     darkMode,
+    loading,
     toggleTheme,
     occupation: homeData.occupation,
     description: homeData.description,

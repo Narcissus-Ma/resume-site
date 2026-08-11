@@ -46,7 +46,8 @@
     "occupation": "フロントエンドエンジニア",
     "description": "学習を愛し、生活を愛し、より高品質な仕事成果を生み出します。",
     "viewResume": "履歴書を見る",
-    "scrollDown": "下にスクロール"
+    "scrollDown": "下にスクロール",
+    "loading": "ホームページを読み込んでいます..."
   },
   "about": {
     "title": "私について",

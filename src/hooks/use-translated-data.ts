@@ -29,11 +29,13 @@ export const useResumeData = () => {
 // 使用首页数据的Hook
 export const useHomeData = () => {
   const { i18n } = useTranslation();
-  const profile = usePublicHomeProfile(homeCatalog);
+  const { loading, profile } = usePublicHomeProfile(homeCatalog);
 
-  return (
-    profile.contents[i18n.language as HomeLanguage] ??
-    profile.contents['zh-CN'] ??
-    getActiveHomeContent(homeCatalog, i18n.language as HomeLanguage)
-  );
+  return {
+    homeData:
+      profile.contents[i18n.language as HomeLanguage] ??
+      profile.contents['zh-CN'] ??
+      getActiveHomeContent(homeCatalog, i18n.language as HomeLanguage),
+    loading,
+  };
 };

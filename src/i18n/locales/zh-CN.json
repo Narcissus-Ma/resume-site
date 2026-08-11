@@ -46,7 +46,8 @@
     "occupation": "前端工程师",
     "description": "热爱学习，热爱生活，创造更高质量工作成果。",
     "viewResume": "查看简历",
-    "scrollDown": "往下滑"
+    "scrollDown": "往下滑",
+    "loading": "正在加载主页..."
   },
   "about": {
     "title": "关于我",

@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { Spin } from 'antd';
+
+import { useTranslation } from 'react-i18next';
+
 import useHome from '@/hooks/use-home';
 
 import AboutSection from '../../components/about-section';
@@ -13,8 +17,10 @@ import SkillsSection from '../../components/skills-section';
 // 导入项目图片
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
   const {
     darkMode,
+    loading,
     toggleTheme,
     occupation,
     description,
@@ -28,17 +34,30 @@ const Home: React.FC = () => {
   return (
     <div className="theme-page min-h-screen font-sans">
       <Header darkMode={darkMode} toggleTheme={toggleTheme} />
-      <HomeSection darkMode={darkMode} description={description} occupation={occupation} />
-      <SkillsSection
-        darkMode={darkMode}
-        highlights={skillHighlights}
-        sectionDescription={skillSectionDescription}
-        skills={skills}
-      />
-      <AboutSection darkMode={darkMode} experiences={experiences} />
-      <ProjectsSection darkMode={darkMode} projects={projects} />
-      <ContactSection darkMode={darkMode} />
-      <Footer darkMode={darkMode} />
+      {loading ? (
+        <main
+          aria-live="polite"
+          className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-4"
+          role="status"
+        >
+          <Spin size="large" />
+          <p className="theme-text-secondary m-0">{t('home.loading')}</p>
+        </main>
+      ) : (
+        <>
+          <HomeSection darkMode={darkMode} description={description} occupation={occupation} />
+          <SkillsSection
+            darkMode={darkMode}
+            highlights={skillHighlights}
+            sectionDescription={skillSectionDescription}
+            skills={skills}
+          />
+          <AboutSection darkMode={darkMode} experiences={experiences} />
+          <ProjectsSection darkMode={darkMode} projects={projects} />
+          <ContactSection darkMode={darkMode} />
+          <Footer darkMode={darkMode} />
+        </>
+      )}
     </div>
   );
 };

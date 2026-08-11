@@ -8,28 +8,36 @@ import { publicCatalogApi } from '@/services/public-catalog-api';
 import type { HomeCatalog, HomeProfile } from '@/types';
 import type { ResumeCatalog, ResumeProfile } from '@/types/resume';
 
-interface PublicResumeProfileState {
+interface PublicProfileState<T> {
   loading: boolean;
-  profile: ResumeProfile;
+  profile: T;
 }
 
-export const usePublicHomeProfile = (localCatalog: HomeCatalog): HomeProfile => {
+export const usePublicHomeProfile = (
+  localCatalog: HomeCatalog,
+): PublicProfileState<HomeProfile> => {
   const [profile, setProfile] = useState(() => resolvePublicHomeProfile(localCatalog, null));
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
     void publicCatalogApi.getHome().then((remote) => {
-      if (active) setProfile(resolvePublicHomeProfile(localCatalog, remote));
+      if (active) {
+        setProfile(resolvePublicHomeProfile(localCatalog, remote));
+        setLoading(false);
+      }
     });
     return () => {
       active = false;
     };
   }, [localCatalog]);
 
-  return profile;
+  return { loading, profile };
 };
 
-export const usePublicResumeProfile = (localCatalog: ResumeCatalog): PublicResumeProfileState => {
+export const usePublicResumeProfile = (
+  localCatalog: ResumeCatalog,
+): PublicProfileState<ResumeProfile> => {
   const [profile, setProfile] = useState(() => resolvePublicResumeProfile(localCatalog, null));
   const [loading, setLoading] = useState(true);
 

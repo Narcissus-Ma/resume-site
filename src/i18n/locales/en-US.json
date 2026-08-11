@@ -46,7 +46,8 @@
     "occupation": "Frontend Engineer",
     "description": "Love learning, love life, create higher quality work results.",
     "viewResume": "View Resume",
-    "scrollDown": "Scroll Down"
+    "scrollDown": "Scroll Down",
+    "loading": "Loading homepage..."
   },
   "about": {
     "title": "About Me",
