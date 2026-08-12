@@ -34,7 +34,7 @@
 6. 自定义内容、国际化和主题的文档入口。
 7. 贡献、安全、许可证和推广文档链接。
 
-README 不写入个人姓名、真实 API 域名、KV Namespace ID、Token、密钥或备份数据。线上演示链接使用可替换占位符，并标注发布前需替换。
+README 不写入个人姓名、真实 API 域名、KV Namespace ID、Token、密钥或备份数据。发布前由仓库所有者将 README 的 `DEMO_URL` 占位符替换为真实的公开演示地址；在尚未部署演示时，保留“暂未提供公开演示”的明确文字，不展示无效链接。
 
 ### 协作文档
 
@@ -55,7 +55,9 @@ README 不写入个人姓名、真实 API 域名、KV Namespace ID、Token、密
 
 ## 脱敏策略
 
-`cloudflare/README.md` 的“当前生产资源”段落将改为通用示例，不出现真实 Worker 名称、个人域名、真实 KV ID 或允许来源。配置示例统一用 `api.example.com`、`your-worker-name` 与中文占位符表达。应用运行时的默认 API 地址属于代码行为，本次不修改；README 会说明开源使用者应通过 `VITE_RESUME_API_BASE_URL` 配置自己的地址。
+对外文档范围包括根目录 README、`CONTRIBUTING.md`、`SECURITY.md`、`cloudflare/README.md`、`docs/` 下非历史记录的发布文档，以及 GitHub 模板。实施前先对仓库的 Markdown 文档全文搜索个人生产域名和 KV 标识；按当前扫描结果，只有 `cloudflare/README.md` 需要移除真实资源。其“当前生产资源”段落将改为通用示例，不出现真实 Worker 名称、个人域名、真实 KV ID 或允许来源。配置示例统一用 `api.example.com`、`your-worker-name` 与中文占位符表达。
+
+应用运行时的默认 API 地址、`wrangler.jsonc` 中的生产绑定和历史设计/计划文档属于既有部署与历史记录，本次不修改；README 会说明开源使用者应通过 `VITE_RESUME_API_BASE_URL` 配置自己的地址。发布前检查表将明确要求仓库所有者在公开前再次审查这些非文档配置，按实际部署决定是否进一步迁移或替换。
 
 ## 推广策略
 
@@ -65,8 +67,8 @@ README 不写入个人姓名、真实 API 域名、KV Namespace ID、Token、密
 
 ## 验收标准
 
-- 新访客能在 README 首屏了解项目定位、技术栈、启动方式和演示入口。
-- 文档中不再出现当前个人生产域名、KV Namespace ID 或敏感凭据。
+- 新访客能在 README 首屏了解项目定位、技术栈、启动方式，以及有效演示链接或明确的演示可用性状态。
+- 经全文搜索，对外文档范围中不再出现当前个人生产域名、KV Namespace ID 或敏感凭据；非文档配置和历史记录作为发布前人工复核项被明确标注。
 - 贡献者可根据 `CONTRIBUTING.md` 完成开发、检查和 PR 提交。
 - 反馈者可通过 Issue 模板报告问题或建议，安全问题有明确的非公开反馈路径。
 - 推广文档包含发布前检查、首发内容和至少两周的后续节奏。
