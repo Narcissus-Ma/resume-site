@@ -6,8 +6,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        感谢反馈。请勿在内容中包含密码、密钥、Token、Cookie、真实域名或个人信息。
-        Thank you for the report. Do not include passwords, secrets, tokens, cookies, real domains, or personal information.
+        感谢反馈。安全漏洞请勿通过公开 Issue 提交，请按 [SECURITY.md](../../SECURITY.md) 私下报告。
+        请勿在内容中包含密码、密钥、Token、Cookie、真实生产资源标识、非公开域名或个人信息。
+        Thank you for the report. Do not submit security vulnerabilities through a public issue; report them privately as described in [SECURITY.md](../../SECURITY.md).
+        Do not include passwords, secrets, tokens, cookies, real production resource identifiers, non-public domains, or personal information.
   - type: textarea
     id: description
     attributes:
@@ -57,4 +59,11 @@ body:
     id: evidence
     attributes:
       label: 截图或日志 / Screenshots or logs
-      description: 可选。提交前请移除 Token、Cookie、真实域名和个人信息。 / Optional. Remove tokens, cookies, real domains, and personal information before submitting.
+      description: 可选。提交前请移除 Token、Cookie、真实生产资源标识、非公开域名和个人信息。 / Optional. Remove tokens, cookies, real production resource identifiers, non-public domains, and personal information before submitting.
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: 提交前确认 / Submission checklist
+      options:
+        - label: 我已搜索现有 Issue / I searched existing issues
+          required: true
