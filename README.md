@@ -4,7 +4,7 @@
 >
 > A customizable React portfolio and resume site for personal showcases.
 
-**暂未提供公开演示。** 发布前请将 `DEMO_URL` 替换为实际演示地址；若不提供演示，请保留本说明。
+**暂未提供公开演示。** [在线演示 / Live Demo](DEMO_URL) 为发布前占位链接，发布前必须替换为实际演示地址；若不提供演示，请删除该链接并保留本说明。
 
 ## 项目定位 / About
 
@@ -56,13 +56,13 @@ pnpm dev
 
 ## 环境变量 / Environment Variables
 
-前端默认使用内置静态内容。要连接可选后端，请在本地 `.env` 文件或部署平台的构建环境中设置：
+公开页面内置静态 JSON，作为后端不可用或未返回有效数据时的内容回退。开源使用者应部署自己的后端，并在本地 `.env` 文件或部署平台的构建环境中设置：
 
 ```dotenv
 VITE_RESUME_API_BASE_URL=https://api.example.com
 ```
 
-该变量应指向你自己部署的 API 基地址。不要把 Token、密码、密钥、真实生产资源或备份内容写入仓库。
+该变量应指向你自己部署的 API 基地址。发布仓库前，请人工复核 `src/config/app-config.ts` 与 `cloudflare/wrangler.jsonc`，确保个人生产资源不会随仓库公开。不要把 Token、密码、密钥、真实生产资源或备份内容写入仓库。
 
 ## 自定义内容、语言与主题 / Customize
 
@@ -93,7 +93,7 @@ pnpm format:check
 2. 运行 `pnpm build` 生成 `dist/`。
 3. 使用现有脚本发布：`pnpm deploy`。
 4. 若需要访问可选后端，在 Pages 构建环境设置 `VITE_RESUME_API_BASE_URL`。
-5. 发布前替换 `DEMO_URL`，并确认仓库中不存在私密配置或生产资源标识。
+5. 发布前将在线演示链接中的 `DEMO_URL` 替换为实际地址；若不提供演示，请删除该链接并保留“暂未提供公开演示”说明。
 
 ### Cloudflare Worker（可选后端）
 
@@ -108,7 +108,7 @@ Worker 可为主页与简历内容提供管理接口。安装、配置、检查�
 
 ## 发布前检查 / Before Publishing
 
-- 将 `DEMO_URL` 替换为实际演示地址，或保留“暂未提供公开演示”说明。
+- 将在线演示链接中的 `DEMO_URL` 替换为实际地址；若不提供演示，请删除该链接并保留“暂未提供公开演示”说明。
 - 将 [LICENSE](LICENSE) 中的 `YOUR_NAME` 替换为希望公开显示的主体。
 - 将 [SECURITY.md](SECURITY.md) 中的 `SECURITY_CONTACT` 替换为私下安全联系渠道。
 - 检查示例内容、截图和日志是否已脱敏。

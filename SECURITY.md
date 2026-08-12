@@ -8,7 +8,7 @@
 
 请勿在公开 Issue、讨论区或 Pull Request 中披露凭据、私密配置、漏洞利用代码、完整攻击路径或其他可能帮助攻击者的信息。
 
-请通过私下渠道联系 `SECURITY_CONTACT` 报告安全问题。发布仓库前，维护者必须将该占位符替换为实际且可访问的安全联系邮箱、私信渠道或漏洞报告入口。
+请通过 [GitHub 私密安全报告](https://github.com/OWNER/REPOSITORY/security/advisories/new) 提交安全问题；该链接不会公开报告内容。发布仓库前，维护者必须将其中的 `OWNER/REPOSITORY` 替换为真实仓库路径。也可将 `SECURITY_CONTACT` 配置为补充的私下联系渠道，但它不是唯一报告路径。
 
 报告中建议包含：
 
