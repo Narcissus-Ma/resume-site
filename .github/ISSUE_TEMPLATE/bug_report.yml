@@ -1,0 +1,60 @@
+name: Bug report
+description: 报告可复现的问题 / Report a reproducible problem
+title: '[Bug]: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请勿在内容中包含密码、密钥、Token、Cookie、真实域名或个人信息。
+        Thank you for the report. Do not include passwords, secrets, tokens, cookies, real domains, or personal information.
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述 / Description
+      description: 请清楚说明遇到的问题。 / Clearly describe the problem.
+      placeholder: 请描述问题现象和影响范围。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤 / Steps to reproduce
+      description: 请提供可稳定复现问题的最小步骤。 / Provide the smallest reliable set of reproduction steps.
+      placeholder: |
+        1. 打开……
+        2. 点击……
+        3. 观察到……
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果 / Expected behavior
+      description: 说明你预期发生的结果。 / Describe what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果 / Actual behavior
+      description: 说明实际发生的结果及错误信息。 / Describe what actually happened and any error messages.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境 / Environment
+      description: 请提供浏览器、操作系统、版本和部署方式等信息。 / Include browser, operating system, versions, and deployment details.
+      placeholder: |
+        - 操作系统：
+        - 浏览器及版本：
+        - 项目版本或提交：
+        - 部署方式：
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 截图或日志 / Screenshots or logs
+      description: 可选。提交前请移除 Token、Cookie、真实域名和个人信息。 / Optional. Remove tokens, cookies, real domains, and personal information before submitting.
