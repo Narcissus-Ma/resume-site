@@ -6,15 +6,16 @@
 
 逐项完成并记录结果，不能以“应该已经处理”代替人工复核：
 
-- 运行 `git status`，确认没有误提交的构建产物、日志、备份或本地配置。
+- 工作区检查：运行 `git status --short`，确认没有待提交的构建产物、日志、备份或本地配置；它只检查工作区，不能证明当前受跟踪文件或 Git 历史安全。运行 `git diff --check` 检查补丁中的空白错误。
 - 检查 `.gitignore` 是否覆盖 `.env`、`cloudflare/.dev.vars`、Worker 本地状态、备份和日志。
-- 搜索常见密钥模式，例如 `rg -n -i 'api[_-]?key|secret|token|password|private[_-]?key'`，人工确认命中内容不含真实凭据。
-- 搜索当前生产域名与 KV ID，确认公开文件、Git 历史准备材料、截图和文档中没有个人生产资源。
+- 检查当前树中是否意外跟踪了敏感或构建文件：`git ls-files | rg '(^|/)(\.env(\..*)?|cloudflare/\.dev\.vars|cloudflare/\.wrangler/|cloudflare/backups/|dist/|.*\.log)$'`。命中后先判断文件用途，必要时从受跟踪文件中移除并确保 `.gitignore` 覆盖。
+- 扫描当前受跟踪文件：`git grep -n -i -e 'api[_-]?key' -e 'secret' -e 'token' -e 'password' -e 'private[_-]?key'`。另以相同方式扫描个人生产标识，例如 `git grep -n -i -e '<当前生产域名或KV ID>'`。
+- 扫描 Git 历史：`git log --all -S '<当前生产域名或KV ID>' --oneline`。将命令中的目标替换为自己的个人域名、KV ID、邮箱等标识；命中时先判断是否敏感，必要时在公开前移除或替换受跟踪文件、重写 Git 历史，并轮换任何真正泄露过的凭据。
 - 将根目录 `README.md` 的 `DEMO_URL` 替换为真实、已公开的演示地址；若不提供演示，删除该链接并保留“暂未提供公开演示”说明。
 - 将 `LICENSE` 中的 `YOUR_NAME` 替换为希望公开显示的主体。
 - 将 `SECURITY.md` 中的 `OWNER/REPOSITORY` 替换为真实仓库路径；按需配置 `SECURITY_CONTACT` 作为补充的私下安全联系渠道。
 - 设置仓库简介、Topics 和社交预览图；预览图应使用已脱敏的真实界面截图或项目图形。
-- 逐项检查 `src/config/app-config.ts` 与 `cloudflare/wrangler.jsonc`，再决定个人生产资源是替换为示例、改为环境变量，还是保留在本地未提交配置中。本手册不代表这些配置已经完成脱敏。
+- 逐项检查 `src/config/app-config.ts` 与 `cloudflare/wrangler.jsonc`。`cloudflare/wrangler.jsonc` 是当前受 Git 跟踪的公开配置：发布前必须替换或移除其中真实路由、KV ID、Origin，或将本地生产配置迁出并提交安全的示例；不能将真实配置保留在该文件中。同样审查 seeds、静态 JSON 中的个人主页链接、README、其他文档和 Git 历史。本手册不代表这些配置已经完成脱敏。
 - 运行全部质量命令：`pnpm test`、`pnpm typecheck`、`pnpm lint`、`pnpm format:check`、`pnpm build`；如启用 Worker，还应在 `cloudflare/` 中运行 `pnpm test`、`pnpm typecheck`、`pnpm lint`、`pnpm format:check` 和 `pnpm build`。
 
 ## GitHub 首发设置
@@ -90,6 +91,6 @@ pnpm dev
 - 文章收藏：判断内容是否具有长期参考价值。
 - 有效 Issue：统计可复现、信息完整的问题和功能建议。
 - 部署反馈：记录成功率、常见托管平台和阻塞步骤。
-- 演示访问：观察演示链接是否真正带来试用与后续互动。
+- 演示访问：观察演示链接是否真正带来试用与后续互动。若接入第三方分析，先披露数据收集并遵守适用的隐私与同意要求；也可仅使用托管平台的聚合统计。
 
 两周后形成一页复盘：列出表现最好的渠道与内容角度、前三个用户阻塞点、已完成改进、暂不处理的事项及原因，并据此安排下一个迭代周期。

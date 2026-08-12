@@ -65,7 +65,8 @@ pnpm exec wrangler secret put AUTH_RATE_LIMIT_SALT
 5. 运行 `pnpm build`，确认 dry-run 成功后执行 `pnpm deploy`。
 6. 在 Worker 的 Routes & Domains 中绑定独立自定义 API 域名，例如
    `api.example.com`。该域名只提供 API，不托管前端。
-7. 首次初始化前运行 `pnpm backup:remote` 确认目标 KV 为空，再执行
+7. 首次初始化前，使用 Cloudflare Dashboard 的 KV 控制台或 Wrangler 明确查询
+   `catalog:home` 与 `catalog:resume`；只有确认键不存在或符合预期后，才运行
    `pnpm seed:remote`。
 8. 在 GitHub Pages 和 Cloudflare Pages 的构建环境中分别设置：
 
