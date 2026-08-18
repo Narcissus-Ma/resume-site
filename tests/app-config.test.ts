@@ -3,8 +3,8 @@ import test from 'node:test';
 
 import { createAppConfig } from '../src/config/app-config.ts';
 
-test('未配置 API 地址时使用本地 Worker 默认地址', () => {
-  assert.equal(createAppConfig(undefined).apiBaseUrl, 'http://localhost:8787');
+test('未配置 API 地址时使用生产 API 默认地址', () => {
+  assert.equal(createAppConfig(undefined).apiBaseUrl, 'https://resume-api.narcissus2ma.dpdns.org');
 });
 
 test('环境变量可以覆盖 API 默认地址', () => {
