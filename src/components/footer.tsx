@@ -14,10 +14,10 @@ const { Title, Paragraph } = Typography;
 const Footer: React.FC<ThemeProps> = () => {
   const { t } = useTranslation();
   return (
-    <footer className="border-t border-[var(--color-border)] bg-slate-950 py-12 text-white">
+    <footer className="theme-footer border-t border-[var(--color-border)] bg-slate-950 py-12 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center">
-          <Title className="mb-4 text-2xl font-bold text-white" level={4}>
+          <Title className="theme-footer-title mb-4 text-2xl font-bold text-white" level={4}>
             {t('footer.title')}
           </Title>
           <Paragraph className="mx-auto mb-8 max-w-2xl text-slate-300">

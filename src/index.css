@@ -116,6 +116,10 @@ select:focus-visible {
   color: var(--color-text-primary);
 }
 
+.theme-footer-title.ant-typography {
+  color: inherit !important;
+}
+
 .theme-header .ant-anchor-wrapper-horizontal::before {
   display: none;
 }
