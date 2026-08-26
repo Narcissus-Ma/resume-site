@@ -1,35 +1,41 @@
 import { useMemo } from 'react';
 
-import portfolio1 from '@/assets/img/portfolio1.jpg';
-import portfolio2 from '@/assets/img/portfolio2.jpg';
-import portfolio3 from '@/assets/img/portfolio3.jpg';
+import codeNotesCover from '@/assets/img/projects/code-notes.jpg';
+import fullStackKnowledgeGraphCover from '@/assets/img/projects/full-stack-knowledge-graph.jpg';
+import knowledgeAgentCover from '@/assets/img/projects/knowledge-agent.jpg';
+import lotterySystemCover from '@/assets/img/projects/lottery-system.jpg';
+import lowCodeFormBuilderCover from '@/assets/img/projects/low-code-form-builder.jpg';
+import narcissusHooksCover from '@/assets/img/projects/narcissus-hooks.jpg';
+import narcissusNavigationCover from '@/assets/img/projects/narcissus-navigation.jpg';
+import personalBlogCover from '@/assets/img/projects/personal-blog.jpg';
 import { Experience, Project, Skill } from '@/types';
 
 import useTheme from './use-theme';
 import { useHomeData } from './use-translated-data';
+
+const projectImageByFileName: Record<string, string> = {
+  'narcissus-navigation': narcissusNavigationCover,
+  'code-notes': codeNotesCover,
+  'personal-blog': personalBlogCover,
+  'knowledge-agent': knowledgeAgentCover,
+  'full-stack-knowledge-graph': fullStackKnowledgeGraphCover,
+  'low-code-form-builder': lowCodeFormBuilderCover,
+  'Lottery-System': lotterySystemCover,
+  'narcissus-hooks': narcissusHooksCover,
+};
+
+const resolveProjectImage = (project: Project): string =>
+  projectImageByFileName[project.image] ?? project.image;
 
 const useHome = () => {
   const { darkMode, toggleTheme } = useTheme();
 
   const { homeData, loading } = useHomeData();
 
-  const projectsWithImages = homeData.projects.map((project: Project) => {
-    let imageSrc;
-    switch (project.image) {
-      case 'portfolio1.jpg':
-        imageSrc = portfolio1;
-        break;
-      case 'portfolio2.jpg':
-        imageSrc = portfolio2;
-        break;
-      case 'portfolio3.jpg':
-        imageSrc = portfolio3;
-        break;
-      default:
-        imageSrc = project.image;
-    }
-    return { ...project, image: imageSrc };
-  });
+  const projectsWithImages = homeData.projects.map((project: Project) => ({
+    ...project,
+    image: resolveProjectImage(project),
+  }));
 
   // 数据状态管理 - 使用多语言数据
   const skills: Skill[] = useMemo(() => homeData.skills, [homeData.skills]);
