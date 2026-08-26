@@ -5,7 +5,7 @@ import { Button, Typography } from 'antd';
 import {
   ArrowRightOutlined,
   GithubOutlined,
-  LinkedinOutlined,
+  GitlabFilled,
   MailOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
@@ -42,21 +42,25 @@ const HomeSection: React.FC<HomeSectionProps> = ({ occupation, description }) =>
                 <a
                   aria-label="GitHub"
                   className="theme-text-secondary theme-link transition-colors"
-                  href="#"
+                  href="https://github.com/Narcissus-Ma"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <GithubOutlined size={32} />
                 </a>
                 <a
                   aria-label="LinkedIn"
                   className="theme-text-secondary theme-link transition-colors"
-                  href="#"
+                  href="https://gitee.com/Narcissus-ma"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  <LinkedinOutlined size={32} />
+                  <GitlabFilled size={32} />
                 </a>
                 <a
                   aria-label="邮箱"
                   className="theme-text-secondary theme-link transition-colors"
-                  href="#"
+                  href="mailto:577008637@qq.com"
                 >
                   <MailOutlined size={32} />
                 </a>
