@@ -31,7 +31,7 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
     {
       key: 'part-4',
       href: '#part-4',
-      title: t('resume.projects'),
+      title: t('common.personalProjects'),
     },
     {
       key: 'part-5',
