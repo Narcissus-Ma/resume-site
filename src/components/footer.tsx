@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Space, Typography } from 'antd';
 
-import { GithubOutlined, LinkedinOutlined, MailOutlined } from '@ant-design/icons';
+import { GithubOutlined, MailOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
 import giteeImage from '@/assets/img/gitee.png';
@@ -24,16 +24,26 @@ const Footer: React.FC<ThemeProps> = () => {
             {t('footer.description')}
           </Paragraph>
           <Space className="justify-center" size="large">
-            <a className="text-gray-300 hover:text-white transition-colors" href="#">
+            <a
+              className="text-gray-300 hover:text-white transition-colors"
+              href="https://github.com/Narcissus-Ma"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <GithubOutlined className="text-xl" />
             </a>
-            <a className="text-gray-300 hover:text-white transition-colors" href="#">
+            <a
+              className="text-gray-300 hover:text-white transition-colors"
+              href="https://gitee.com/Narcissus-ma"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               <img alt="Gitee" className="w-6 h-6" src={giteeImage} />
             </a>
-            <a className="text-gray-300 hover:text-white transition-colors" href="#">
-              <LinkedinOutlined className="text-xl" />
-            </a>
-            <a className="text-gray-300 hover:text-white transition-colors" href="#">
+            <a
+              className="text-gray-300 hover:text-white transition-colors"
+              href="mailto:577008637@qq.com"
+            >
               <MailOutlined className="text-xl" />
             </a>
           </Space>

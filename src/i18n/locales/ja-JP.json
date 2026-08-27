@@ -25,9 +25,9 @@
     "serviceUnavailable": "管理者ログインサービスは一時的に利用できません。"
   },
   "footer": {
-    "title": "張小明のパーソナルホームページ",
+    "title": "Narcissusのパーソナルホームページ",
     "description": "私のパーソナルホームページを訪れていただきありがとうございます。私はあなたと協力して優れたWebアプリケーションを作成することを楽しみにしています！",
-    "copyright": "© {{year}} 張小明. All rights reserved."
+    "copyright": "© {{year}} Narcissus. All rights reserved."
   },
   "resume": {
     "personalInfo": "個人情報",

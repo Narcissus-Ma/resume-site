@@ -25,9 +25,9 @@
     "serviceUnavailable": "The administrator login service is temporarily unavailable."
   },
   "footer": {
-    "title": "Zhang Xiaoming's Personal Homepage",
+    "title": "Narcissus's Personal Homepage",
     "description": "Thank you for visiting my personal homepage. I look forward to working with you to create excellent web applications!",
-    "copyright": "© {{year}} Zhang Xiaoming. All rights reserved."
+    "copyright": "© {{year}} Narcissus. All rights reserved."
   },
   "resume": {
     "personalInfo": "Personal Information",
