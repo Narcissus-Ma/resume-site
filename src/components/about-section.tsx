@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import aboutImage from '@/assets/img/about-workspace.png';
 
-import { ThemeProps, Experience } from '../types';
+import { Experience, ThemeProps } from '../types';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -90,23 +90,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ experiences }) => {
                       children: (
                         <div>
                           <Text strong className="theme-text-primary">
-                            计算机科学与技术硕士
+                            国际经济与贸易
                           </Text>
                           <Paragraph className="theme-text-secondary mb-2 mt-1">
-                            北京大学 - 2016-2018
-                          </Paragraph>
-                        </div>
-                      ),
-                    },
-                    {
-                      color: 'green',
-                      children: (
-                        <div>
-                          <Text strong className="theme-text-primary">
-                            软件工程学士
-                          </Text>
-                          <Paragraph className="theme-text-secondary mb-2 mt-1">
-                            清华大学 - 2012-2016
+                            湖北第二师范学院 - 2013-2017
                           </Paragraph>
                         </div>
                       ),
