@@ -4,7 +4,7 @@ import { Card, Col, Row, Timeline, Typography } from 'antd';
 
 import { useTranslation } from 'react-i18next';
 
-import aboutImage from '@/assets/img/about.png';
+import aboutImage from '@/assets/img/about-workspace.png';
 
 import { ThemeProps, Experience } from '../types';
 
@@ -37,8 +37,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ experiences }) => {
               >
                 {/* 图片作为背景 */}
                 <img
-                  alt="About me"
+                  alt="夜色中的软件开发者工作台"
                   className="h-full w-full object-cover"
+                  decoding="async"
+                  loading="lazy"
                   src={aboutImage}
                   style={{ width: '100%', height: '100%' }}
                 />
@@ -46,7 +48,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ experiences }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 {/* 文字内容绝对定位在图片底部 */}
                 <div className="absolute top-0 left-0 right-0 p-8 bg-gradient-to-b from-black/50 to-transparent text-white">
-                  <Title className="text-xl font-semibold mb-4 text-white" level={4}>
+                  <Title className="mb-4 text-xl font-semibold !text-white" level={4}>
                     {t('about.intro')}
                   </Title>
                   <Paragraph className="mb-6 text-gray-200">{t('about.description')}</Paragraph>
