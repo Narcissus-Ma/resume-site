@@ -4,7 +4,7 @@ import { Card, Col, Row, Timeline, Typography } from 'antd';
 
 import { useTranslation } from 'react-i18next';
 
-import aboutImage from '@/assets/img/about-workspace.png';
+import aboutImage from '@/assets/img/about-workspace.jpg';
 
 import { Experience, ThemeProps } from '../types';
 

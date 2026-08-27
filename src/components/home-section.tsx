@@ -12,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import heroImage from '@/assets/img/programer.png';
+import heroImage from '@/assets/img/programer.jpg';
 
 import { ThemeProps } from '../types';
 
