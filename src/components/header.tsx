@@ -33,11 +33,6 @@ const Header: React.FC<ThemeProps> = ({ darkMode, toggleTheme }) => {
       href: '#part-4',
       title: t('common.personalProjects'),
     },
-    {
-      key: 'part-5',
-      href: '#part-5',
-      title: t('common.contact'),
-    },
   ];
   const mobileMenuItems = navigationItems.map((item) => ({
     key: item.key,

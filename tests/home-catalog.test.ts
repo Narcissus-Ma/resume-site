@@ -114,14 +114,14 @@ test('迁移后的主页目录保留现有三语言内容', async () => {
   assert.ok(frontendHome);
   assert.equal(frontendHome.contents['zh-CN'].occupation, '前端工程师');
   assert.equal(frontendHome.contents['en-US'].occupation, 'Frontend Engineer');
-  assert.equal(frontendHome.contents['zh-CN'].skills[0].name, '前端开发啊');
+  assert.equal(frontendHome.contents['zh-CN'].skills[0].name, 'React');
   assert.match(frontendHome.contents['zh-CN'].skillSectionDescription, /前端和后端技术/);
   assert.deepEqual(
     frontendHome.contents['zh-CN'].skillHighlights.map(({ id, icon }) => ({ id, icon })),
     [
-      { id: 'frontend', icon: 'code' },
+      { id: 'frontend', icon: 'design' },
       { id: 'backend', icon: 'database' },
-      { id: 'uiux', icon: 'design' },
+      { id: 'uiux', icon: 'agent' },
     ],
   );
 });

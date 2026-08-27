@@ -10,7 +10,7 @@
     "dev:grab": "cross-env VITE_GRAB_ENABLED=true vite --port 3000 --host",
     "dev:both": "cross-env VITE_SCAN_ENABLED=true VITE_GRAB_ENABLED=true vite --port 3000 --host",
     "test": "tsx --test tests/*.test.ts tests/*.test.mjs",
-    "build": "tsc && vite build",
+    "build": "pnpm sync:public-data && tsc && vite build",
     "postbuild": "echo /resume-site/assets/* /assets/:splat 200 > dist/_redirects",
     "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext js,jsx,ts,tsx --fix",
@@ -20,7 +20,9 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "typecheck": "tsc --noEmit",
-    "translate": "node scripts/translate-data.js"
+    "translate": "node scripts/translate-data.js",
+    "sync:public-data": "node scripts/sync-public-data.mjs",
+    "sync:public-data:strict": "node scripts/sync-public-data.mjs --strict"
   },
   "dependencies": {
     "antd": "^5.27.1",

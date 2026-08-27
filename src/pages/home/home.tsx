@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import useHome from '@/hooks/use-home';
 
 import AboutSection from '../../components/about-section';
-import ContactSection from '../../components/contact-section';
 import Footer from '../../components/footer';
 import Header from '../../components/header';
 import HomeSection from '../../components/home-section';
@@ -54,7 +53,6 @@ const Home: React.FC = () => {
           />
           <AboutSection darkMode={darkMode} experiences={experiences} />
           <ProjectsSection darkMode={darkMode} projects={projects} />
-          <ContactSection darkMode={darkMode} />
           <Footer darkMode={darkMode} />
         </>
       )}

@@ -25,9 +25,9 @@
     "serviceUnavailable": "管理员登录服务暂时不可用"
   },
   "footer": {
-    "title": "张小明的个人主页",
+    "title": "Narcissus的个人主页",
     "description": "感谢您访问我的个人主页，我期待与您合作，共同创造出色的Web应用！",
-    "copyright": "© {{year}} 张小明. All rights reserved."
+    "copyright": "© {{year}} Narcissus. All rights reserved."
   },
   "resume": {
     "personalInfo": "个人信息",
@@ -53,7 +53,7 @@
   "about": {
     "title": "关于我",
     "intro": "个人简介",
-    "description": "我是一名充满激情的前端工程师，拥有5年专业经验，擅长使用现代前端技术构建高性能、响应式的Web应用。我注重用户体验，追求代码质量，并乐于不断学习新技术。",
+    "description": "我是一名充满激情的前端工程师，拥有7年专业经验，擅长使用现代前端技术构建高性能、响应式的Web应用。我注重用户体验，追求代码质量，并乐于不断学习新技术。",
     "experience": "工作经验",
     "education": "教育经历"
   },

@@ -5,14 +5,14 @@ import { Button, Typography } from 'antd';
 import {
   ArrowRightOutlined,
   GithubOutlined,
-  LinkedinOutlined,
+  GitlabFilled,
   MailOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import catImage from '@/assets/img/cat.png';
+import heroImage from '@/assets/img/programer.png';
 
 import { ThemeProps } from '../types';
 
@@ -42,21 +42,25 @@ const HomeSection: React.FC<HomeSectionProps> = ({ occupation, description }) =>
                 <a
                   aria-label="GitHub"
                   className="theme-text-secondary theme-link transition-colors"
-                  href="#"
+                  href="https://github.com/Narcissus-Ma"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   <GithubOutlined size={32} />
                 </a>
                 <a
                   aria-label="LinkedIn"
                   className="theme-text-secondary theme-link transition-colors"
-                  href="#"
+                  href="https://gitee.com/Narcissus-ma"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  <LinkedinOutlined size={32} />
+                  <GitlabFilled size={32} />
                 </a>
                 <a
                   aria-label="邮箱"
                   className="theme-text-secondary theme-link transition-colors"
-                  href="#"
+                  href="mailto:577008637@qq.com"
                 >
                   <MailOutlined size={32} />
                 </a>
@@ -82,8 +86,14 @@ const HomeSection: React.FC<HomeSectionProps> = ({ occupation, description }) =>
           </div>
 
           <div className="hidden shrink-0 md:block">
-            <div className="w-56 h-56 rounded-full bg-blue-500 flex items-center justify-center p-4">
-              <img alt="Logo" className="w-full h-full object-contain" src={catImage} />
+            <div className="hero-portrait-frame h-60 w-60 rounded-full p-2">
+              <div className="h-full w-full overflow-hidden rounded-full">
+                <img
+                  alt="正在电脑前工作的插画人物"
+                  className="h-full w-full object-cover"
+                  src={heroImage}
+                />
+              </div>
             </div>
           </div>
         </div>

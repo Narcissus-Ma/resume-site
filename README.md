@@ -56,7 +56,9 @@ pnpm dev
 
 ## 环境变量 / Environment Variables
 
-公开页面内置静态 JSON，作为后端不可用或未返回有效数据时的内容回退。开源使用者应部署自己的后端，并在本地 `.env` 文件或部署平台的构建环境中设置：
+公开页面内置静态 JSON，作为后端不可用或未返回有效数据时的内容回退。每次执行 `pnpm build` 前会自动尝试从公开接口同步本地快照；如果网络不可用或接口数据异常，则保留上一次快照并继续构建。也可以手动执行 `pnpm sync:public-data`，需要让同步失败时返回错误则执行 `pnpm sync:public-data:strict`。
+
+开源使用者应部署自己的后端，并在本地 `.env` 文件或部署平台的构建环境中设置：
 
 ```dotenv
 VITE_RESUME_API_BASE_URL=https://api.example.com
@@ -83,6 +85,7 @@ pnpm test
 pnpm typecheck
 pnpm lint
 pnpm format:check
+pnpm sync:public-data
 ```
 
 ## 部署 / Deployment
